@@ -32,7 +32,7 @@ import Foundation
         let document = try GestaltDocument(data: data)
         let snapshot = DocumentSnapshot(data: data, document: document, source: .local, name: "fixture")
 
-        for capability in Capability.all {
+        for capability in Capability.all where capability.availableChoices.contains(.enable) {
             var enabled = document
             capability.apply(.enable, to: &enabled, restoringFrom: snapshot)
             for key in capability.keys {

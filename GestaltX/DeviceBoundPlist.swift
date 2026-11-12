@@ -10,6 +10,13 @@ enum DeviceBoundPlist {
     private static let lock = NSLock()
     private static var invalid: SharedPlistError { SharedPlistError(key: "This plist's device proof could not be verified on this device.") }
 
+    static func keychainFailure(_ status: OSStatus) -> SharedPlistError {
+        if [errSecNotAvailable, errSecInteractionNotAllowed, errSecUserCanceled].contains(status) {
+            return SharedPlistError(key: "The device proof is temporarily unavailable. Unlock this device and try again.", retryable: true)
+        }
+        return invalid
+    }
+
     static func seal(_ payload: Data) throws -> Data { try seal(payload, key: key(create: true)) }
     static func verifiedPayload(_ exported: Data) throws -> Data? {
         let root = try PropertyListSerialization.propertyList(from: exported, options: [], format: nil) as? [String: Any]
@@ -49,14 +56,15 @@ enum DeviceBoundPlist {
         var found: CFTypeRef?
         let status = SecItemCopyMatching(read as CFDictionary, &found)
         if status == errSecSuccess, let bytes = found as? Data, bytes.count == 32 { return bytes }
-        guard status == errSecItemNotFound, create else { throw invalid }
+        guard status == errSecItemNotFound, create else { throw keychainFailure(status) }
         var bytes = Data(count: 32)
         let generated = bytes.withUnsafeMutableBytes { SecRandomCopyBytes(kSecRandomDefault, 32, $0.baseAddress!) }
-        guard generated == errSecSuccess else { throw invalid }
+        guard generated == errSecSuccess else { throw keychainFailure(generated) }
         var add = query
         add[kSecAttrAccessible] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
         add[kSecValueData] = bytes
-        guard SecItemAdd(add as CFDictionary, nil) == errSecSuccess else { throw invalid }
+        let saved = SecItemAdd(add as CFDictionary, nil)
+        guard saved == errSecSuccess else { throw keychainFailure(saved) }
         return bytes
     }
 }

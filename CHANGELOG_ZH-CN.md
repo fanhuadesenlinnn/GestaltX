@@ -2,6 +2,50 @@
 
 [English](CHANGELOG.md) | 简体中文
 
+## [1.0.5] - 2026-11-11
+
+构建号 `11111140`。
+
+### 新增
+
+- 新增西班牙语，应用现支持 9 种语言与地区设置（[#97](https://github.com/huamidev/GestaltX/pull/97)）。
+- 新增 iPhone Air 机型预设（[#92](https://github.com/huamidev/GestaltX/pull/92)）和日文 README（[#83](https://github.com/huamidev/GestaltX/pull/83)）。
+
+### 调整
+
+- 关于页面的支持系统改为 iOS / iPadOS 27.x。仍可在 26.x 上安装，
+  但会提示不支持本机 MobileGestalt 访问。
+- 更新韩语翻译（[#84](https://github.com/huamidev/GestaltX/pull/84)），修复繁体中文等语言中混入其他语言的问题（[#61](https://github.com/huamidev/GestaltX/pull/61)）。
+- 中文的 Photos Clean Up 预设统一改为“照片消除”。
+- 修正 Internal Build 名称，开启该系统全局标记前增加确认（[#60](https://github.com/huamidev/GestaltX/pull/60)）。
+
+### 修复
+
+- 访问设备时保留 App Group 原有缓存，避免影响共享同一组的其他应用（[#55](https://github.com/huamidev/GestaltX/pull/55)）。
+- 还原灵动岛时同时恢复布局和功能标记，并保留其他已暂存的外观修改（[#58](https://github.com/huamidev/GestaltX/pull/58)）。
+- 恢复原值时校验系统缓存代次和布局，区分无法取得的原值与原本不存在的字段，
+  避免反复读取旧备份历史（[#65](https://github.com/huamidev/GestaltX/pull/65)、[#66](https://github.com/huamidev/GestaltX/pull/66)）。
+- 恢复未发生变化的备份时不再重复写入设备（[#69](https://github.com/huamidev/GestaltX/pull/69)）；备份删除失败后可重试（[#70](https://github.com/huamidev/GestaltX/pull/70)），
+  本地备份替换后清除继承的设备归属状态（[#64](https://github.com/huamidev/GestaltX/pull/64)）。
+- 已核验的设备备份在导出时携带本机校验凭证（[#59](https://github.com/huamidev/GestaltX/pull/59)）；
+  分享完成或取消后清理临时导出文件（[#62](https://github.com/huamidev/GestaltX/pull/62)）。
+- 直接打开的文件会先保存再等待导入确认（[#63](https://github.com/huamidev/GestaltX/pull/63)），文件协调读取移至后台（[#75](https://github.com/huamidev/GestaltX/pull/75)）。
+  临时访问失败（[#74](https://github.com/huamidev/GestaltX/pull/74)）或单个 App Group 无法访问（[#71](https://github.com/huamidev/GestaltX/pull/71)）时，不再阻塞其他排队文件。
+- 加强共享导入的容器边界和符号链接检查，限制文件名元数据大小，
+  清理遗留文件时避开正在写入的内容（[#72](https://github.com/huamidev/GestaltX/pull/72)、[#73](https://github.com/huamidev/GestaltX/pull/73)、[#76](https://github.com/huamidev/GestaltX/pull/76)）。
+- 写入系统前拒绝设备身份字段变更（[#67](https://github.com/huamidev/GestaltX/pull/67)），校验重复的缓存描述项（[#56](https://github.com/huamidev/GestaltX/pull/56)），
+  修复未修改的 NaN 值被误判为发生变化的问题（[#68](https://github.com/huamidev/GestaltX/pull/68)）。
+
+### 下载与签名
+
+- 部分用户反馈，iOS 27 上使用 Safari 下载的文件可能不完整。
+  如果提示 IPA 损坏或无法解压，可重新下载几次；仍有问题时换用其他浏览器。
+  目前尚未确认是否由 Safari 或 iOS 本身导致。
+- 重签所用证书与描述文件须包含至少一个可用 App Group。
+  请保留分享扩展，并为主应用和扩展配置同一个 App Group。
+
+**完整变更**：[v1.0.4...v1.0.5](https://github.com/huamidev/GestaltX/compare/v1.0.4...v1.0.5)
+
 ## [1.0.4] - 2026-11-10
 
 构建号 `11101436`。
@@ -68,4 +112,5 @@
 
 **完整变更**：[v1.0.3...v1.0.4](https://github.com/huamidev/GestaltX/compare/v1.0.3...v1.0.4)
 
+[1.0.5]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.5
 [1.0.4]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.4

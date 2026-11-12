@@ -77,6 +77,7 @@ Original values could not be read. No system changes were made.	无法读取原�
 The original-value record belongs to a different device.	原值记录属于其他设备。
 Original values could not be saved and verified. No system write was started.	无法保存并验证原值记录，未开始写入系统文件。
 The selected added fields must be removed before applying.	请先移除选中的新增字段，再应用更改。
+Device identity fields cannot be changed in the system plist. Open a local file to edit these fields.	不能更改系统 plist 中的设备身份字段。如需编辑这些字段，请打开本地文件。
 Keep Current	保持当前值
 Display	显示
 Device	设备
@@ -240,6 +241,7 @@ Changes verified on device. Respring to refresh supported features.	本机更改
 Local changes saved. Export the plist to keep a copy.	本地更改已保存，请导出 plist 以保留副本。
 Backup saved	备份已保存
 Backup restored and verified.	备份已恢复并通过验证。
+This backup already matches the device. No changes were made.	此备份已与设备一致，未作任何更改。
 Backup opened as a local document.	已将备份打开为本地文稿。
 Manual backup	手动备份
 Before editing	编辑前备份
@@ -269,7 +271,7 @@ That key already exists. Edit the existing field instead.	此键名已存在，�
 Enter a model name before applying.	请先输入机型名称再应用。
 A little more possibility.	多一点可能。
 More Projects by huamidev	huamidev 的更多项目
-Minimum OS	最低系统版本
+Supported OS	支持系统
 Languages	语言
 Compatibility	兼容性
 Credits	鸣谢
@@ -299,6 +301,7 @@ Refreshing SpringBoard…	正在刷新 SpringBoard…
 This OS build may not support the technique. You can close this screen and try a manual restart later.	当前系统版本可能不支持此方法。你可以关闭此页面，稍后手动重新启动设备。
 Your device may briefly return to the Lock Screen.	设备可能会短暂返回锁定屏幕。
 The cache layout or values do not match this preset.	缓存布局或数值与此预设不符。
+The original value belongs to a different cache layout. A matching backup is needed to restore it.	原值属于不同的缓存布局，需要匹配的备份才能恢复。
 This preset changes unrelated cache bytes.	此预设更改了无关的缓存字节。
 Unable to resolve this device's MobileGestalt cache layout.	无法解析此设备的 MobileGestalt 缓存布局。
 Importing Plist…	正在导入 plist…
@@ -317,6 +320,7 @@ MG Control	MG 控制
 Read MobileGestalt in Tools, or share this device's plist to GestaltX.	在工具中读取 MobileGestalt，或将本机 plist 分享到 GestaltX。
 This plist has been verified for this device. Import it?	已核验此 plist 属于本机，是否导入？
 This plist's device proof could not be verified on this device.	无法在本机验证此 plist 的设备凭证。
+The device proof is temporarily unavailable. Unlock this device and try again.	设备凭证暂时不可用。请解锁此设备后重试。
 This plist uses a different system cache layout and cannot be restored.	此 plist 的系统缓存布局与本机不符，无法恢复。
 Restore Imported Plist	恢复导入的 plist
 The current device file will be backed up before restoring. Restart the device afterward.	恢复前会备份当前设备文件，完成后请重启设备。
@@ -324,7 +328,11 @@ Share this device's plist to GestaltX to edit its keys and values or restore a v
 Canada	加拿大
 Model Number	型号号码
 A device restart may be required after changing the model number.	修改型号号码后可能需要重启设备。
-Listed values apply to iPhone 18 Pro and iPhone 18 Pro Max only. Choosing a model number that does not match your hardware can make verification tools report a mismatch.	以下号码仅适用于 iPhone 18 Pro 和 iPhone 18 Pro Max。选择与硬件不符的号码，可能导致验机工具报告不匹配。
+Listed values apply to iPhone Air, iPhone 18 Pro and iPhone 18 Pro Max only. Choosing a model number that does not match your hardware can make verification tools report a mismatch.	以下号码仅适用于 iPhone Air、iPhone 18 Pro 和 iPhone 18 Pro Max。选择与硬件不符的号码，可能导致验机工具报告不匹配。
+A3260 — Air · United States / Canada	A3260 — Air · 美国／加拿大
+A3516 — Air · Japan	A3516 — Air · 日本
+A3517 — Air · Other regions	A3517 — Air · 其他地区
+A3518 — Air · China mainland	A3518 — Air · 中国大陆
 A3472 — 18 Pro · United States	A3472 — 18 Pro · 美国
 A3713 — 18 Pro · Canada / Japan	A3713 — 18 Pro · 加拿大／日本
 A3714 — 18 Pro · Other regions	A3714 — 18 Pro · 其他地区
@@ -357,17 +365,21 @@ Enable spatial audio playback for FaceTime.	为 FaceTime 启用空间音频播�
 Internal Settings Bundle	内部设置包
 Expose Apple's internal settings bundle. Some system services may behave differently.	显示 Apple 内部设置包。部分系统服务可能表现异常。
 On-Device Siri	端侧 Siri
-Advertise on-device Siri understanding. Availability depends on hardware and region.	声明支持端侧 Siri 理解，可用性取决于硬件与地区。
+Siri uses a device-specific capability type. Changing it may affect the Apple Intelligence Siri interface. Keep the current value or restore the recorded original.	Siri 使用机型相关的能力类型。修改此类型可能影响 Apple 智能 Siri 界面。请选择保持当前值或还原已记录的原始值。
 Audio Intelligence	音频智能
 Advertise the iOS 27 audio intelligence capability.	声明 iOS 27 音频智能能力。
 Personal Translator	个人翻译
 Advertise the personal translator capability.	声明个人翻译能力。
-Photos Clean Up	照片 Clean Up
-Advertise the photos inpainting (Clean Up) capability.	声明照片修复（Clean Up）能力。
+Photos Clean Up	照片消除
+Advertise the photos inpainting (Clean Up) capability.	声明照片物体清除与修复功能。
 Handwriting Synthesis	手写合成
 Advertise the handwriting synthesis model capability.	声明手写合成模型能力。
 Always-Listening Hey Siri	常听 Hey Siri
 Advertise always-listening Hey Siri support.	声明支持常听 Hey Siri。
+Internal Build	内部构建
+Changes the system-wide InternalBuild flag, not just storage information. System services may behave differently. Revert restores the recorded original value.	修改系统全局的 InternalBuild 标记，并非仅调整存储信息。系统服务的行为可能发生变化。“还原”会恢复已记录的原始值。
+Enable Internal Build?	启用内部构建？
+This stages the system-wide InternalBuild flag. It can affect system services beyond the storage screen. You can review the change before applying it.	这会暂存系统全局的 InternalBuild 标记变更。它可能影响存储页面以外的系统服务。你可以在应用前检查这项变更。
 '''
 entries = {}
 for line in TRANSLATIONS.strip().splitlines():

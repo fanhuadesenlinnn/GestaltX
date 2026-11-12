@@ -212,6 +212,11 @@ final class GestaltManager: ObservableObject {
         guard !isBusy, let snapshot, let working else { return false }
         if (choices[capability.id] ?? .keep) != .keep { return true }
         if capability.id == "dynamicIsland" && subtype != 0 { return true }
+        if capability.id == "dynamicIsland" {
+            var restored = working
+            capability.restoreDynamicIslandLayout(in: &restored, from: snapshot)
+            if !restored.matches(working) { return true }
+        }
         if capability.id == ModelPreset.restoration.id && modelID != "keep" { return true }
         return capability.keys.contains { key in
             switch (snapshot.originalValue(for: key), working.extra[key]) {
@@ -241,7 +246,9 @@ final class GestaltManager: ObservableObject {
                 message = L(result.source == .device ? "Original values restored." : "Local changes saved. Export the plist to keep a copy.")
             }
             snapshot = result
-            working = before.rebasingPendingEdits(pending, onto: result.document, excluding: Set(capability.keys))
+            var rebased = before.rebasingPendingEdits(pending, onto: result.document, excluding: Set(capability.keys))
+            capability.restoreDynamicIslandLayout(in: &rebased, from: before)
+            working = rebased
             choices[capability.id] = .keep
             if capability.id == "dynamicIsland" { subtype = 0 }
             if capability.id == ModelPreset.restoration.id { modelID = "keep" }
@@ -370,17 +377,19 @@ final class GestaltManager: ObservableObject {
         isBusy = true
         defer { isBusy = false }
         do {
-            let bytes = try inbox.read(entry)
+            let bytes = try await inbox.readAsync(entry)
             let (payload, identity) = try await verifyImport(bytes)
+            try Task.checkCancellation()
             log("[share] Device ownership verified; waiting for import confirmation")
             return .ready(PlistImportOffer(data: payload, name: entry.name, identity: identity, sharedSource: (inbox, entry)))
+        } catch is CancellationError {
+            return .deferred(nil)
         } catch {
-            // A lack of device access may be temporary; keep that entry for retry.
+            // Retry only known access/service failures, not invalid content.
             log("[share] " + error.localizedDescription)
-            if (error as? SharedPlistError)?.key == DevicePlistIdentity.unavailable.key {
+            if !inbox.reject(entry, after: error) {
                 return .deferred(error.localizedDescription)
             }
-            inbox.reject(entry)
             return .rejected(error.localizedDescription)
         }
     }
@@ -390,10 +399,12 @@ final class GestaltManager: ObservableObject {
         isBusy = true
         defer { isBusy = false }
         do {
-            let bytes = try SharedPlistInbox.readDocument(at: url)
+            let bytes = try await SharedPlistInbox.readDocumentAsync(at: url)
             let (payload, identity) = try await verifyImport(bytes)
+            try Task.checkCancellation()
             return PlistImportOffer(data: payload, name: url.lastPathComponent, identity: identity, sharedSource: nil)
-        } catch { failed(error); return nil }
+        } catch is CancellationError { return nil }
+        catch { failed(error); return nil }
     }
 
     func acceptImport(_ offer: PlistImportOffer) async {
@@ -420,9 +431,11 @@ final class GestaltManager: ObservableObject {
         do {
             let live = try await files.loadDevice()
             let restored = try await files.restoreVerifiedImport(imported, expected: live)
-            accept(restored); needsRespring = true
+            let changed = !restored.document.matches(live.document)
+            accept(restored); needsRespring = needsRespring || changed
             status = "Changes verified on device"
-            message = L("Backup restored and verified.") + " " + L("Some changes require a device restart.")
+            message = changed ? L("Backup restored and verified.") + " " + L("Some changes require a device restart.")
+                : L("This backup already matches the device. No changes were made.")
             log("[restore] Verified imported document restored")
             await reloadBackups()
         } catch { failed(error); await reloadBackups() }
@@ -504,8 +517,11 @@ final class GestaltManager: ObservableObject {
             log("[restore] \(record.filename) · \(record.byteCount) bytes · reason=\(record.reason)")
             logChanges(from: snapshot.document, to: restored, prefix: "[restore-diff] ")
             let result = try await files.commit(restored, expected: snapshot, restoring: record)
-            accept(result); needsRespring = result.source == .device
-            message = L(result.source == .device ? "Backup restored and verified." : "Backup opened as a local document.")
+            let changed = !result.document.matches(snapshot.document)
+            accept(result); needsRespring = result.source == .device && (needsRespring || changed)
+            message = L(result.source == .device
+                        ? (changed ? "Backup restored and verified." : "This backup already matches the device. No changes were made.")
+                        : "Backup opened as a local document.")
             log(message ?? ""); await reloadBackups()
         } catch { failed(error); await reloadBackups() }
     }
@@ -526,11 +542,14 @@ final class GestaltManager: ObservableObject {
         isBusy = true; defer { isBusy = false }
         do { try await files.deleteBackup(record); await reloadBackups() } catch { failed(error) }
     }
-    func exportBackup(_ record: BackupRecord) async -> URL? {
-        do { return try exportData(await files.backupData(record), name: record.filename) }
+    func exportBackup(_ record: BackupRecord) async -> TemporaryExport? {
+        do {
+            let data = try await files.backupExportData(record, sealingWith: { try DeviceBoundPlist.seal($0) })
+            return try exportData(data, name: record.filename)
+        }
         catch { failed(error); return nil }
     }
-    func exportDocument() -> URL? {
+    func exportDocument() -> TemporaryExport? {
         guard let doc = preview, let snapshot else { return nil }
         do {
             let plain = try doc.encoded()
@@ -539,10 +558,7 @@ final class GestaltManager: ObservableObject {
         }
         catch { failed(error); return nil }
     }
-    private func exportData(_ data: Data, name: String) throws -> URL {
-        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
-        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-        let url = folder.appendingPathComponent(name); try data.write(to: url, options: .atomic)
-        return url
+    private func exportData(_ data: Data, name: String) throws -> TemporaryExport {
+        try TemporaryExport(data: data, name: name)
     }
 }

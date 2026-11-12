@@ -2,6 +2,61 @@
 
 English | [简体中文](CHANGELOG_ZH-CN.md)
 
+## [1.0.5] - 2026-11-11
+
+Build `11111140`.
+
+### Added
+
+- Spanish localization, bringing the app to nine supported locales ([#97](https://github.com/huamidev/GestaltX/pull/97)).
+- iPhone Air model presets ([#92](https://github.com/huamidev/GestaltX/pull/92)) and a Japanese README ([#83](https://github.com/huamidev/GestaltX/pull/83)).
+
+### Changed
+
+- About now lists the supported OS as iOS / iPadOS 27.x. Installation remains
+  available on 26.x, where on-device MobileGestalt access is marked unsupported.
+- Updated Korean translations ([#84](https://github.com/huamidev/GestaltX/pull/84)) and corrected mixed-language text in
+  Traditional Chinese and other locales ([#61](https://github.com/huamidev/GestaltX/pull/61)).
+- Renamed the Chinese Photos Clean Up preset to “照片消除”.
+- Corrected the Internal Build label and added confirmation before enabling
+  this system-wide flag ([#60](https://github.com/huamidev/GestaltX/pull/60)).
+
+### Fixed
+
+- Device access preserves existing App Group cache contents ([#55](https://github.com/huamidev/GestaltX/pull/55)).
+- Reverting Dynamic Island restores its layout together with its capability
+  flag, without discarding unrelated staged artwork changes ([#58](https://github.com/huamidev/GestaltX/pull/58)).
+- Original-value recovery now checks the cache generation and layout, keeps
+  unavailable originals distinct from missing fields, and avoids repeatedly
+  reading old backup history ([#65](https://github.com/huamidev/GestaltX/pull/65), [#66](https://github.com/huamidev/GestaltX/pull/66)).
+- Restoring an unchanged backup skips unnecessary device writes ([#69](https://github.com/huamidev/GestaltX/pull/69)).
+  Failed backup deletions remain retryable ([#70](https://github.com/huamidev/GestaltX/pull/70)), and local backup
+  replacement clears inherited device-ownership status ([#64](https://github.com/huamidev/GestaltX/pull/64)).
+- Exports of verified device backups carry device-bound proof ([#59](https://github.com/huamidev/GestaltX/pull/59)).
+  Temporary export files are removed after sharing or cancellation ([#62](https://github.com/huamidev/GestaltX/pull/62)).
+- Direct file imports are captured before confirmation is deferred ([#63](https://github.com/huamidev/GestaltX/pull/63)),
+  and coordinated reads run off the main thread ([#75](https://github.com/huamidev/GestaltX/pull/75)). Temporary provider
+  failures ([#74](https://github.com/huamidev/GestaltX/pull/74)) or one inaccessible App Group ([#71](https://github.com/huamidev/GestaltX/pull/71)) no longer block
+  other queued imports.
+- Shared import handling checks container boundaries, rejects symlink paths,
+  bounds filename metadata, and cleans abandoned files without interrupting
+  active writers ([#72](https://github.com/huamidev/GestaltX/pull/72), [#73](https://github.com/huamidev/GestaltX/pull/73), [#76](https://github.com/huamidev/GestaltX/pull/76)).
+- Device identity changes are rejected before system writes ([#67](https://github.com/huamidev/GestaltX/pull/67)).
+  Duplicate cache descriptors are validated ([#56](https://github.com/huamidev/GestaltX/pull/56)), and unchanged NaN
+  values compare consistently ([#68](https://github.com/huamidev/GestaltX/pull/68)).
+
+### Download and signing
+
+- Some users report incomplete downloads with Safari on iOS 27. If an IPA is
+  reported as damaged or cannot be extracted, download it again; it may take
+  several attempts. Try another browser if the issue persists. This has not
+  been confirmed as a Safari or iOS defect.
+- Re-sign with a certificate and profile containing at least one usable App
+  Group. Keep the share extension and configure a common App Group for both
+  the app and extension.
+
+**Full Changelog**: https://github.com/huamidev/GestaltX/compare/v1.0.4...v1.0.5
+
 ## [1.0.4] - 2026-11-10
 
 Build `11101436`.
@@ -82,4 +137,5 @@ Build `11101436`.
 
 **Full Changelog**: https://github.com/huamidev/GestaltX/compare/v1.0.3...v1.0.4
 
+[1.0.5]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.5
 [1.0.4]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.4

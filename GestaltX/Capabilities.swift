@@ -37,6 +37,11 @@ struct Capability: Identifiable {
     /// Per-key values for presets that are not a plain Boolean 1, such as the
     /// parallax switch (0) or the AOD flipbook count.
     var values: [String: Any]? = nil
+    var availableChoices: [PresetChoice] {
+        // Preserve the device-specific Siri capability type and allow recovery from older overrides.
+        id == "siriOnDevice" ? [.keep, .disable, .removeAdded] : PresetChoice.allCases
+    }
+    var requiresEnableConfirmation: Bool { id == "storage" }
     var effectHint: String {
         switch id {
         case "ai", "siriOnDevice", "audioIntelligence", "personalTranslator", "photosCleanUp",
@@ -52,7 +57,7 @@ struct Capability: Identifiable {
     }
     var enabled: Any { id == "ipadApps" ? [1, 2] : NSNumber(value: 1) }
     func apply(_ choice: PresetChoice, to document: inout GestaltDocument, restoringFrom snapshot: DocumentSnapshot) {
-        guard choice != .keep else { return }
+        guard choice != .keep, availableChoices.contains(choice) else { return }
         for key in keys {
             switch choice {
             case .keep: break
@@ -61,6 +66,19 @@ struct Capability: Identifiable {
             case .removeAdded: document.set(nil, for: key)
             }
         }
+        if id == "dynamicIsland", choice == .disable || choice == .removeAdded {
+            restoreDynamicIslandLayout(in: &document, from: snapshot)
+        }
+    }
+
+    func restoreDynamicIslandLayout(in document: inout GestaltDocument, from snapshot: DocumentSnapshot) {
+        guard id == "dynamicIsland", var artwork = document.extra[GestaltKeys.artwork] as? [String: Any] else { return }
+        let original = snapshot.originalValue(for: GestaltKeys.artwork)
+        let originalArtwork = original as? [String: Any]
+        // Layout and model-name presets share this dictionary. Restore only the
+        // layout member so unrelated artwork edits keep their current values.
+        artwork["ArtworkDeviceSubType"] = originalArtwork?["ArtworkDeviceSubType"]
+        document.set(artwork.isEmpty && original == nil ? nil : artwork, for: GestaltKeys.artwork)
     }
     static let all: [Self] = [
         .init(id: "dynamicIsland", category: .display, title: "Dynamic Island", detail: "Enable the alternate Dynamic Island capability.", keys: ["YlEtTtHlNesRBMal1CqRaA"]),
@@ -86,14 +104,14 @@ struct Capability: Identifiable {
         .init(id: "stageManager", category: .ipad, title: "Stage Manager", detail: "Expose Stage Manager support. Layout behavior varies by device.", keys: ["qeaj75wk3HF4DwQ8qbIi7g"], caution: true),
         .init(id: "ipadApps", category: .ipad, title: "iPad App Compatibility", detail: "Allow iPad app compatibility types on iPhone.", keys: ["9MZ5AdH43csAUajl/dU+IQ"]),
         .init(id: "ai", category: .intelligence, title: "Apple Intelligence Capability", detail: "Set the generative models capability. Availability also depends on hardware, region and Apple services.", keys: ["A62OafQ85EJAiiqKn4agtg"]),
-        .init(id: "siriOnDevice", category: .intelligence, title: "On-Device Siri", detail: "Advertise on-device Siri understanding. Availability depends on hardware and region.", keys: ["K/R1GfGfCkXvEhaPS2Vrng"], caution: true),
+        .init(id: "siriOnDevice", category: .intelligence, title: "On-Device Siri", detail: "Siri uses a device-specific capability type. Changing it may affect the Apple Intelligence Siri interface. Keep the current value or restore the recorded original.", keys: ["K/R1GfGfCkXvEhaPS2Vrng"], caution: true),
         .init(id: "audioIntelligence", category: .intelligence, title: "Audio Intelligence", detail: "Advertise the iOS 27 audio intelligence capability.", keys: ["rb2tKZxlj0Gm2tBmUQSLqQ"], caution: true),
         .init(id: "personalTranslator", category: .intelligence, title: "Personal Translator", detail: "Advertise the personal translator capability.", keys: ["M1n2sAqf33NAOgZRGxQYBA"], caution: true),
         .init(id: "photosCleanUp", category: .intelligence, title: "Photos Clean Up", detail: "Advertise the photos inpainting (Clean Up) capability.", keys: ["XNCjqOupLM/S8fNyxRNQTA"], caution: true),
         .init(id: "handwritingSynthesis", category: .intelligence, title: "Handwriting Synthesis", detail: "Advertise the handwriting synthesis model capability.", keys: ["YgYIIViDt1kgzyIsIV61vA"], caution: true),
         .init(id: "alwaysListeningSiri", category: .intelligence, title: "Always-Listening Hey Siri", detail: "Advertise always-listening Hey Siri support.", keys: ["TusANsf9Lfe3P/9fIXXSrQ"], caution: true),
         .init(id: "internal", category: .advanced, title: "Apple Internal Features", detail: "Expose internal menus. Some system services may behave differently.", keys: ["EqrsVvjcYDdxHBiQmGhAWw"], caution: true),
-        .init(id: "storage", category: .advanced, title: "Internal Storage View", detail: "Show internal storage categories. Experimental on iPad.", keys: ["LBJfwOEzExRxzlAnSuI7eg"], caution: true),
+        .init(id: "storage", category: .advanced, title: "Internal Build", detail: "Changes the system-wide InternalBuild flag, not just storage information. System services may behave differently. Revert restores the recorded original value.", keys: ["LBJfwOEzExRxzlAnSuI7eg"], caution: true),
         .init(id: "srd", category: .advanced, title: "Security Research Device", detail: "Change the SRD capability flag. This does not turn the device into an Apple SRD.", keys: ["XYlJKKkj2hztRP1NWWnhlw"], caution: true),
         .init(id: "internalSettings", category: .advanced, title: "Internal Settings Bundle", detail: "Expose Apple's internal settings bundle. Some system services may behave differently.", keys: ["Oji6HRoPi7rH7HPdWVakuw"], caution: true),
     ]
@@ -144,7 +162,11 @@ struct ModelPreset: Identifiable {
         .init(id: "A3473", title: "A3473 — 18 Pro Max · United States", value: "A3473"),
         .init(id: "A3716", title: "A3716 — 18 Pro Max · Canada / Japan", value: "A3716"),
         .init(id: "A3717", title: "A3717 — 18 Pro Max · Other regions", value: "A3717"),
-        .init(id: "A3718", title: "A3718 — 18 Pro Max · China mainland", value: "A3718")
+        .init(id: "A3718", title: "A3718 — 18 Pro Max · China mainland", value: "A3718"),
+        .init(id: "A3260", title: "A3260 — Air · United States / Canada", value: "A3260"),
+        .init(id: "A3516", title: "A3516 — Air · Japan", value: "A3516"),
+        .init(id: "A3517", title: "A3517 — Air · Other regions", value: "A3517"),
+        .init(id: "A3518", title: "A3518 — Air · China mainland", value: "A3518")
     ]
 }
 

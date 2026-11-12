@@ -74,6 +74,7 @@ extension DocumentTests {
                 if recoverJournal {
                     var saved = try PropertyListSerialization.propertyList(from: Data(contentsOf: journal), format: nil) as! [String: Any]
                     saved.removeValue(forKey: "wapi")
+                    saved.removeValue(forKey: "cacheHistoryRecovered")
                     try PropertyListSerialization.data(fromPropertyList: saved, format: .binary, options: 0).write(to: journal)
                 } else {
                     for record in try await store.backups() { try await store.deleteBackup(record) }

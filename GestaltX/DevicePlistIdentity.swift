@@ -5,7 +5,7 @@ import CoreFoundation
 struct DevicePlistIdentity: Sendable {
     // Compare individual-device identifiers, never model/region/cache UUID.
     private(set) var values: [String: String]
-    static let unavailable = SharedPlistError(key: "This device's identity could not be verified. Read MobileGestalt on this device and try sharing again.")
+    static let unavailable = SharedPlistError(key: "This device's identity could not be verified. Read MobileGestalt on this device and try sharing again.", retryable: true)
     static let mismatch = SharedPlistError(key: "This plist belongs to another device and cannot be imported.")
     static let incomplete = SharedPlistError(key: "This plist does not contain enough device identifiers to verify ownership.")
     private static let keys = [

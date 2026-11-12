@@ -2,8 +2,6 @@
 // Copyright (C) 2026 huamidev
 import SwiftUI
 
-struct SharedFile: Identifiable { let id = UUID(); let url: URL }
-
 struct ContentView: View {
     @StateObject private var model = GestaltManager()
     @Environment(\.scenePhase) private var scenePhase
@@ -11,7 +9,9 @@ struct ContentView: View {
     @State private var showsImportConfirmation = false
     @State private var isCheckingSharedImport = false
     @State private var pendingSharedImport = false
-    @State private var sharesFile: SharedFile?
+    @State private var capturingDirectImports = 0
+    @State private var sharesFile: TemporaryExport?
+    @State private var activeExport: TemporaryExport?
     @State private var showsChanges = false
     @State private var asksRespring = false
     @State private var asksImportedRestore = false
@@ -31,7 +31,7 @@ struct ContentView: View {
                 .tabItem { Label(L("Tools"), systemImage: "square.grid.2x2") }.tag(0)
             NavigationStack { FieldsView() }
                 .tabItem { Label(L("MG Control"), systemImage: "slider.horizontal.3") }.tag(1)
-            NavigationStack { BackupsView(share: { sharesFile = SharedFile(url: $0) }) }
+            NavigationStack { BackupsView(share: presentShare) }
                 .tabItem { Label(L("Backups"), systemImage: "clock.arrow.circlepath") }.tag(2)
             NavigationStack { AboutView() }
                 .tabItem { Label(L("About"), systemImage: "info.circle") }.tag(3)
@@ -46,7 +46,10 @@ struct ContentView: View {
         .sheet(isPresented: Binding(get: { !acceptedWelcome && !isPreviewSession }, set: { _ in })) {
             WelcomeView { acceptedWelcome = true }
         }
-        .sheet(item: $sharesFile) { ShareSheet(url: $0.url) }
+        .sheet(item: $sharesFile, onDismiss: {
+            activeExport?.cleanUp()
+            activeExport = nil
+        }) { ShareSheet(export: $0) }
         .sheet(isPresented: $showsChanges) { ChangeReviewView().environmentObject(model) }
         .fullScreenCover(isPresented: $model.isRespringing) { NeoSpringView() }
         .alert(L("GestaltX"), isPresented: Binding(get: { model.message != nil && !showsChanges }, set: { if !$0 { model.message = nil } })) {
@@ -91,24 +94,26 @@ struct ContentView: View {
             if url.scheme?.lowercased() == "gestaltx", url.host == "share" {
                 Task { await checkSharedImport() }
             } else if url.isFileURL {
-                // Keep the currently displayed confirmation and its immutable
-                // payload until the user has accepted or cancelled it.
-                guard importOffer == nil, !showsImportConfirmation else { return }
-                guard !isCheckingSharedImport, !model.isBusy, model.changeCount == 0 else {
-                    if model.message == nil {
-                        model.message = L("Save or discard your current changes before opening another plist.")
+                do {
+                    // Own the bytes before deferring presentation. The same
+                    // durable confirmation queue handles Files and share events.
+                    let capture = DirectFileImports.capture(url, in: try DirectFileImports.inbox())
+                    capturingDirectImports += 1
+                    pendingSharedImport = true
+                    Task {
+                        do {
+                            _ = try await withTaskCancellationHandler {
+                                try await capture.value
+                            } onCancel: { capture.cancel() }
+                            capturingDirectImports -= 1
+                            guard !Task.isCancelled else { return }
+                            await resumeSharedImports()
+                        } catch {
+                            capturingDirectImports -= 1
+                            if !Task.isCancelled && !(error is CancellationError) { model.message = error.localizedDescription }
+                        }
                     }
-                    return
-                }
-                guard canPresentSharedImport else { return }
-                isCheckingSharedImport = true
-                Task {
-                    defer { isCheckingSharedImport = false }
-                    let prepared = await model.prepareFileImport(url)
-                    guard canPresentSharedImport else { return }
-                    importOffer = prepared
-                    if importOffer != nil { selectedTab = 0; showsImportConfirmation = true }
-                }
+                } catch { model.message = error.localizedDescription }
             }
         }
         .onChange(of: scenePhase) { _, phase in
@@ -188,10 +193,11 @@ struct ContentView: View {
         guard acceptedWelcome else { return false }
         guard !isCheckingSharedImport, importOffer == nil else { return true }
         do {
-            let entries = try SharedImportQueue.snapshot(in: SharedAppGroups.inboxes)
+            let inboxes = [try DirectFileImports.inbox()] + SharedAppGroups.inboxes
+            let entries = try SharedImportQueue.snapshot(in: inboxes)
             guard !entries.isEmpty else {
-                pendingSharedImport = false
-                return false
+                pendingSharedImport = capturingDirectImports > 0
+                return pendingSharedImport
             }
             guard canPresentSharedImport else {
                 let firstNotice = !pendingSharedImport
@@ -246,6 +252,12 @@ struct ContentView: View {
         showsShareNotice = true
     }
 
+    private func presentShare(_ export: TemporaryExport) {
+        guard sharesFile == nil, activeExport == nil else { export.cleanUp(); return }
+        activeExport = export
+        sharesFile = export
+    }
+
     private var tools: some View {
         Form {
             Section(L("Device")) {
@@ -286,7 +298,7 @@ struct ContentView: View {
                 Button { Task { await model.backup() } } label: { Label(L("Create Backup"), systemImage: "externaldrive.badge.plus") }
                     .disabled(!model.hasDocument || model.isBusy)
                 Button {
-                    if let url = model.exportDocument() { sharesFile = SharedFile(url: url) }
+                    if let export = model.exportDocument() { presentShare(export) }
                 } label: { Label(L("Export Plist"), systemImage: "square.and.arrow.up") }
                     .disabled(!model.hasDocument || model.isBusy)
                 Button { asksRespring = true } label: { Label(L("Respring"), systemImage: "arrow.trianglehead.2.clockwise.rotate.90") }
@@ -305,6 +317,7 @@ struct ContentView: View {
 struct CategoryView: View {
     let category: CapabilityCategory
     @EnvironmentObject private var model: GestaltManager
+    @State private var asksInternalBuild = false
     var body: some View {
         Form {
             if category == .display {
@@ -313,6 +326,7 @@ struct CategoryView: View {
                         Text(L("Keep Current")).tag(0)
                         Text("iPhone 14 Pro · 2556").tag(2556)
                         Text("iPhone 14 Pro Max · 2796").tag(2796)
+                        Text("iPhone Air · 2736").tag(2736)
                         Text("iPhone 16 Pro · 2622").tag(2622)
                         Text("iPhone 16 Pro Max · 2868").tag(2868)
                     }
@@ -368,7 +382,7 @@ struct CategoryView: View {
                             .disabled(!model.canRestore(ModelPreset.restoration))
                     }
                 } footer: {
-                    Text(L("Listed values apply to iPhone 18 Pro and iPhone 18 Pro Max only. Choosing a model number that does not match your hardware can make verification tools report a mismatch."))
+                    Text(L("Listed values apply to iPhone Air, iPhone 18 Pro and iPhone 18 Pro Max only. Choosing a model number that does not match your hardware can make verification tools report a mismatch."))
                 }
             }
             Section {
@@ -377,11 +391,20 @@ struct CategoryView: View {
                     Picker(selection: Binding(
                         get: { model.choices[capability.id] ?? .keep },
                         set: {
+                            if capability.requiresEnableConfirmation, $0 == .enable,
+                               model.choices[capability.id] != .enable {
+                                asksInternalBuild = true
+                                return
+                            }
                             model.choices[capability.id] = $0
                             if capability.id == "dynamicIsland" && $0 != .keep { model.subtype = 0 }
                         }
                     )) {
-                        ForEach(PresetChoice.allCases) { Text(L($0.title)).tag($0) }
+                        ForEach(capability.availableChoices) { choice in
+                            let title = capability.id == "siriOnDevice" && choice == .disable
+                                ? "Restore Original" : choice.title
+                            Text(L(title)).tag(choice)
+                        }
                     } label: {
                         HStack(spacing: 6) {
                             Text(L(capability.title))
@@ -391,6 +414,9 @@ struct CategoryView: View {
                             }
                         }
                     }.pickerStyle(.menu)
+                    if capability.requiresEnableConfirmation || capability.id == "siriOnDevice" {
+                        Text(L(capability.detail)).font(.caption).foregroundStyle(.secondary)
+                    }
                     HStack(alignment: .firstTextBaseline) {
                         if (model.choices[capability.id] ?? .keep) != .keep {
                             Text(L(capability.effectHint)).font(.caption).foregroundStyle(.secondary)
@@ -417,6 +443,15 @@ struct CategoryView: View {
             }
         }
         .navigationTitle(L(category.rawValue)).disabled(model.isBusy)
+        .alert(L("Enable Internal Build?"), isPresented: $asksInternalBuild) {
+            Button(L("Cancel"), role: .cancel) {}
+            Button(L("Enable"), role: .destructive) {
+                guard !model.isBusy, model.hasDocument else { return }
+                model.choices["storage"] = .enable
+            }
+        } message: {
+            Text(L("This stages the system-wide InternalBuild flag. It can affect system services beyond the storage screen. You can review the change before applying it."))
+        }
     }
 }
 
@@ -643,7 +678,7 @@ struct ChangeReviewView: View {
 }
 
 struct BackupsView: View {
-    let share: (URL) -> Void
+    let share: (TemporaryExport) -> Void
     @EnvironmentObject private var model: GestaltManager
     @State private var restores: BackupRecord?
     @State private var deletes: BackupRecord?
@@ -722,7 +757,11 @@ struct BrandMark: View {
 }
 extension Color { static let gestaltAccent = Color.blue }
 struct ShareSheet: UIViewControllerRepresentable {
-    let url: URL
-    func makeUIViewController(context: Context) -> UIActivityViewController { UIActivityViewController(activityItems: [url], applicationActivities: nil) }
+    let export: TemporaryExport
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: [export.url], applicationActivities: nil)
+        controller.completionWithItemsHandler = { _, _, _, _ in export.cleanUp() }
+        return controller
+    }
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }

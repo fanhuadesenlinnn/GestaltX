@@ -21,7 +21,7 @@ struct AboutView: View {
                 }
             }
             Section {
-                LabeledContent(L("Minimum OS"), value: "iOS 26.0")
+                LabeledContent(L("Supported OS"), value: VersionSupport.range)
                 NavigationLink { CompatibilityView() } label: { Label(L("Compatibility"), systemImage: "iphone.badge.checkmark") }
             }
             Section(L("Special Thanks")) {

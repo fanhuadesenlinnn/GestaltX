@@ -23,7 +23,15 @@ enum SharedImportQueue {
 
     static func snapshot(in inboxes: [SharedPlistInbox]) throws -> [Item] {
         var items: [Item] = []
-        for inbox in inboxes { items.append(contentsOf: try inbox.entries().map { (inbox, $0) }) }
+        var firstError: Error?
+        for inbox in inboxes {
+            do { items.append(contentsOf: try inbox.entries().map { (inbox, $0) }) }
+            catch { if firstError == nil { firstError = error } }
+        }
+        // One damaged container must not hide documents already delivered to
+        // another signed App Group. Keep reporting the error when there are no
+        // readable entries, including after the healthy inbox has been drained.
+        if items.isEmpty, let firstError { throw firstError }
         return items.sorted {
             if $0.entry.created != $1.entry.created { return $0.entry.created < $1.entry.created }
             if $0.entry.id != $1.entry.id { return $0.entry.id.uuidString < $1.entry.id.uuidString }

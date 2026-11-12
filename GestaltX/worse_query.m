@@ -32,6 +32,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include "worse_query.h"
+#import "GXCacheDirectory.h"
 
 typedef void *(*container_query_create_fn)(void);
 typedef void (*container_query_set_class_fn)(void *, uint64_t);
@@ -54,24 +55,6 @@ static void wq_log(NSString *format, ...) {
     NSLog(@"[worse_query] %@", message);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"GestaltX.worse_query.log"
                                                       object:nil userInfo:@{@"message": message}];
-}
-
-// Remove symlink and recreate Caches directory
-static void clean_symlink(NSString *group) {
-    if (group != NULL) {
-        NSFileManager *files = [NSFileManager defaultManager];
-        NSURL *groupRoot = [files containerURLForSecurityApplicationGroupIdentifier: group];
-        if (groupRoot) {
-            NSURL *caches = [groupRoot URLByAppendingPathComponent: @"Library/Caches"];
-            NSError *error = nil;
-            BOOL removed = [files removeItemAtURL:caches error:&error];
-            if (!removed && error.code != NSFileNoSuchFileError) wq_log(@"Cleanup: remove symlink failed (%@)", error.localizedDescription);
-            error = nil;
-            BOOL restored = [files createDirectoryAtURL:caches withIntermediateDirectories:false attributes:nil error:&error];
-            wq_log(restored ? @"Cleanup: Caches directory restored" : @"Cleanup: Caches restore failed (%@)", error.localizedDescription ?: @"");
-        }
-    }
-    return;
 }
 
 // So, who's ready for round two?
@@ -139,44 +122,38 @@ int64_t worse_query(NSString *target, NSString *group, bool alt_flags, bool crea
     }
 
     wq_log(@"Query configured: class=7 part=3 flags=%@", alt_flags ? @"0x0000000800000000" : @"0x0000008000000000");
-    // Set up symlink
-    [files removeItemAtPath: caches error: nil];
-    NSError *linkError = nil;
-    if ([files createSymbolicLinkAtPath:caches withDestinationPath:target error:&linkError] == false) {
-        wq_log(@"Symlink creation failed: %@, return=-4", linkError.localizedDescription);
-        dlclose(mgr);
-        return -4; // Failed to create symlink
-    }
-
-    wq_log(@"Caches symlink created; submitting query");
-    // Send our query over
-    void *result = query_get_single_result(query);
-    if (!result) {
-        wq_log(@"containermanagerd rejected query, return=-5");
-        query_free(query);
-        dlclose(mgr);
-        clean_symlink(group);
-        return -5; // Query rejected by containermanagerd
-    }
-    wq_log(@"Query returned a container result");
-    char *token = copy_sandbox_token(result);
-    if (!token) {
-        wq_log(@"Sandbox token unavailable, return=-6");
-        query_free(query);
-        dlclose(mgr);
-        clean_symlink(group);
-        return -6; // Kernel refused to issue a sandbox extension
-    }
-
-    // Consume sandbox extension and clean up
-    wq_log(@"Sandbox token received (contents omitted); consuming extension");
-    int64_t handle = consume_extension(token);
-    if (handle >= 0) wq_log(@"Extension consumed: handle=%lld", (long long)handle);
-    else wq_log(@"Extension consume failed: handle=%lld errno=%d (%s)", (long long)handle, errno, strerror(errno));
+    // Preserve the original App Group cache item during this query. A shared
+    // group may contain another app's data; replacing it must not erase it.
+    int64_t handle = -4;
+    NSError *cacheError = nil;
+    BOOL restored = GXWithTemporaryCacheLink([NSURL fileURLWithPath:caches], target, ^int64_t {
+        wq_log(@"Caches symlink created; submitting query");
+        void *result = query_get_single_result(query);
+        if (!result) {
+            wq_log(@"containermanagerd rejected query, return=-5");
+            return -5;
+        }
+        wq_log(@"Query returned a container result");
+        char *token = copy_sandbox_token(result);
+        if (!token) {
+            wq_log(@"Sandbox token unavailable, return=-6");
+            return -6;
+        }
+        wq_log(@"Sandbox token received (contents omitted); consuming extension");
+        int64_t consumed = consume_extension(token);
+        free(token);
+        if (consumed >= 0) wq_log(@"Extension consumed: handle=%lld", (long long)consumed);
+        else wq_log(@"Extension consume failed: handle=%lld errno=%d (%s)", (long long)consumed, errno, strerror(errno));
+        return consumed;
+    }, &handle, &cacheError);
     query_free(query);
-    free(token);
     dlclose(mgr);
-    clean_symlink(group);
+    if (!restored) {
+        if (handle >= 0) worse_query_release(handle);
+        wq_log(@"Caches setup or restoration failed: %@, return=-4", cacheError.localizedDescription);
+        return -4;
+    }
+    wq_log(@"Cleanup: original Caches item restored");
 
     wq_log(@"End: return=%lld", (long long)handle);
     return handle;

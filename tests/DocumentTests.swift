@@ -293,6 +293,7 @@ final class AccessTrace: @unchecked Sendable {
                 } else if mode == "legacy-journal" {
                     var plist = try PropertyListSerialization.propertyList(from: Data(contentsOf: journal), options: [], format: nil) as! [String: Any]
                     plist.removeValue(forKey: "faceTimeAudio")
+                    plist.removeValue(forKey: "cacheHistoryRecovered")
                     try PropertyListSerialization.data(fromPropertyList: plist, format: .binary, options: 0).write(to: journal)
                 }
                 let reopened = makeStore()

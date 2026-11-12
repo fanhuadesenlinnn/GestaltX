@@ -187,7 +187,12 @@ struct GestaltDocument: @unchecked Sendable {
             // int64Value wraps unsigned values above Int64.max (for example,
             // UInt64.max becomes -1), hiding edits and readback corruption.
             return (a as? NSNumber)?.stringValue == (b as? NSNumber)?.stringValue
-        case .real: return (a as? NSNumber)?.doubleValue == (b as? NSNumber)?.doubleValue
+        case .real:
+            guard let left = (a as? NSNumber)?.doubleValue,
+                  let right = (b as? NSNumber)?.doubleValue else { return false }
+            // NaN is a valid plist real. IEEE arithmetic equality is not
+            // reflexive for it, but an unchanged stored value must compare equal.
+            return left == right || (left.isNaN && right.isNaN)
         case .boolean: return (a as? NSNumber)?.boolValue == (b as? NSNumber)?.boolValue
         case .data: return (a as? Data) == (b as? Data)
         case .date: return (a as? Date) == (b as? Date)
@@ -200,6 +205,22 @@ struct GestaltDocument: @unchecked Sendable {
         let identityKeys = ["re6Zb+zwFKJNlkQTUeT+/w", "VasUgeSzVyHdB27g2XpN0g"]
         for key in identityKeys {
             if let a = extra[key] as? String, let b = other.extra[key] as? String, a != b { return false }
+        }
+        return true
+    }
+
+    func preservesDeviceIdentity(of original: Self) -> Bool {
+        // Keep each actual field and its plist type unchanged. Normalizing an
+        // identifier here would also permit edits that invalidate saved history.
+        let keys = ["UniqueDeviceID", "re6Zb+zwFKJNlkQTUeT+/w",
+                    "SerialNumber", "VasUgeSzVyHdB27g2XpN0g",
+                    "UniqueChipID", "TF31PAB6aO8KAbPyNKSxKA"]
+        for key in keys {
+            switch (original.extra[key], extra[key]) {
+            case (nil, nil): continue
+            case (let before?, let after?) where Self.valuesEqual(before, after): continue
+            default: return false
+            }
         }
         return true
     }
@@ -286,6 +307,9 @@ struct OriginalValues {
     var fields: [String: OriginalField] = [:]
     var cachedOptions: CachedOptionsOriginal?
     var wapi: WAPIOriginal?
+    // A failed legacy migration must not later use backups created after the
+    // failure as evidence of the original values for this layout.
+    var unavailableCacheOriginals: [String: Set<String>] = [:]
 }
 
 struct BackupRecord: Identifiable, Codable, Sendable {
@@ -311,15 +335,18 @@ actor GestaltFileStore {
     private let acquire: @Sendable () throws -> Int64
     private let release: @Sendable (Int64) -> Void
     private let writeData: @Sendable (Data, URL) throws -> Void
+    private let removeBackupItem: @Sendable (URL) throws -> Void
     private let eventSink: @Sendable (String) -> Void
 
     init(deviceURL: URL, backupDirectory: URL, deviceID: String,
          acquire: @escaping @Sendable () throws -> Int64,
          release: @escaping @Sendable (Int64) -> Void,
          writeData: @escaping @Sendable (Data, URL) throws -> Void = { try $0.write(to: $1) },
+         removeBackupItem: @escaping @Sendable (URL) throws -> Void = { try FileManager.default.removeItem(at: $0) },
          eventSink: @escaping @Sendable (String) -> Void = { _ in }) {
         self.deviceURL = deviceURL; self.backupDirectory = backupDirectory; self.deviceID = deviceID
         self.acquire = acquire; self.release = release; self.writeData = writeData; self.eventSink = eventSink
+        self.removeBackupItem = removeBackupItem
     }
 
     private func withAccess<T>(_ operation: () throws -> T) throws -> T {
@@ -412,10 +439,6 @@ actor GestaltFileStore {
             }
             audio = decoded
         }
-        // Older v1 journals have no cache entry. Recover it from owned backups
-        // without replacing their already-recorded CacheExtra originals.
-        let recoveredAudio = audio == nil ? try recoverOriginals(from: document).cachedOptions : nil
-        if let recoveredAudio { audio = recoveredAudio }
         var wapi: WAPIOriginal?
         if let entry = plist["wapi"] {
             guard let bytes = entry as? Data,
@@ -424,11 +447,81 @@ actor GestaltFileStore {
             }
             wapi = decoded
         }
-        let recoveredWAPI = wapi == nil ? try recoverOriginals(from: document).wapi : nil
-        if let recoveredWAPI { wapi = recoveredWAPI }
-        let state = OriginalValues(fields: originals, cachedOptions: audio, wapi: wapi)
-        if recoveredAudio != nil || recoveredWAPI != nil { try saveOriginals(state, for: document) }
+        // Recover absent entries once for legacy journals, then migrate any
+        // saved cache values that belong to a different system generation.
+        let needsMigration = plist["cacheHistoryRecovered"] as? Bool != true
+        if needsMigration && (audio == nil || wapi == nil) {
+            let recovered = try recoverOriginals(from: document)
+            audio = audio ?? recovered.cachedOptions
+            wapi = wapi ?? recovered.wapi
+        }
+        var unavailable: [String: Set<String>] = [:]
+        if let stored = plist["unavailableCacheOriginals"] as? [String: Any] {
+            for (key, value) in stored {
+                // Read the earlier single-UUID representation as a one-item set.
+                if let uuid = value as? String { unavailable[key] = [uuid] }
+                else if let uuids = value as? [String] { unavailable[key] = Set(uuids) }
+                else { throw GestaltFailure("Original values could not be read. No system changes were made.") }
+            }
+        }
+        let currentUUID = document.root["CacheUUID"] as? String ?? ""
+        let migrateAudio = audio.map { $0.layoutUUID != currentUUID } == true && !(unavailable["faceTimeAudio"]?.contains(currentUUID) ?? false)
+        let migrateWAPI = wapi.map { $0.layoutUUID != currentUUID } == true && !(unavailable["wapi"]?.contains(currentUUID) ?? false)
+        if migrateAudio || migrateWAPI {
+            let baseline = try recoverCacheBaseline(from: document)
+            if migrateAudio {
+                if let recovered = baseline.cachedOptions { audio = recovered }
+                else { unavailable["faceTimeAudio", default: []].insert(currentUUID) }
+            }
+            if migrateWAPI {
+                if let recovered = baseline.wapi { wapi = recovered }
+                else { unavailable["wapi", default: []].insert(currentUUID) }
+            }
+            // Preserve the complete legacy record before updating either its
+            // cache values or the fact that their original state is unavailable.
+            try archiveOriginals(data)
+        }
+        let state = OriginalValues(fields: originals, cachedOptions: audio, wapi: wapi, unavailableCacheOriginals: unavailable)
+        if needsMigration || migrateAudio || migrateWAPI { try saveOriginals(state, for: document) }
         return state
+    }
+
+    private func matchesCacheGeneration(_ document: GestaltDocument, _ current: GestaltDocument) -> Bool {
+        for key in ["CacheUUID", "CacheVersion"] {
+            switch (document.root[key], current.root[key]) {
+            case (nil, nil): continue
+            case (let old?, let live?) where GestaltDocument.valuesEqual(old, live): continue
+            default: return false
+            }
+        }
+        switch (document.root["CacheData"], current.root["CacheData"]) {
+        case (nil, nil): return true
+        case (let old as Data, let live as Data): return old.count == live.count
+        default: return false
+        }
+    }
+
+    private func recoverCacheBaseline(from current: GestaltDocument) throws -> OriginalValues {
+        let records = try backups().filter {
+            $0.source == .device && $0.deviceID == deviceID && ["Before applying", "Before restoring"].contains($0.reason)
+        }.sorted { $0.date < $1.date }
+        for record in records {
+            // If an earlier payload cannot be verified, its layout and baseline
+            // are unknown. Do not guess from a later, potentially modified file.
+            guard let data = try? backupData(record), let document = try? GestaltDocument(data: data) else { return OriginalValues() }
+            guard document.matchesIdentity(current), matchesCacheGeneration(document, current) else { continue }
+            return OriginalValues(cachedOptions: try? CachedOptionsOriginal(document: document),
+                                  wapi: try? WAPIOriginal(document: document))
+        }
+        return OriginalValues()
+    }
+
+    private func archiveOriginals(_ data: Data) throws {
+        let url = backupDirectory.appendingPathComponent("OriginalValues-" + backupDigest(data) + ".plist")
+        do {
+            if !FileManager.default.fileExists(atPath: url.path) { try data.write(to: url, options: .atomic) }
+            guard try Data(contentsOf: url) == data else { throw GestaltFailure("Original values could not be saved and verified. No system write was started.") }
+        } catch { throw GestaltFailure("Original values could not be saved and verified. No system write was started.") }
     }
 
     private func recoverOriginals(from current: GestaltDocument) throws -> OriginalValues {
@@ -440,8 +533,9 @@ actor GestaltFileStore {
         var previous: GestaltDocument?
         var originals = OriginalValues()
         for record in records {
+            eventSink("Original values: reading backup " + record.id.uuidString)
             let document = try GestaltDocument(data: backupData(record))
-            guard document.matchesIdentity(current) else { continue }
+            guard document.matchesIdentity(current), matchesCacheGeneration(document, current) else { continue }
             if let previous {
                 originals = DocumentSnapshot(data: Data(), document: previous, source: .device, name: "",
                                              originals: originals.fields, cachedOptionsOriginal: originals.cachedOptions, wapiOriginal: originals.wapi)
@@ -461,9 +555,13 @@ actor GestaltFileStore {
     }
 
     private func saveOriginals(_ originals: OriginalValues, for document: GestaltDocument) throws {
-        var plist: [String: Any] = ["version": 1, "deviceID": deviceID, "identity": identity(of: document),
+        var plist: [String: Any] = ["version": 1, "cacheHistoryRecovered": true,
+                                   "deviceID": deviceID, "identity": identity(of: document),
                                    "values": originals.fields.mapValues(\.plist)]
         do {
+            if !originals.unavailableCacheOriginals.isEmpty {
+                plist["unavailableCacheOriginals"] = originals.unavailableCacheOriginals.mapValues { $0.sorted() }
+            }
             if let audio = originals.cachedOptions { plist["faceTimeAudio"] = try PropertyListEncoder().encode(audio) }
             if let wapi = originals.wapi { plist["wapi"] = try PropertyListEncoder().encode(wapi) }
             let data = try PropertyListSerialization.data(fromPropertyList: plist, format: .binary, options: 0)
@@ -510,13 +608,28 @@ actor GestaltFileStore {
         return data
     }
 
+    func backupExportData(_ record: BackupRecord, sealingWith seal: @Sendable (Data) throws -> Data) throws -> Data {
+        let data = try backupData(record)
+        // Local or foreign backups have no ownership proof merely because they
+        // are present in this library. Only this installation's device backups
+        // receive the same proof as a live-device document export.
+        guard record.source == .device, record.deviceID == deviceID else { return data }
+        return try seal(data)
+    }
+
     private func backupDigest(_ data: Data) -> String {
         SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
     }
 
     func deleteBackup(_ record: BackupRecord) throws {
-        try FileManager.default.removeItem(at: backupDirectory.appendingPathComponent(record.id.uuidString + ".json"))
-        try FileManager.default.removeItem(at: backupDirectory.appendingPathComponent(record.filename))
+        // Keep the listing metadata until the payload is gone. If removal is
+        // denied, the complete backup must remain visible and recoverable.
+        do { try removeBackupItem(backupDirectory.appendingPathComponent(record.filename)) }
+        catch let error as CocoaError where error.code == .fileNoSuchFile {
+            // A previous attempt may have removed the payload but failed to
+            // remove metadata. Only this exact absence permits cleanup to resume.
+        }
+        try removeBackupItem(backupDirectory.appendingPathComponent(record.id.uuidString + ".json"))
     }
 
     private func validateRestoreLayout(_ document: GestaltDocument, against current: GestaltDocument) throws {
@@ -539,12 +652,28 @@ actor GestaltFileStore {
             throw GestaltFailure("This plist's device proof could not be verified on this device.")
         }
         try validateRestoreLayout(imported.document, against: expected.document)
+        if imported.document.matches(expected.document) {
+            return try withAccess {
+                _ = try currentData(matching: expected)
+                eventSink("Restore: the device already matches this plist")
+                return expected
+            }
+        }
         let record = try saveBackup(imported.data, source: .device, reason: "Verified import")
         return try commit(imported.document, expected: expected, restoring: record)
     }
 
+    private func currentData(matching expected: DocumentSnapshot) throws -> Data {
+        let current = try Data(contentsOf: deviceURL)
+        guard current == expected.data else { throw GestaltFailure("MobileGestalt changed since it was loaded. Refresh before applying your edits.") }
+        return current
+    }
+
     func commit(_ edited: GestaltDocument, expected: DocumentSnapshot, restoring record: BackupRecord? = nil,
                 originallyAbsentKeys: Set<String> = []) throws -> DocumentSnapshot {
+        guard expected.source != .device || edited.preservesDeviceIdentity(of: expected.document) else {
+            throw GestaltFailure("Device identity fields cannot be changed in the system plist. Open a local file to edit these fields.")
+        }
         if record == nil { try DeviceCacheOptions.validateEdit(from: expected.document, to: edited) }
         guard originallyAbsentKeys.allSatisfy({ edited.extra[$0] == nil }) else {
             throw GestaltFailure("The selected added fields must be removed before applying.")
@@ -554,8 +683,11 @@ actor GestaltFileStore {
             try saveBackup(expected.data, source: .local, reason: "Before editing")
             var originals = expected.recordingOriginals(to: edited)
             for key in originallyAbsentKeys { originals.fields[key] = OriginalField(value: nil) }
+            // A backup replaces the imported payload. Its ownership has not been
+            // verified merely because the previously open document was verified.
+            let ownershipVerified = record == nil && expected.ownershipVerified
             return DocumentSnapshot(data: output, document: edited, source: .local, name: expected.name,
-                                    originals: originals.fields, cachedOptionsOriginal: originals.cachedOptions, wapiOriginal: originals.wapi, ownershipVerified: expected.ownershipVerified)
+                                    originals: originals.fields, cachedOptionsOriginal: originals.cachedOptions, wapiOriginal: originals.wapi, ownershipVerified: ownershipVerified)
         }
         if let record {
             guard record.source == .device, record.deviceID == deviceID, edited.matchesIdentity(expected.document) else {
@@ -566,15 +698,23 @@ actor GestaltFileStore {
             try validateRestoreLayout(edited, against: expected.document)
         }
         return try withAccess {
-            let current = try Data(contentsOf: deviceURL)
-            guard current == expected.data else { throw GestaltFailure("MobileGestalt changed since it was loaded. Refresh before applying your edits.") }
-            try saveBackup(current, source: .device, reason: record == nil ? "Before applying" : "Before restoring")
+            let current = try currentData(matching: expected)
+            // A restore can be semantically identical even when the source uses
+            // a different plist encoding. Validate freshness before skipping it.
+            if record != nil, originallyAbsentKeys.isEmpty, edited.matches(expected.document) {
+                eventSink("Restore: the device already matches this plist")
+                return expected
+            }
             var baseline = expected
             let saved = try loadOriginals(for: expected.document)
+            // Resolve old history before creating today's pre-write backup, so
+            // this current (possibly already modified) state cannot migrate it.
+            try saveBackup(current, source: .device, reason: record == nil ? "Before applying" : "Before restoring")
             baseline.originals.merge(saved.fields) { _, saved in saved }
             if let audio = saved.cachedOptions { baseline.cachedOptionsOriginal = audio }
             if let wapi = saved.wapi { baseline.wapiOriginal = wapi }
             var originals = baseline.recordingOriginals(to: edited)
+            originals.unavailableCacheOriginals = saved.unavailableCacheOriginals
             // Explicitly removing a user-confirmed added field also corrects
             // old zero/one residues whose earlier origin was not recorded.
             for key in originallyAbsentKeys { originals.fields[key] = OriginalField(value: nil) }

@@ -99,13 +99,15 @@ struct MobileGestaltCacheLayout: Codable, Equatable, Sendable {
                             wapiLocations.insert("\(sectionID):\(offset % 64)")
                         } else { invalidWAPI = true }
                     }
-                    guard (-1..<16384).contains(index), (1...11).contains(type) else { continue }
-                    if index >= 0 { indices.insert(index) }
                     if key == DeviceCacheOptions.greenTeaKey || key == DeviceCacheOptions.notGreenTeaKey {
-                        guard type == 11, index >= 0 else { throw failure }
+                        // Every reference to a target must be usable. Ignoring an
+                        // invalid duplicate would silently select another offset.
+                        guard type == 11, (0..<16384).contains(index) else { throw failure }
                         targets[key, default: []].insert(index)
                         targetLocations[key, default: []].insert("\(sectionID):\(offset % 64)")
                     }
+                    guard (-1..<16384).contains(index), (1...11).contains(type) else { continue }
+                    if index >= 0 { indices.insert(index) }
                 }
             }
         }
