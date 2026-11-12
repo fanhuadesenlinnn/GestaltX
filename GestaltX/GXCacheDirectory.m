@@ -8,7 +8,7 @@ static NSError *GXCacheError(int code, NSURL *url) {
                            userInfo:@{NSFilePathErrorKey: url.path}];
 }
 
-BOOL GXWithTemporaryCacheLink(NSURL *caches, NSString *target,
+static BOOL GXWithTemporaryCacheLinkUnlocked(NSURL *caches, NSString *target,
                               int64_t (^operation)(void), int64_t *result,
                               NSError **error) {
     NSFileManager *files = NSFileManager.defaultManager;
@@ -65,4 +65,17 @@ BOOL GXWithTemporaryCacheLink(NSURL *caches, NSString *target,
     }
     if (error) *error = restoreError ?: setupError;
     return identified && restoreError == nil;
+}
+
+BOOL GXWithTemporaryCacheLink(NSURL *caches, NSString *target,
+                              int64_t (^operation)(void), int64_t *result,
+                              NSError **error) {
+    // MobileGestalt and system preferences use different background actors but
+    // share the same signed App Group. Never swap its cache link concurrently.
+    static NSRecursiveLock *lock;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{ lock = NSRecursiveLock.new; });
+    [lock lock];
+    @try { return GXWithTemporaryCacheLinkUnlocked(caches, target, operation, result, error); }
+    @finally { [lock unlock]; }
 }

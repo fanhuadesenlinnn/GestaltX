@@ -2,6 +2,37 @@
 
 [English](CHANGELOG.md) | 简体中文
 
+## [1.0.7] - 2026-11-13
+
+构建号 `11130112`。
+
+### 修复
+
+- 修复 iOS 27.3 无法定位设备容器的问题，壁纸与「App 启动图」恢复可用。
+
+## [1.0.6] - 2026-11-12
+
+构建号 `11122300`。
+
+### 新增
+
+- 新增「系统设置」，支持自定义锁屏底部文字，即时生效，无需重启设备。
+- 新增「壁纸设置」，支持导入、添加和移除壁纸包，可通过分享扩展导入 `.tendies`、`.zip` 文件。
+- 新增「应用启动图」，支持自选照片、将当前启动图以原尺寸保存到相册、自动备份和还原。
+- 新增日语，基于 [@kagithu](https://github.com/kagithu) 提供的翻译补齐缺失文案（[#124](https://github.com/huamidev/GestaltX/issues/124)）。
+- 补充 iPhone Air 灵动岛布局（[#105](https://github.com/huamidev/GestaltX/pull/105)）。
+
+### 调整
+
+- 为「放弃更改」补充图标；没有待处理更改时，「应用更改」和「放弃更改」统一置灰。
+
+### 修复
+
+- 保留设备原有的端侧 Siri 能力值，避免统一覆盖后导致 Apple Intelligence Siri 退回旧版界面（[#102](https://github.com/huamidev/GestaltX/pull/102)、[#98](https://github.com/huamidev/GestaltX/issues/98)）。
+- 完善分享导入的取消处理与临时文件清理。
+
+**完整变更**：[v1.0.5...v1.0.6](https://github.com/huamidev/GestaltX/compare/v1.0.5...v1.0.6)
+
 ## [1.0.5] - 2026-11-11
 
 构建号 `11111140`。
@@ -112,5 +143,6 @@
 
 **完整变更**：[v1.0.3...v1.0.4](https://github.com/huamidev/GestaltX/compare/v1.0.3...v1.0.4)
 
+[1.0.6]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.6
 [1.0.5]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.5
 [1.0.4]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.4

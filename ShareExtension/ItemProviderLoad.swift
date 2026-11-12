@@ -25,20 +25,31 @@ final class ItemProviderLoad<Value: Sendable>: @unchecked Sendable {
 
     // Keep temporary-file reads inside the provider callback, and skip the read
     // entirely when the extension has already been cancelled or completed.
-    func complete(_ read: () throws -> Value) {
+    func complete(onDiscard: (Value) -> Void = { _ in }, _ read: () throws -> Value) {
         lock.lock()
         guard !finished, !completing else { lock.unlock(); return }
         completing = true
         lock.unlock()
         let result = Result(catching: read)
         lock.lock()
-        guard !finished else { lock.unlock(); return }
+        guard !finished else {
+            lock.unlock()
+            if case .success(let value) = result { onDiscard(value) }
+            return
+        }
         finished = true
         let continuation = self.continuation
         self.continuation = nil
         progress = nil
         lock.unlock()
         continuation?.resume(with: result)
+    }
+
+    func checkCancellation() throws {
+        lock.lock()
+        let cancelled = self.cancelled
+        lock.unlock()
+        if cancelled { throw CancellationError() }
     }
 
     private func install(_ continuation: CheckedContinuation<Value, Error>) -> Bool {

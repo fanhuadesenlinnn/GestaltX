@@ -2,8 +2,51 @@ from pathlib import Path
 import json
 ROOT = Path(__file__).resolve().parents[1]
 TRANSLATIONS = '''
+Save Current Launch Image	保存当前启动图
+Allow GestaltX to add photos in Settings, then try again.	请在“设置”中允许 GestaltX 添加照片，然后重试。
+The launch image was saved to Photos.	启动图已保存到相册。
+App Launch Images	应用启动图
+No Launch Images	暂无启动图
+Only apps with readable launch images are listed. iOS may refresh these images.	仅显示能读取启动图的 App。iOS 可能会重新生成这些图片。
+Choose Photo	选择照片
+Shown briefly while the app opens. Close the selected app before applying.	仅在 App 启动时短暂显示。应用前请先关闭目标 App。
+The original launch images will be backed up before applying.	应用前会备份原始启动图。
+Only launch images changed by GestaltX will be restored.	仅还原由 GestaltX 修改的启动图。
+Launch image saved. Close and reopen the app to see it.	启动图已保存，请关闭并重新打开该 App 查看。
+Restored. Launch images refreshed by iOS were left unchanged.	已还原；iOS 重新生成的启动图保持不变。
+No launch images found. Open the app once, close it, then read again.	未找到启动图。请先打开该 App 一次，关闭后重新读取。
+The app was reinstalled. Its saved launch images cannot be restored.	该 App 已重新安装，无法还原之前保存的启动图。
+This image could not be used. Choose another image.	无法使用这张图片，请选择其他图片。
+Importing…	正在导入…
+Share one file at a time.	一次仅分享一个文件。
+Choose a MobileGestalt plist or a wallpaper pack.	请选择 MobileGestalt plist 或壁纸包。
+Open GestaltX to confirm importing the wallpaper pack.	打开 GestaltX 以确认导入壁纸包。
+Import this wallpaper pack? It will be added to Wallpaper Settings.	导入这个壁纸包？导入后将添加到“壁纸设置”。
+A shared file is waiting. Save or discard your current changes, then import it.	有分享的文件等待导入，请先保存或放弃当前更改。
+Import a .tendies or .zip wallpaper pack. You can also share it to GestaltX.	导入 .tendies 或 .zip 壁纸包，也可通过分享发送到 GestaltX。
+Applied	已应用
+Customization	个性化
+Import Wallpaper	导入壁纸
+No Wallpapers	暂无壁纸
+This only deletes the imported pack from GestaltX. Applied wallpapers will be kept.	只从 GestaltX 删除导入包，已应用的壁纸会保留。
+Open Wallpaper Gallery	打开壁纸图库
+Delete the imported wallpaper pack?	删除导入的壁纸包？
+Some files could not be restored. The backup has been kept.	部分文件未能恢复，备份已保留。
+System Settings	系统设置
+The app could not be opened. Open it manually.	未能打开应用，请手动打开。
+The archive contains unsafe paths or links.	压缩包包含不安全的路径或链接。
+The archive is invalid or exceeds the size limit.	压缩包无效或超过大小限制。
+The device container could not be located. Read again.	未能定位设备容器，请重新读取。
+The files changed. Read again before applying.	文件已变化，请重新读取后再应用。
+The original files could not be backed up.	未能备份原始文件。
+This adds new wallpapers without replacing your existing ones.	将添加新壁纸，保留现有壁纸。
+This pack contains no compatible wallpapers.	此包中没有兼容的壁纸。
+This wallpaper was changed outside GestaltX. It was not removed.	壁纸已被其他方式修改，未执行移除。
+Wallpaper added. Open the wallpaper gallery to select it. If it does not appear, restart PosterBoard or respring.	壁纸已添加，请打开图库选择。若未出现，可重新启动 PosterBoard 或执行注销。
+Wallpaper Settings	壁纸设置
 WAPI	WAPI
 Disable WAPI	关闭 WAPI
+Disabling may show Wi-Fi and change some network options. Restart to apply.	关闭后可显示为 Wi-Fi，部分联网选项可能随之变化。重启后生效。
 Restore Original	恢复原值
 Special Thanks	特别鸣谢
 
@@ -380,6 +423,23 @@ Internal Build	内部构建
 Changes the system-wide InternalBuild flag, not just storage information. System services may behave differently. Revert restores the recorded original value.	修改系统全局的 InternalBuild 标记，并非仅调整存储信息。系统服务的行为可能发生变化。“还原”会恢复已记录的原始值。
 Enable Internal Build?	启用内部构建？
 This stages the system-wide InternalBuild flag. It can affect system services beyond the storage screen. You can review the change before applying it.	这会暂存系统全局的 InternalBuild 标记变更。它可能影响存储页面以外的系统服务。你可以在应用前检查这项变更。
+Lock Screen Text	锁屏底部文字
+Add your own text at the bottom of the Lock Screen.	在锁屏底部显示自定义文字。
+System Default	系统默认
+Empty	空
+Current Value	当前值
+Unavailable	无法访问
+Your lock screen text	输入锁屏文字
+Original values are saved before writing. Revert removes keys that were originally absent.	写入前会保存原值，原本不存在的键会在还原时移除。
+The affected settings files will be backed up before writing. You can restore each option afterward.	写入前会备份相关设置文件，之后可逐项还原。
+The system settings file is not a valid dictionary.	系统设置文件不是有效的字典，已停止操作。
+System settings changed. Read them again before applying.	系统设置已发生变化，请重新读取后再应用。
+Use a single line of up to 256 characters.	请输入单行文字，最多 256 个字符。
+The settings backup could not be verified. No changes were applied.	无法验证设置备份，未应用任何更改。
+System settings could not be verified after writing.	写入后无法验证系统设置。
+Some settings could not be restored automatically. Read them again and use Revert.	部分设置未能自动恢复，请重新读取并使用“还原”。
+These system settings are not accessible on this device.	当前设备无法访问这些系统设置。
+Lock screen text updated.	锁屏文字已更新。
 '''
 entries = {}
 for line in TRANSLATIONS.strip().splitlines():

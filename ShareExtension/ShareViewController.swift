@@ -5,11 +5,18 @@ import UniformTypeIdentifiers
 
 @objc(GXShareViewController)
 final class ShareViewController: UIViewController {
+    private struct Receipt: Sendable {
+        let inbox: SharedPlistInbox
+        let entry: SharedPlistEntry
+        var wallpaper: Bool { inbox.kind == .wallpaper }
+        func cancel() { try? inbox.acknowledge(entry) }
+    }
     private let status = UILabel()
     private let spinner = UIActivityIndicatorView(style: .medium)
     private let closeButton = UIButton(type: .system)
     private var started = false
     private var work: Task<Void, Never>?
+    private var receivedWallpaper = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +25,7 @@ final class ShareViewController: UIViewController {
         title.text = "GestaltX"
         title.font = .preferredFont(forTextStyle: .title2)
         title.textAlignment = .center
-        status.text = text("Importing Plist…")
+        status.text = text("Importing…")
         status.font = .preferredFont(forTextStyle: .body)
         status.numberOfLines = 0
         status.textAlignment = .center
@@ -47,16 +54,16 @@ final class ShareViewController: UIViewController {
     private func receive() async {
         do {
             let providers = (extensionContext?.inputItems as? [NSExtensionItem])?.flatMap { $0.attachments ?? [] } ?? []
-            guard providers.count == 1 else { throw SharedPlistError(key: "Share one MobileGestalt plist at a time.") }
-            guard let inbox = SharedAppGroups.inboxes.first else {
+            guard providers.count == 1 else { throw SharedPlistError(key: "Share one file at a time.") }
+            guard SharedAppGroups.inboxes.first != nil else {
                 throw SharedPlistError(key: "Sign GestaltX and its share extension with the same App Group, then try again.")
             }
-            let (data, name) = try await read(providers[0])
-            try Task.checkCancellation()
-            _ = try inbox.enqueue(data, name: name)
+            let receipt = try await read(providers[0])
+            if Task.isCancelled { receipt.cancel(); throw CancellationError() }
+            receivedWallpaper = receipt.wallpaper
             // The inbox is the durable handoff; URL opening is just a notification.
             var components = URLComponents()
-            components.scheme = "gestaltx"
+            components.scheme = SharedAppGroups.hostURLScheme
             components.host = "share"
             components.queryItems = [URLQueryItem(name: "from", value: SharedAppGroups.hostBundleIdentifier)]
             guard let url = components.url else { throw SharedPlistError(key: "The shared plist could not be read. Share it again.") }
@@ -74,13 +81,16 @@ final class ShareViewController: UIViewController {
         }
     }
 
-    private func read(_ provider: NSItemProvider) async throws -> (Data, String) {
-        var types = [UTType.propertyList.identifier, UTType.xml.identifier, UTType.data.identifier]
+    private func read(_ provider: NSItemProvider) async throws -> Receipt {
+        var types = ["com.huami.gestaltx.wallpaper", UTType.zip.identifier, UTType.propertyList.identifier, UTType.xml.identifier, UTType.data.identifier]
+        let archiveHint = provider.registeredTypeIdentifiers.contains {
+            $0 == "com.huami.gestaltx.wallpaper" || UTType($0)?.conforms(to: .zip) == true
+        }
         types += provider.registeredTypeIdentifiers.filter { !types.contains($0) && $0 != UTType.fileURL.identifier }
         var firstError: Error?
         for type in types where provider.hasItemConformingToTypeIdentifier(type) {
             for inPlace in [false, true] {
-                do { return try await readFile(provider, type: type, inPlace: inPlace) }
+                do { return try await readFile(provider, type: type, inPlace: inPlace, archiveHint: archiveHint) }
                 catch {
                     try Task.checkCancellation()
                     if firstError == nil { firstError = error }
@@ -88,31 +98,30 @@ final class ShareViewController: UIViewController {
             }
         }
         guard provider.hasItemConformingToTypeIdentifier(UTType.fileURL.identifier) else {
-            throw firstError ?? SharedPlistError(key: "Choose a MobileGestalt plist with a CacheExtra dictionary.")
+            throw firstError ?? SharedPlistError(key: "Choose a MobileGestalt plist or a wallpaper pack.")
         }
         let suggestedName = provider.suggestedName
-        return try await ItemProviderLoad<(Data, String)>.load { request in
+        return try await ItemProviderLoad<Receipt>.load { request in
             provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, error in
-                request.complete {
+                request.complete(onDiscard: { $0.cancel() }) {
                     if let error { throw error }
                     let url = (item as? URL) ?? (item as? Data).flatMap { URL(dataRepresentation: $0, relativeTo: nil) }
                     guard let url else { throw SharedPlistError(key: "The shared plist could not be read. Share it again.") }
-                    return (try SharedPlistInbox.readDocument(at: url), suggestedName ?? url.lastPathComponent)
+                    return try Self.save(url, suggestedName: suggestedName, archiveHint: archiveHint, checkCancellation: request.checkCancellation)
                 }
             }
             return nil
         }
     }
 
-    private func readFile(_ provider: NSItemProvider, type: String, inPlace: Bool) async throws -> (Data, String) {
+    private func readFile(_ provider: NSItemProvider, type: String, inPlace: Bool, archiveHint: Bool) async throws -> Receipt {
         let suggestedName = provider.suggestedName
-        return try await ItemProviderLoad<(Data, String)>.load { request in
+        return try await ItemProviderLoad<Receipt>.load { request in
             let complete: @Sendable (URL?, Error?) -> Void = { url, error in
-                request.complete {
+                request.complete(onDiscard: { $0.cancel() }) {
                     if let error { throw error }
                     guard let url else { throw SharedPlistError(key: "The shared plist could not be read. Share it again.") }
-                    let bytes = try SharedPlistInbox.readDocument(at: url)
-                    return (bytes, suggestedName ?? url.lastPathComponent)
+                    return try Self.save(url, suggestedName: suggestedName, archiveHint: archiveHint, checkCancellation: request.checkCancellation)
                 }
             }
             if inPlace {
@@ -121,6 +130,24 @@ final class ShareViewController: UIViewController {
                 return provider.loadFileRepresentation(forTypeIdentifier: type, completionHandler: complete)
             }
         }
+    }
+
+    nonisolated private static func save(_ url: URL, suggestedName: String?, archiveHint: Bool, checkCancellation: () throws -> Void) throws -> Receipt {
+        let wallpaper = archiveHint || SharedPlistInbox.isWallpaperName(suggestedName ?? "") || SharedPlistInbox.isWallpaperName(url.lastPathComponent)
+        let inbox = wallpaper ? SharedAppGroups.wallpaperInboxes.first : SharedAppGroups.inboxes.first
+        guard let inbox else { throw SharedPlistError(key: "Sign GestaltX and its share extension with the same App Group, then try again.") }
+        let name = suggestedName ?? url.lastPathComponent
+        try checkCancellation()
+        let entry: SharedPlistEntry
+        if wallpaper { entry = try inbox.enqueueWallpaper(at: url, name: name, checkCancellation: checkCancellation) }
+        else {
+            let data = try SharedPlistInbox.readDocument(at: url)
+            try checkCancellation()
+            entry = try inbox.enqueue(data, name: name)
+        }
+        let receipt = Receipt(inbox: inbox, entry: entry)
+        do { try checkCancellation() } catch { receipt.cancel(); throw error }
+        return receipt
     }
 
     // Same modern responder-chain open used by LoadController. No sharedApplication.
@@ -141,7 +168,7 @@ final class ShareViewController: UIViewController {
 
     private func showSaved() {
         spinner.stopAnimating()
-        status.text = text("Open GestaltX to confirm importing the plist.")
+        status.text = text(receivedWallpaper ? "Open GestaltX to confirm importing the wallpaper pack." : "Open GestaltX to confirm importing the plist.")
         closeButton.setTitle(text("OK"), for: .normal)
     }
     private func finish() { extensionContext?.completeRequest(returningItems: nil) }

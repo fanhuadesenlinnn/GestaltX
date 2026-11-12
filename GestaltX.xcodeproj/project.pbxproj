@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A11800000000000000000001 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = A11800000000000000000003 /* ZIPFoundation */; };
 		4590AC67EAB2441BAD0E6ED1 /* ItemProviderLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C01D754C14C8B9BB28F96 /* ItemProviderLoad.swift */; };
 		0984A2204DCE106EB57ABBA5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C4D44512A7F31C4F05AD18C7 /* Localizable.xcstrings */; };
 		2A78BFEA3F79682B43C6174D /* GestaltXShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9EABFACA1DBDA148BE33107B /* GestaltXShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -74,6 +75,7 @@
 		3657C2D6303730E800908AE2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				A11800000000000000000001 /* ZIPFoundation in Frameworks */,
 			);
 		};
 		8EAD853B7894F8DE4CBFB3D3 /* Frameworks */ = {
@@ -179,6 +181,7 @@
 			fileSystemSynchronizedGroups = (
 				3657C2DB303730E800908AE2 /* GestaltX */,
 			);
+			packageProductDependencies = (A11800000000000000000003 /* ZIPFoundation */, );
 			name = GestaltX;
 			productName = GestaltX;
 			productReference = 3657C2D9303730E800908AE2 /* GestaltX.app */;
@@ -230,10 +233,12 @@
 				fa,
 				ko,
 				es,
+				ja,
 				Base,
 			);
 			mainGroup = 3657C2D0303730E800908AE2;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (A11800000000000000000002 /* ZIPFoundation */, );
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3657C2DA303730E800908AE2 /* Products */;
 			projectDirPath = "";
@@ -291,6 +296,13 @@
 			targetProxy = F569702176BDA756E86027C5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+        A11800000000000000000002 /* ZIPFoundation */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/weichsel/ZIPFoundation.git"; requirement = {kind = exactVersion; version = 0.9.20; }; };
+/* End XCRemoteSwiftPackageReference section */
+/* Begin XCSwiftPackageProductDependency section */
+        A11800000000000000000003 /* ZIPFoundation */ = {isa = XCSwiftPackageProductDependency; package = A11800000000000000000002 /* ZIPFoundation */; productName = ZIPFoundation; };
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3657C2E2303730E900908AE2 /* Debug */ = {
@@ -422,7 +434,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GestaltX/GestaltX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11111140;
+				CURRENT_PROJECT_VERSION = 11130112;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -439,7 +451,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huami.gestultx;
 				PRODUCT_NAME = GestaltX;
 				REGISTER_APP_GROUPS = YES;
@@ -466,7 +478,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GestaltX/GestaltX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11111140;
+				CURRENT_PROJECT_VERSION = 11130112;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -483,7 +495,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huami.gestultx;
 				PRODUCT_NAME = GestaltX;
 				REGISTER_APP_GROUPS = YES;
@@ -509,7 +521,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/GestaltXShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11111140;
+				CURRENT_PROJECT_VERSION = 11130112;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
@@ -519,7 +531,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huami.gestultx.ShareExtension;
 				PRODUCT_NAME = GestaltXShare;
 				SDKROOT = iphoneos;
@@ -541,7 +553,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/GestaltXShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11111140;
+				CURRENT_PROJECT_VERSION = 11130112;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
@@ -551,7 +563,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huami.gestultx.ShareExtension;
 				PRODUCT_NAME = GestaltXShare;
 				SDKROOT = iphoneos;

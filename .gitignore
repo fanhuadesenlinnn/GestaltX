@@ -22,3 +22,6 @@ findings.md
 docs/plans/
 .env
 .env.*
+
+# Swift package compiler index output
+GestaltX.xcodeproj/-Xcc/

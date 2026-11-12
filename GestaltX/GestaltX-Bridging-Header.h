@@ -12,3 +12,4 @@
 #import "GXMobileGestaltImage.h"
 
 #import "GXDeviceIdentity.h"
+#import "GXCustomizationAccess.h"

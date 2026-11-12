@@ -2,6 +2,37 @@
 
 English | [简体中文](CHANGELOG_ZH-CN.md)
 
+## [1.0.7] - 2026-11-13
+
+Build `11130112`.
+
+### Fixed
+
+- Fix container discovery on iOS 27.3 so wallpaper and App Launch Images can locate their containers again.
+
+## [1.0.6] - 2026-11-12
+
+Build `11122300`.
+
+### Added
+
+- Add custom lock screen text in System Settings, applied without restarting the device.
+- Add Wallpaper Settings for importing, applying and removing wallpaper packs, including `.tendies` and `.zip` import through the share extension.
+- Add App Launch Images with custom photos, full-resolution saving to Photos, automatic backups and restore.
+- Add Japanese localization based on [@kagithu](https://github.com/kagithu)'s contribution, with missing strings completed ([#124](https://github.com/huamidev/GestaltX/issues/124)).
+- Add the iPhone Air Dynamic Island layout ([#105](https://github.com/huamidev/GestaltX/pull/105)).
+
+### Changed
+
+- Add a symbol to Discard Changes. Apply Changes and Discard Changes now turn gray when there are no pending changes.
+
+### Fixed
+
+- Preserve device-specific On-Device Siri capability values instead of overwriting them with a generic value, which could revert the Apple Intelligence Siri interface ([#102](https://github.com/huamidev/GestaltX/pull/102), [#98](https://github.com/huamidev/GestaltX/issues/98)).
+- Improve shared-import cancellation and temporary-file cleanup.
+
+**Full Changelog**: https://github.com/huamidev/GestaltX/compare/v1.0.5...v1.0.6
+
 ## [1.0.5] - 2026-11-11
 
 Build `11111140`.
@@ -137,5 +168,6 @@ Build `11101436`.
 
 **Full Changelog**: https://github.com/huamidev/GestaltX/compare/v1.0.3...v1.0.4
 
+[1.0.6]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.6
 [1.0.5]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.5
 [1.0.4]: https://github.com/huamidev/GestaltX/releases/tag/v1.0.4

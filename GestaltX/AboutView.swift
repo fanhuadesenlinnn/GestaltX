@@ -77,6 +77,9 @@ struct CreditsView: View {
                 credit("MGKeys", author: "PoomSmart", url: "https://github.com/PoomSmart/MGKeys")
                 credit("Nugget", author: "leminlimez", url: "https://github.com/leminlimez/Nugget")
                 credit("GestaltEdit", author: "frs0n", url: "https://github.com/frs0n/GestaltEdit")
+                licensedCredit("Gester", author: "sasobhabha · KAMUI contributors", license: "MIT", file: "Gester-MIT", url: "https://github.com/sasobhabha/Gester")
+                licensedCredit("Erosion", author: "lunginspector · jailbreak.party", license: "GPL v3", file: "Erosion-GPL-3.0", url: "https://github.com/jailbreakdotparty/Erosion")
+                licensedCredit("ZIPFoundation", author: "Thomas Zoechling", license: "MIT", file: "ZIPFoundation-MIT", url: "https://github.com/weichsel/ZIPFoundation")
             }
         }
         .navigationTitle(L("Credits & Licenses"))
@@ -87,6 +90,18 @@ struct CreditsView: View {
         Link(destination: URL(string: url)!) {
             LabeledContent { Text(author).font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.trailing) }
                 label: { Text(project).foregroundStyle(.primary) }
+        }
+    }
+    private func licensedCredit(_ project: String, author: String, license: String, file: String, url: String) -> some View {
+        NavigationLink { LicenseTextView(name: file, title: project + " · " + license, source: URL(string: url)) } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(project)
+                    Text(author).font(.caption).foregroundStyle(.secondary)
+                }
+                Spacer()
+                Text(license).font(.caption).foregroundStyle(.secondary)
+            }
         }
     }
 }
@@ -110,6 +125,7 @@ struct CompatibilityView: View {
 struct LicenseTextView: View {
     let name: String
     let title: String
+    var source: URL? = nil
     private var paragraphs: [String] {
         guard let url = Bundle.main.url(forResource: name, withExtension: "txt"),
               let text = try? String(contentsOf: url, encoding: .utf8) else { return [L("License text could not be loaded.")] }
@@ -139,5 +155,14 @@ struct LicenseTextView: View {
             .padding(20).frame(maxWidth: 720).frame(maxWidth: .infinity)
         }
         .navigationTitle(title).navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if let source {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Link(destination: source) {
+                        Image("GitHubMark").renderingMode(.template).resizable().scaledToFit().frame(width: 22, height: 22)
+                    }.accessibilityLabel(L("GitHub Repository"))
+                }
+            }
+        }
     }
 }

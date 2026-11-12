@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import re
 import unicodedata
 import unittest
 
@@ -49,9 +50,57 @@ LOCALE_SCRIPTS = {
     "fa": "ARABIC",
     "ko": "HANGUL",
 }
+ALL_LOCALE_SCRIPTS = {
+    "en": {"LATIN"},
+    "zh-Hans": {"LATIN", "CJK"},
+    "zh-Hant-TW": {"LATIN", "CJK"},
+    "zh-Hant-HK": {"LATIN", "CJK"},
+    "vi": {"LATIN"},
+    "ru": {"LATIN", "CYRILLIC"},
+    "fa": {"LATIN", "ARABIC"},
+    "ko": {"LATIN", "HANGUL"},
+    "es": {"LATIN"},
+    "ja": {"LATIN", "CJK", "HIRAGANA", "KATAKANA", "KATAKANA-HIRAGANA", "IDEOGRAPHIC"},
+}
 
 
 class LocalizationTests(unittest.TestCase):
+    def test_all_locales_have_complete_valid_translations(self):
+        catalog = json.loads((ROOT / "GestaltX/Localizable.xcstrings").read_text())
+        self.assertEqual(catalog["sourceLanguage"], "en")
+        placeholders = re.compile(r"%(?:\d+\$)?(?:ll|l)?[diufsg@]")
+        for key, entry in catalog["strings"].items():
+            localizations = entry["localizations"]
+            self.assertEqual(set(localizations), set(ALL_LOCALE_SCRIPTS), key)
+            for locale, localization in localizations.items():
+                with self.subTest(locale=locale, key=key):
+                    unit = localization["stringUnit"]
+                    self.assertEqual(unit["state"], "translated")
+                    value = unit["value"]
+                    self.assertTrue(value.strip())
+                    self.assertEqual(value, value.strip())
+                    self.assertCountEqual(placeholders.findall(key), placeholders.findall(value))
+                    scripts = {
+                        unicodedata.name(character).split()[0]
+                        for character in value if character.isalpha()
+                    }
+                    self.assertLessEqual(scripts, ALL_LOCALE_SCRIPTS[locale])
+                    if locale != "en" and len(key.split()) >= 3 and key != "GNU GPL v3":
+                        self.assertNotEqual(value, key, "Untranslated prose")
+
+    def test_directly_used_localization_keys_exist(self):
+        catalog = json.loads((ROOT / "GestaltX/Localizable.xcstrings").read_text())["strings"]
+        pattern = re.compile(
+            r'\b(?:(?:L|text|GestaltFailure|CustomizationFailure)\(|SharedPlistError\(key:\s*)'
+            r'"([^"\\]*(?:\\.[^"\\]*)*)"'
+        )
+        for directory in ("GestaltX", "ShareExtension", "Shared"):
+            for path in (ROOT / directory).rglob("*.swift"):
+                for key in pattern.findall(path.read_text()):
+                    if "\\(" not in key:
+                        with self.subTest(file=str(path.relative_to(ROOT)), key=key):
+                            self.assertIn(key, catalog)
+
     def test_capability_translations_use_locale_script(self):
         for locale, script in LOCALE_SCRIPTS.items():
             translations = json.loads((ROOT / "localization" / f"{locale}.json").read_text())

@@ -33,20 +33,30 @@ struct SharedPlistEntry: Codable, Identifiable, Sendable {
 }
 
 struct SharedPlistInbox: Sendable {
+    enum Kind: Sendable { case mobileGestalt, wallpaper }
     static let maximumByteCount = 16 * 1024 * 1024
+    static let maximumWallpaperByteCount = 256 * 1024 * 1024
     private static let maximumMetadataByteCount = 4096
     let directory: URL
     private let container: URL
     private let namespace: String
+    let kind: Kind
+    private var byteLimit: Int { kind == .wallpaper ? Self.maximumWallpaperByteCount : Self.maximumByteCount }
 
-    init(container: URL, namespace: String) throws {
+    init(container: URL, namespace: String, kind: Kind = .mobileGestalt) throws {
         guard !namespace.isEmpty, namespace.utf8.allSatisfy({
             (65...90).contains($0) || (97...122).contains($0) || (48...57).contains($0) || [45, 46, 95].contains($0)
         }), namespace != ".", namespace != ".." else { throw Self.invalidQueue }
         self.container = container
+        self.kind = kind
         self.namespace = namespace
-        directory = container.appendingPathComponent("GestaltX/ShareInbox", isDirectory: true)
+        let base = container.appendingPathComponent("GestaltX/ShareInbox", isDirectory: true)
             .appendingPathComponent(namespace, isDirectory: true)
+        directory = kind == .wallpaper ? base.appendingPathComponent("Wallpapers", isDirectory: true) : base
+    }
+
+    static func isWallpaperName(_ name: String) -> Bool {
+        ["tendies", "tendis", "zip"].contains((name as NSString).pathExtension.lowercased())
     }
 
     private static var invalidQueue: SharedPlistError {
@@ -130,6 +140,7 @@ struct SharedPlistInbox: Sendable {
     }
 
     func enqueue(_ data: Data, name: String) throws -> SharedPlistEntry {
+        guard kind == .mobileGestalt else { throw Self.invalidQueue }
         try Self.validate(data)
         guard let parent = try openDirectory(create: true) else { throw Self.invalidQueue }
         defer { close(parent) }
@@ -167,12 +178,13 @@ struct SharedPlistInbox: Sendable {
                 defer { close(child) }
                 guard let bytes = try? Self.readLimited("entry.json", in: child, limit: Self.maximumMetadataByteCount),
                       let entry = try? JSONDecoder().decode(SharedPlistEntry.self, from: bytes), entry.id == id,
-                      (0...Self.maximumByteCount).contains(entry.byteCount) else { return nil }
+                      (0...byteLimit).contains(entry.byteCount) else { return nil }
                 return entry
             }.sorted { $0.created == $1.created ? $0.id.uuidString < $1.id.uuidString : $0.created < $1.created }
     }
 
     func read(_ entry: SharedPlistEntry) throws -> Data {
+        guard kind == .mobileGestalt else { throw Self.invalidQueue }
         guard let parent = try openDirectory(create: false) else { throw Self.invalidQueue }
         defer { close(parent) }
         let child = try Self.openChild(entry.id.uuidString, in: parent)
@@ -184,6 +196,110 @@ struct SharedPlistInbox: Sendable {
         try Self.validate(bytes)
         guard bytes.count == entry.byteCount else { throw Self.invalidQueue }
         return bytes
+    }
+
+    // Archive transport is isolated from MobileGestalt and never relaxes its
+    // CacheExtra/device checks. Copy inside the provider callback's URL lease.
+    func enqueueWallpaper(at source: URL, name: String, coordinator: NSFileCoordinator = NSFileCoordinator(), checkCancellation: () throws -> Void = { try Task.checkCancellation() }) throws -> SharedPlistEntry {
+        guard kind == .wallpaper, source.isFileURL else { throw Self.invalidArchive }
+        let scoped = source.startAccessingSecurityScopedResource()
+        defer { if scoped { source.stopAccessingSecurityScopedResource() } }
+        var info = stat()
+        if lstat(source.path, &info) == 0, (info.st_mode & S_IFMT) != S_IFREG { throw Self.invalidArchive }
+        var coordinationError: NSError?, result: Result<SharedPlistEntry, Error>?
+        coordinator.coordinate(readingItemAt: source, options: [], error: &coordinationError) { readable in
+            result = Result { try publishWallpaper(readable, name: name, checkCancellation: checkCancellation) }
+        }
+        if let coordinationError { throw coordinationError }
+        guard let result else { throw Self.invalidArchive }
+        return try result.get()
+    }
+
+    private func publishWallpaper(_ source: URL, name: String, checkCancellation: () throws -> Void) throws -> SharedPlistEntry {
+        guard let parent = try openDirectory(create: true) else { throw Self.invalidArchive }
+        defer { close(parent) }
+        cleanupStaleEntries()
+        let id = UUID(), staging = "." + id.uuidString + ".pending"
+        guard mkdirat(parent, staging, 0o700) == 0 else { throw Self.fileError() }
+        do {
+            let child = try Self.openChild(staging, in: parent)
+            defer { close(child) }
+            let lease = try SharedInboxHousekeeping.writerLock(in: child)
+            defer { close(lease) }
+            let input = open(source.path, O_RDONLY | O_NONBLOCK | O_NOFOLLOW | O_CLOEXEC)
+            guard input >= 0 else { throw Self.fileError() }
+            defer { close(input) }
+            let output = openat(child, "document.archive", O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW | O_CLOEXEC, 0o600)
+            guard output >= 0 else { throw Self.fileError() }
+            defer { close(output) }
+            let count = try Self.copyArchive(from: input, to: output, checkCancellation: checkCancellation)
+            let entry = SharedPlistEntry(id: id, name: Self.displayName(name), created: Date(), byteCount: count)
+            let metadata = try JSONEncoder().encode(entry)
+            guard metadata.count <= Self.maximumMetadataByteCount else { throw Self.invalidArchive }
+            try Self.write(metadata, named: "entry.json", in: child)
+            try checkCancellation()
+            guard renameat(parent, staging, parent, id.uuidString) == 0 else { throw Self.fileError() }
+            return entry
+        } catch { try? Self.removeDirectory(staging, in: parent); throw error }
+    }
+
+    // Give the app an owned, immutable-by-other-App-Groups copy before showing
+    // confirmation. An accepted import consumes these exact bytes.
+    func stageWallpaper(_ entry: SharedPlistEntry, at destination: URL) throws {
+        guard kind == .wallpaper, destination.isFileURL,
+              let parent = try openDirectory(create: false) else { throw Self.invalidArchive }
+        defer { close(parent) }
+        let child = try Self.openChild(entry.id.uuidString, in: parent)
+        defer { close(child) }
+        let input = openat(child, "document.archive", O_RDONLY | O_NONBLOCK | O_NOFOLLOW | O_CLOEXEC)
+        guard input >= 0 else { throw Self.fileError() }
+        defer { close(input) }
+        let output = open(destination.path, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW | O_CLOEXEC, 0o600)
+        guard output >= 0 else { throw Self.fileError() }
+        defer { close(output) }
+        do {
+            guard try Self.copyArchive(from: input, to: output) == entry.byteCount else { throw Self.invalidArchive }
+        } catch { unlink(destination.path); throw error }
+    }
+
+    private static var invalidArchive: SharedPlistError {
+        SharedPlistError(key: "The archive is invalid or exceeds the size limit.")
+    }
+
+    private static func copyArchive(from input: Int32, to output: Int32, checkCancellation: () throws -> Void = { try Task.checkCancellation() }) throws -> Int {
+        var before = stat()
+        guard fstat(input, &before) == 0 else { throw fileError() }
+        guard (before.st_mode & S_IFMT) == S_IFREG,
+              before.st_size >= 4, before.st_size <= maximumWallpaperByteCount else { throw invalidArchive }
+        var buffer = [UInt8](repeating: 0, count: 64 * 1024), total = 0
+        while true {
+            try checkCancellation()
+            let count = Darwin.read(input, &buffer, buffer.count)
+            if count < 0, errno == EINTR { continue }
+            guard count >= 0 else { throw fileError() }
+            if count == 0 { break }
+            guard count <= maximumWallpaperByteCount - total else { throw invalidArchive }
+            if total == 0 {
+                guard count >= 4, buffer[0] == 0x50, buffer[1] == 0x4b,
+                      (buffer[2] == 3 && buffer[3] == 4) || (buffer[2] == 5 && buffer[3] == 6) else { throw invalidArchive }
+            }
+            try buffer.withUnsafeBytes { bytes in
+                var offset = 0
+                while offset < count {
+                    let written = Darwin.write(output, bytes.baseAddress!.advanced(by: offset), count - offset)
+                    if written < 0, errno == EINTR { continue }
+                    guard written > 0 else { throw fileError() }
+                    offset += written
+                }
+            }
+            total += count
+        }
+        var after = stat()
+        guard fstat(input, &after) == 0, total == before.st_size, after.st_size == before.st_size,
+              before.st_mtimespec.tv_sec == after.st_mtimespec.tv_sec,
+              before.st_mtimespec.tv_nsec == after.st_mtimespec.tv_nsec else { throw invalidArchive }
+        guard fsync(output) == 0 else { throw fileError() }
+        return total
     }
 
     func acknowledge(_ entry: SharedPlistEntry) throws {
@@ -204,7 +320,8 @@ struct SharedPlistInbox: Sendable {
 
     @discardableResult
     func cleanupStaleEntries(now: Date = Date()) -> Int {
-        SharedInboxHousekeeping.clean(container: container, namespace: namespace, now: now)
+        SharedInboxHousekeeping.clean(container: container, namespace: namespace,
+                                     subdirectory: kind == .wallpaper ? "Wallpapers" : nil, now: now)
     }
 
     private static func fileError() -> NSError { NSError(domain: NSPOSIXErrorDomain, code: Int(errno)) }
@@ -227,7 +344,7 @@ struct SharedPlistInbox: Sendable {
         do {
             // Check every component below the trusted App Group container. The
             // descriptor walk also survives concurrent renaming of an ancestor.
-            for name in ["GestaltX", "ShareInbox", namespace] {
+            for name in ["GestaltX", "ShareInbox", namespace] + (kind == .wallpaper ? ["Wallpapers"] : []) {
                 if create && mkdirat(descriptor, name, 0o700) != 0 && errno != EEXIST { throw Self.fileError() }
                 let next: Int32
                 do { next = try Self.openChild(name, in: descriptor) }
@@ -352,10 +469,10 @@ private enum SharedInboxHousekeeping {
         return descriptor
     }
 
-    static func clean(container: URL, namespace: String, now: Date) -> Int {
+    static func clean(container: URL, namespace: String, subdirectory: String? = nil, now: Date) -> Int {
         // Housekeeping is best effort. A failed scan must never prevent normal
         // enqueue/read operations, and an active producer is never waited on.
-        guard let parent = try? openDirectory(container: container, namespace: namespace) else { return 0 }
+        guard let parent = try? openDirectory(container: container, namespace: namespace, subdirectory: subdirectory) else { return 0 }
         defer { close(parent) }
         guard let names = try? names(in: parent) else { return 0 }
         var removed = 0
@@ -394,12 +511,12 @@ private enum SharedInboxHousekeeping {
         return age
     }
 
-    private static func openDirectory(container: URL, namespace: String) throws -> Int32 {
+    private static func openDirectory(container: URL, namespace: String, subdirectory: String?) throws -> Int32 {
         var descriptor = container.withUnsafeFileSystemRepresentation { path in
             path.map { open($0, O_RDONLY | O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC) } ?? -1
         }
         guard descriptor >= 0 else { throw error() }
-        for component in ["GestaltX", "ShareInbox", namespace] {
+        for component in ["GestaltX", "ShareInbox", namespace] + (subdirectory.map { [$0] } ?? []) {
             let next = openat(descriptor, component, O_RDONLY | O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC)
             let failure = error()
             close(descriptor)

@@ -113,6 +113,29 @@ private final class ProviderProbe: @unchecked Sendable {
         catch is CancellationError {}
         precondition(reentrant.reads == 0, "Cancellation callbacks must not deadlock or resume twice")
         reentrant.progress.cancellationHandler = nil
+
+        let enteredRead = DispatchSemaphore(value: 0), releaseRead = DispatchSemaphore(value: 0)
+        let discarded = DispatchSemaphore(value: 0), callbackDone = DispatchSemaphore(value: 0)
+        let duringRead = Task.detached {
+            try await ItemProviderLoad<Int>.load { request in
+                DispatchQueue.global().async {
+                    request.complete(onDiscard: { _ in discarded.signal() }) {
+                        enteredRead.signal()
+                        precondition(releaseRead.wait(timeout: .now() + 5) == .success)
+                        return 99
+                    }
+                    callbackDone.signal()
+                }
+                return nil
+            }
+        }
+        precondition(enteredRead.wait(timeout: .now() + 5) == .success)
+        duringRead.cancel()
+        do { _ = try await duringRead.value; preconditionFailure("Expected cancellation during callback") }
+        catch is CancellationError {}
+        releaseRead.signal()
+        precondition(discarded.wait(timeout: .now() + 5) == .success, "A receipt published during cancellation must be cleaned up")
+        precondition(callbackDone.wait(timeout: .now() + 5) == .success)
         print("PASS: provider success/errors, cancellation before/during/after startup, stalled loads and late callbacks.")
     }
 }

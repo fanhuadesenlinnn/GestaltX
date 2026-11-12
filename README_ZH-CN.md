@@ -4,7 +4,7 @@
 
 <h1 align="center">GestaltX</h1>
 
-[![Version](https://img.shields.io/badge/version-1.0.5-blue)](https://github.com/huamidev/GestaltX)
+[![Version](https://img.shields.io/badge/version-1.0.6-blue)](https://github.com/huamidev/GestaltX)
 [![Platform](https://img.shields.io/badge/iOS-27.x-black?logo=apple)](#兼容性)
 [![SwiftUI](https://img.shields.io/badge/Swift-SwiftUI-orange?logo=swift)](https://github.com/huamidev/GestaltX)
 [![License](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
@@ -71,6 +71,7 @@ GestaltX 跟随 iOS 的语言设置，默认及回退语言为英语。波斯语
 | فارسی（波斯语） | `fa` |
 | 한국어（韩语） | `ko` |
 | Español（西班牙语） | `es` |
+| 日本語（日语） | `ja` |
 
 ## 鸣谢
 

@@ -35,3 +35,17 @@ GitHub mark: Primer Octicons (GitHub), MIT license.
 Source: https://raw.githubusercontent.com/primer/octicons/main/icons/mark-github-16.svg
 Full license: Primer-Octicons-MIT.txt in the application bundle.
 GitHub names and marks remain GitHub trademarks.
+
+4. Wallpaper customization
+Gester: https://github.com/sasobhabha/Gester
+Copyright (c) 2026 KAMUI contributors. MIT License; full text: Gester-MIT.txt.
+Reference for PosterBoard descriptor providers, identifier regeneration and the PosterBoard refresh flag.
+
+Erosion: https://github.com/jailbreakdotparty/Erosion
+lunginspector / jailbreak.party and contributors. GNU GPL version 3; full text: Erosion-GPL-3.0.txt.
+Reference for .tendies descriptor layouts.
+GestaltX adds its own native interface, bounded archive validation, runtime container identity checks, isolated wallpaper ownership records, verified writes and original-file recovery.
+
+ZIPFoundation 0.9.20: https://github.com/weichsel/ZIPFoundation
+Thomas Zoechling. MIT License; full text: ZIPFoundation-MIT.txt.
+Used for ZIP archive reading and decompression. No wallpaper theme assets are bundled.
