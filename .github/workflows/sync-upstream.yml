@@ -1,0 +1,51 @@
+name: Force Sync Fork
+
+on:
+  schedule:
+    - cron: '23 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: force-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          ref: 'main'
+          fetch-depth: 1
+      - name: Replace fork branch with upstream while preserving this workflow
+        shell: bash
+        env:
+          UPSTREAM_REPOSITORY: 'huamidev/GestaltX'
+          UPSTREAM_BRANCH: 'main'
+          FORK_BRANCH: 'main'
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          original_sha="$(git rev-parse HEAD)"
+          original_tree="$(git rev-parse HEAD^{tree})"
+          mkdir -p "$RUNNER_TEMP/fork-workflows"
+          cp -a .github/workflows/. "$RUNNER_TEMP/fork-workflows/"
+          git remote add upstream "https://github.com/${UPSTREAM_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 upstream "${UPSTREAM_BRANCH}"
+          git reset --hard FETCH_HEAD
+          rm -rf .github/workflows
+          mkdir -p .github/workflows
+          cp -a "$RUNNER_TEMP/fork-workflows/." .github/workflows/
+          git add -f -A -- .github/workflows
+          target_tree="$(git write-tree)"
+          if [[ "$target_tree" == "$original_tree" ]]; then
+            echo 'No upstream changes; nothing to push.'
+            exit 0
+          fi
+          new_commit="$(git commit-tree "$target_tree" -p "$original_sha" -m "chore: force sync fork with ${UPSTREAM_REPOSITORY}:${UPSTREAM_BRANCH}")"
+          git push --force-with-lease="refs/heads/${FORK_BRANCH}:${original_sha}" origin "${new_commit}:refs/heads/${FORK_BRANCH}"
