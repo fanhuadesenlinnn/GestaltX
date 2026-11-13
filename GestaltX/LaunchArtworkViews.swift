@@ -18,6 +18,11 @@ final class LaunchArtworkCatalogModel: ObservableObject {
             .appendingPathComponent("GestaltX/LaunchImages/Catalog", isDirectory: true), device: UIDevice.current.identifierForVendor?.uuidString ?? "")
     }
     func refreshIfLoaded() { if loaded { refresh() } }
+    func migrateBackups() async {
+        let store = LaunchArtworkStore(storage: FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("GestaltX/LaunchImages"), device: UIDevice.current.identifierForVendor?.uuidString ?? "")
+        await store.migrateLegacyBackups()
+    }
     func refresh(force: Bool = false) {
         loaded = true
         if scan != nil { pending = true; pendingForce = pendingForce || force; return }
@@ -213,7 +218,7 @@ private struct LaunchArtworkEditor: View {
         .alert(L("Apply these changes?"), isPresented: $asksApply) {
             Button(L("Cancel"), role: .cancel) {}
             Button(L("Apply")) { Task { await model.apply(app) } }
-        } message: { Text(L("The original launch images will be backed up before applying.")) }
+        }
         .alert(L("Restore Original"), isPresented: $asksRestore) {
             Button(L("Cancel"), role: .cancel) {}
             Button(L("Restore")) { Task { await model.restore(app) } }

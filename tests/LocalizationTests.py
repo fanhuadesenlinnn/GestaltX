@@ -7,6 +7,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 CAPABILITY_KEYS = (
+    "Siri AI Mode",
+    "Set SiriMode to 2 without spoofing hardware. Experimental; resource downloads and availability are not guaranteed.",
     "High-Luminance Always-On Display",
     "Allow Always-On Display to reach a higher brightness level.",
     "Always-On Display Flipbook",

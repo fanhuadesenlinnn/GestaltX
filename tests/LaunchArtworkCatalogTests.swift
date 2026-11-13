@@ -4,9 +4,11 @@ private final class CatalogFixture: @unchecked Sendable {
     private let lock = NSLock()
     var inventory: LaunchArtworkInventory
     private var probes: [String] = []
+    private var reads = 0
     var retry = Set<String>()
     init(_ inventory: LaunchArtworkInventory) { self.inventory = inventory }
-    func snapshot(_ discover: Bool) -> LaunchArtworkInventory { lock.lock(); defer { lock.unlock() }; return inventory }
+    func snapshot(_ discover: Bool) -> LaunchArtworkInventory { lock.lock(); defer { lock.unlock() }; reads += 1; return inventory }
+    var readCount: Int { lock.lock(); defer { lock.unlock() }; return reads }
     func verify(_ candidate: LaunchArtworkCandidate) -> LaunchArtworkAvailability {
         lock.lock(); probes.append(candidate.app.id); let retryable = retry.contains(candidate.app.id); lock.unlock()
         if candidate.app.byteCount >= 100 { Thread.sleep(forTimeInterval: 0.04) }
@@ -40,6 +42,22 @@ private final class CatalogFixture: @unchecked Sendable {
         let fm = FileManager.default, root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? fm.removeItem(at: root) }
         let small = candidate("small", size: 10), large = candidate("large", size: 100), unknown = candidate("unknown", size: 0)
+        let sharedFixture = CatalogFixture(.init(complete: true, candidates: [small, large], containerGeneration: "shared-1"))
+        let sharedPath = root.appendingPathComponent("Common/Inventory.plist")
+        let shared = SharedApplicationInventory(storage: sharedPath, device: "device")
+        let launchInventory = shared.inventory(discover: false, loader: sharedFixture.snapshot)
+        let soundInventory = shared.inventory(discover: false, loader: sharedFixture.snapshot)
+        try expect(sharedFixture.readCount == 1 && launchInventory.candidates.map(\.app.id) == soundInventory.candidates.map(\.app.id), "Both tools repeated application discovery instead of sharing it")
+        let cold = SharedApplicationInventory(storage: sharedPath, device: "device")
+        let fromDisk = cold.inventory(discover: false, loader: sharedFixture.snapshot)
+        try expect(sharedFixture.readCount == 1 && fromDisk.refreshNeeded && fromDisk.candidates.count == 2, "Reopened cache did not display immediately before refreshing")
+        sharedFixture.update(.init(complete: true, candidates: [small, unknown], containerGeneration: "shared-2"))
+        let updated = cold.inventory(discover: true, loader: sharedFixture.snapshot)
+        try expect(sharedFixture.readCount == 2 && updated.candidates.map(\.app.id) == [small.app.id, unknown.app.id], "Shared cache did not apply installed/removed app changes")
+        cold.invalidate()
+        sharedFixture.update(.init(complete: false, candidates: []))
+        let interrupted = cold.inventory(discover: true, loader: sharedFixture.snapshot)
+        try expect(interrupted.candidates.count == 2, "A transient inventory failure cleared the shared cache")
         let fixture = CatalogFixture(.init(complete: true, candidates: [large, unknown, small], containerGeneration: "root-1"))
         let store = LaunchArtworkCatalogStore(storage: root, device: "device", backend: fixture.backend)
         var streamed: [String] = []

@@ -134,18 +134,19 @@ final class ShareViewController: UIViewController {
 
     nonisolated private static func save(_ url: URL, suggestedName: String?, archiveHint: Bool, checkCancellation: () throws -> Void) throws -> Receipt {
         let wallpaper = archiveHint || SharedPlistInbox.isWallpaperName(suggestedName ?? "") || SharedPlistInbox.isWallpaperName(url.lastPathComponent)
-        let inbox = wallpaper ? SharedAppGroups.wallpaperInboxes.first : SharedAppGroups.inboxes.first
-        guard let inbox else { throw SharedPlistError(key: "Sign GestaltX and its share extension with the same App Group, then try again.") }
+        let inboxes = wallpaper ? SharedAppGroups.wallpaperInboxes : SharedAppGroups.inboxes
+        guard let inbox = inboxes.first else { throw SharedPlistError(key: "Sign GestaltX and its share extension with the same App Group, then try again.") }
         let name = suggestedName ?? url.lastPathComponent
         try checkCancellation()
-        let entry: SharedPlistEntry
-        if wallpaper { entry = try inbox.enqueueWallpaper(at: url, name: name, checkCancellation: checkCancellation) }
-        else {
+        let receipt: Receipt
+        if wallpaper {
+            let entry = try inbox.enqueueWallpaper(at: url, name: name, checkCancellation: checkCancellation)
+            receipt = Receipt(inbox: inbox, entry: entry)
+        } else {
             let data = try SharedPlistInbox.readDocument(at: url)
-            try checkCancellation()
-            entry = try inbox.enqueue(data, name: name)
+            let publication = try SharedPlistInbox.enqueue(data, name: name, in: inboxes, checkCancellation: checkCancellation)
+            receipt = Receipt(inbox: publication.inbox, entry: publication.entry)
         }
-        let receipt = Receipt(inbox: inbox, entry: entry)
         do { try checkCancellation() } catch { receipt.cancel(); throw error }
         return receipt
     }

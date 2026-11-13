@@ -3,3 +3,4 @@
 
 // Only available local answers are returned. No identifiers are logged.
 FOUNDATION_EXPORT NSDictionary<NSString *, id> * _Nonnull GXCopyCurrentDeviceIdentity(void);
+FOUNDATION_EXPORT NSDictionary<NSString *, NSString *> * _Nonnull GXCopyPhysicalHardwareIdentity(void);

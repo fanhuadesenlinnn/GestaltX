@@ -32,6 +32,18 @@ int main(void){@autoreleasepool{
     NSCAssert([shortName.displayNames[@"test.first"]isEqual:@"QQ"],@"Packed short app names were not decoded");
     NSMutableData *invalid=fixture();word(invalid,0x100+8+0x0c,0xfffffff0);word(invalid,0x400+8+0x0c,0xfffffff0);
     NSCAssert([GXLaunchServicesParser decode:invalid]==nil,@"Invalid string references accepted");
+    NSMutableData *groupFixture=fixture();
+    NSDictionary *groupMap=@{@"__NO_PERSONA__":@{@"group.test.notifications":@"/private/var/mobile/Containers/Shared/AppGroup/00000000-0000-0000-0000-000000000003"}};
+    NSData *groupData=[NSPropertyListSerialization dataWithPropertyList:groupMap format:NSPropertyListBinaryFormat_v1_0 options:0 error:NULL];
+    word(groupFixture,0x100+8+0x90,1000<<2);word(groupFixture,0x2ff8,1000);word(groupFixture,0x2ffc,(uint32_t)groupData.length);
+    [groupFixture replaceBytesInRange:NSMakeRange(0x3000,groupData.length)withBytes:groupData.bytes];
+    GXLaunchServicesSnapshot *groupResult=[GXLaunchServicesParser decode:groupFixture];
+    NSCAssert([groupResult.groupContainers[@"test.first"][@"group.test.notifications"]hasSuffix:@"000000000003"],@"App-group relationship was lost");
+    NSCAssert(!groupResult.groupContainers[@"test.second"],@"A group was assigned to an unrelated app");
+    NSDictionary *badMap=@{@"__NO_PERSONA__":@{@"group.test.notifications":@"/private/var/mobile/Library/Sounds"}};
+    NSData *badData=[NSPropertyListSerialization dataWithPropertyList:badMap format:NSPropertyListBinaryFormat_v1_0 options:0 error:NULL];
+    word(groupFixture,0x2ffc,(uint32_t)badData.length);[groupFixture replaceBytesInRange:NSMakeRange(0x3000,badData.length)withBytes:badData.bytes];
+    NSCAssert(![GXLaunchServicesParser decode:groupFixture].groupContainers[@"test.first"],@"An out-of-scope group path was accepted");
     word(data,0x100+4,UINT32_MAX);word(data,0x400+4,UINT32_MAX);
     NSCAssert([GXLaunchServicesParser decode:data]==nil,@"Out-of-bounds record sizes accepted");
     puts("PASS: app/container mapping, Unicode names, /private/var aliases and malformed store rejection.");

@@ -86,24 +86,70 @@ actor LaunchArtworkStore {
         let url = recordURL(app)
         guard fm.fileExists(atPath: url.path) else { return nil }
         let record = try PropertyListDecoder().decode(Record.self, from: CustomizationFiles.read(url))
-        guard record.version == 1, record.device == device, record.app == app.id, record.files.count <= 16,
+        guard record.version == 1, record.app == app.id, record.files.count <= 16,
               record.files.keys.allSatisfy(LaunchArtworkDirectory.validName),
               record.files.values.allSatisfy({ $0.mode <= 0o777 && $0.original.count <= LaunchArtworkDirectory.maximumFile
                   && CustomizationFiles.digest($0.original) == $0.originalHash && (try? LaunchArtworkImages.dimensions($0.original)) != nil }),
               record.files.values.reduce(0, { $0 + $1.original.count }) <= 64 * 1024 * 1024 else { throw changed }
         return record
     }
+    private func migrateLegacy(_ app: LaunchArtworkApp, container: URL, directory: LaunchArtworkDirectory) throws {
+        if let record = try load(app) {
+            guard record.container == container.lastPathComponent else { return }
+            // Every original gets its own sibling .bak, including snapshots that
+            // iOS has removed. A new cache generation is not made restorable.
+            for (name, saved) in record.files { try directory.migrateBackup(name, saved: saved) }
+            let archived = try CustomizationFiles.read(recordURL(app))
+            try directory.archiveLegacy("Originals-" + CustomizationFiles.digest(archived) + ".plist", data: archived)
+            try fm.removeItem(at: recordURL(app))
+            log("Launch images: migrated \(record.files.count) original(s) to sibling .bak files.")
+        }
+        // Preserve old history outside GestaltX too. No new history is written
+        // here; this directory exists only for upgrades from older releases.
+        let history = storage.appendingPathComponent(app.id).appendingPathComponent("Backups")
+        if fm.fileExists(atPath: history.path) {
+            let values = try history.resourceValues(forKeys: [.isSymbolicLinkKey, .isDirectoryKey])
+            guard values.isSymbolicLink != true, values.isDirectory == true else { throw changed }
+            for file in try fm.contentsOfDirectory(at: history, includingPropertiesForKeys: nil) {
+                guard file.pathExtension == "plist", UUID(uuidString: file.deletingPathExtension().lastPathComponent) != nil else { throw changed }
+                let data = try CustomizationFiles.read(file)
+                try directory.archiveLegacy(file.lastPathComponent, data: data)
+                try fm.removeItem(at: file)
+            }
+            try fm.removeItem(at: history)
+        }
+    }
+    /// Run on upgrade and retry when the relevant app is opened. Failed items
+    /// remain in the old location; an unrelated app cannot receive their bytes.
+    func migrateLegacyBackups() {
+        guard let folders = try? fm.contentsOfDirectory(at: storage, includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey]) else { return }
+        for folder in folders where LaunchArtworkDirectory.validIdentifier(folder.lastPathComponent) {
+            do {
+                try Task.checkCancellation()
+                let values = try folder.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+                guard values.isDirectory == true, values.isSymbolicLink != true else { continue }
+                let app = LaunchArtworkApp(id: folder.lastPathComponent, name: folder.lastPathComponent)
+                let legacy = try load(app)
+                #if os(iOS) && !targetEnvironment(simulator)
+                if resolver == nil {
+                    let hint = legacy.map { "/private/var/mobile/Containers/Data/Application/" + $0.container }
+                    guard GXCustomizationAccess.applicationContainer(for: app.id, hint: hint) != nil else { continue }
+                }
+                #endif
+                try access(app) { container, directory in try migrateLegacy(app, container: container, directory: directory) }
+            } catch { log("Launch images: backup migration deferred for \(folder.lastPathComponent): \(error.localizedDescription)") }
+        }
+    }
     func state(_ app: LaunchArtworkApp) throws -> LaunchArtworkState {
         try access(app) { container, directory in
-            let names = try directory.names(), record = try load(app)
+            try migrateLegacy(app, container: container, directory: directory)
+            let names = try directory.names()
             var canRestore = false, preview: Data?, width = 1, height = 2
             for name in names {
                 guard let file = try directory.read(name) else { continue }
                 let size = try LaunchArtworkImages.dimensions(file.data)
                 if preview == nil { preview = LaunchArtworkImages.preview(file.data); width = size.width; height = size.height }
-                if record?.container == container.lastPathComponent,
-                   let saved = record?.files[name], CustomizationFiles.digest(file.data) == saved.expected,
-                   file.data != saved.original { canRestore = true }
+                if let saved = try directory.original(name), saved.matches(file.data), file.data != saved.data { canRestore = true }
             }
             return LaunchArtworkState(count: names.count, canRestore: canRestore, preview: preview, width: width, height: height)
         }
@@ -118,10 +164,10 @@ actor LaunchArtworkStore {
     }
     func apply(_ photo: Data, to app: LaunchArtworkApp) throws -> Int {
         try access(app) { container, directory in
+            try migrateLegacy(app, container: container, directory: directory)
             let names = try directory.names()
             guard !names.isEmpty else { throw CustomizationFailure("No launch images found. Open the app once, close it, then read again.") }
-            let old = try load(app)
-            var before: [String: LaunchArtworkDirectory.File] = [:], replacements: [String: Data] = [:], originals: [String: Saved] = [:]
+            var before: [String: LaunchArtworkDirectory.File] = [:], replacements: [String: Data] = [:]
             var total = 0, encodedTotal = 0
             for name in names {
                 guard let file = try directory.read(name) else { throw changed }
@@ -129,83 +175,55 @@ actor LaunchArtworkStore {
                 guard total <= 64 * 1024 * 1024 else { throw changed }
                 let size = try LaunchArtworkImages.dimensions(file.data)
                 let png = try LaunchArtworkImages.render(photo, width: size.width, height: size.height)
-                guard png.count <= LaunchArtworkDirectory.maximumFile else {
-                    throw CustomizationFailure("This image could not be used. Choose another image.")
-                }
                 encodedTotal += png.count
-                guard encodedTotal <= 64 * 1024 * 1024 else {
+                guard png.count <= LaunchArtworkDirectory.maximumFile, encodedTotal <= 64 * 1024 * 1024 else {
                     throw CustomizationFailure("This image could not be used. Choose another image.")
                 }
-                let previous = old?.container == container.lastPathComponent ? old?.files[name] : nil
-                let tracked = previous.map { CustomizationFiles.digest(file.data) == $0.expected || file.data == $0.original } ?? false
-                let original = tracked ? previous!.original : file.data
-                originals[name] = Saved(original: original, originalHash: CustomizationFiles.digest(original), expected: CustomizationFiles.digest(png),
-                                       mode: tracked ? previous!.mode : UInt16(file.mode), protection: tracked ? previous!.protection : file.protection)
                 before[name] = file; replacements[name] = png
             }
-            let next = Record(version: 1, device: device, app: app.id, container: container.lastPathComponent, files: originals)
-            try backup(before, app: app)
-            if let old { try CustomizationFiles.saveVerified(old, to: history(app)) }
-            // Record all original bytes and intended hashes before the first write.
-            try CustomizationFiles.saveVerified(next, to: recordURL(app))
-            try commit(replacements, before: before, directory: directory, app: app, old: old)
-            log("Launch images: applied \(replacements.count) image(s).")
+            // Publish and verify every original before touching any target.
+            for name in names { try directory.backup(name, file: before[name]!, replacement: replacements[name]!) }
+            try commit(replacements, before: before, directory: directory)
+            log("Launch images: applied \(replacements.count) image(s); originals kept beside the files.")
             return replacements.count
         }
     }
     func restore(_ app: LaunchArtworkApp) throws -> Int {
         try access(app) { container, directory in
-            guard let record = try load(app) else { return 0 }
-            guard record.container == container.lastPathComponent else {
-                throw CustomizationFailure("The app was reinstalled. Its saved launch images cannot be restored.")
-            }
+            try migrateLegacy(app, container: container, directory: directory)
             var before: [String: LaunchArtworkDirectory.File] = [:], replacements: [String: Data] = [:]
-            for (name, saved) in record.files {
-                // Missing/rebuilt snapshots belong to iOS. Never recreate them or
-                // replace newly generated content with a stale cache generation.
-                guard let file = try directory.read(name), CustomizationFiles.digest(file.data) == saved.expected,
-                      file.data != saved.original else { continue }
-                before[name] = file; replacements[name] = saved.original
+            var originals: [String: ContainerOriginals.Backup] = [:]
+            for name in try directory.names() {
+                guard let file = try directory.read(name), let saved = try directory.original(name),
+                      saved.matches(file.data), saved.data != file.data else { continue }
+                _ = try LaunchArtworkImages.dimensions(saved.data)
+                before[name] = file; replacements[name] = saved.data; originals[name] = saved
             }
-            try backup(before, app: app)
-            try CustomizationFiles.saveVerified(record, to: history(app))
-            try commit(replacements, before: before, directory: directory, app: app, old: record, restoring: record.files)
-            try fm.removeItem(at: recordURL(app))
-            log("Launch images: restored \(replacements.count) image(s); refreshed system files left unchanged.")
+            try commit(replacements, before: before, directory: directory, restoring: originals)
+            log("Launch images: restored \(replacements.count) image(s); sibling backups retained.")
             return replacements.count
         }
     }
-    private func history(_ app: LaunchArtworkApp) -> URL {
-        storage.appendingPathComponent(app.id).appendingPathComponent("Backups/\(UUID().uuidString).plist")
-    }
-    private func backup(_ files: [String: LaunchArtworkDirectory.File], app: LaunchArtworkApp) throws {
-        try CustomizationFiles.saveVerified(files.mapValues { CustomizationOriginal(data: $0.data) }, to: history(app))
-    }
     private func commit(_ replacements: [String: Data], before: [String: LaunchArtworkDirectory.File], directory: LaunchArtworkDirectory,
-                        app: LaunchArtworkApp, old: Record?, restoring: [String: Saved] = [:]) throws {
+                        restoring: [String: ContainerOriginals.Backup] = [:]) throws {
         var written: [String] = []
         do {
             for name in replacements.keys.sorted() {
                 try beforeWrite?()
                 written.append(name)
                 try directory.replace(name, expected: before[name]!, data: replacements[name]!,
-                                      protection: restoring[name]?.protection, mode: restoring[name].map { mode_t($0.mode) })
+                                      protection: restoring[name]?.protection, mode: restoring[name]?.mode)
             }
         } catch {
             var recovered = true
             for name in written.reversed() {
                 do {
-                    guard let current = try directory.read(name) else { continue }
-                    if current.data == before[name]!.data { continue }
-                    guard current.data == replacements[name] else { continue }
+                    guard let current = try directory.read(name), current.data == replacements[name] else { continue }
                     try directory.replace(name, expected: current, data: before[name]!.data,
                                           protection: before[name]!.protection, mode: before[name]!.mode)
                 } catch { recovered = false }
             }
-            if recovered {
-                if let old { try CustomizationFiles.saveVerified(old, to: recordURL(app)) }
-                else if fm.fileExists(atPath: recordURL(app).path) { try fm.removeItem(at: recordURL(app)) }
-            } else { throw CustomizationFailure("Some files could not be restored. The backup has been kept.") }
+            if !recovered { throw CustomizationFailure("Some files could not be restored. The backup has been kept.") }
             throw error
         }
     }

@@ -66,10 +66,15 @@ final class CustomizationModel: ObservableObject {
 /// Copy mode owns the document inside this app; it does not depend on retained Files bookmarks.
 struct CustomizationFilePicker: UIViewControllerRepresentable {
     @Environment(\.dismiss) private var dismiss
+    let allowedTypes: [UTType]
     let complete: (Result<URL, Error>) -> Void
+    init(allowedTypes: [UTType] = [.data, .zip], complete: @escaping (Result<URL, Error>) -> Void) {
+        self.allowedTypes = allowedTypes
+        self.complete = complete
+    }
     func makeCoordinator() -> Coordinator { Coordinator(complete, cancel: { dismiss() }) }
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.data, .zip], asCopy: true)
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: allowedTypes, asCopy: true)
         picker.delegate = context.coordinator
         picker.allowsMultipleSelection = false
         return picker

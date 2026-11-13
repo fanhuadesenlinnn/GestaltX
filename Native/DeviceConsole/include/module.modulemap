@@ -1,0 +1,4 @@
+module GXDeviceConsole {
+    header "GXDeviceConsole.h"
+    export *
+}

@@ -2,6 +2,76 @@
 
 English | [简体中文](CHANGELOG_ZH-CN.md)
 
+## [1.1.1] - 2026-11-14
+
+Build `11140102`.
+
+### Added
+
+- App Audio Library: replace notification sounds with custom audio. Apps not shown in the list can use the capture guide to obtain their notification-sound paths.
+- Pairing & Device Connection: used to obtain required paths.
+
+### Changed
+
+- Case-insensitive cache UUID comparison (#131)
+- Reject trailing text in date fields (#132)
+- Share-inbox fallback (#133)
+- Validate backup metadata filenames (#134)
+- Reduce cache descriptor string-scan allocations (#135)
+- Reuse one preview snapshot for field search (#136)
+- Preserve field edits over layout presets (#137)
+- Preserve existing plist keys when editing fields (#138)
+- Reduce allocations in exact plist comparisons (#139)
+- Traverse document differences once (#140)
+- Fix Face ID failing after enabling Apple Intelligence (#128)
+- Add missing localization for #128 (#146)
+- Pairing paths are migrated when a reinstall moves the app data container.
+
+### Fixed
+
+- Fix pairing failure in side-loaded release builds.
+- Add the missing Face ID recovery localization strings.
+- Fix audio file selection in side-loaded builds.
+- Refresh captured sounds immediately and cache the app audio list.
+- Show LocalDevVPN guidance and stop capture when the tunnel does not connect.
+
+## [1.0.9] - 2026-11-14
+
+Build `11140100`.
+
+### Fixed
+
+- Fix pairing failure in side-loaded release builds.
+
+## [1.0.8] - 2026-11-13
+
+Build `11132300`.
+
+### Added
+
+- App Audio Library: replace notification sounds with custom audio. Apps not shown in the list can use the capture guide to obtain their notification-sound paths.
+- Pairing & Device Connection: used to obtain required paths.
+
+### Changed
+
+- Case-insensitive cache UUID comparison (#131)
+- Reject trailing text in date fields (#132)
+- Share-inbox fallback (#133)
+- Validate backup metadata filenames (#134)
+- Reduce cache descriptor string-scan allocations (#135)
+- Reuse one preview snapshot for field search (#136)
+- Preserve field edits over layout presets (#137)
+- Preserve existing plist keys when editing fields (#138)
+- Reduce allocations in exact plist comparisons (#139)
+- Traverse document differences once (#140)
+- Fix Face ID failing after enabling Apple Intelligence (#128)
+- Add missing localization for #128 (#146)
+- Pairing paths are migrated when a reinstall moves the app data container.
+
+### Fixed
+
+- Add the missing Face ID recovery localization strings.
+
 ## [1.0.7] - 2026-11-13
 
 Build `11130112`.

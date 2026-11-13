@@ -49,3 +49,8 @@ GestaltX adds its own native interface, bounded archive validation, runtime cont
 ZIPFoundation 0.9.20: https://github.com/weichsel/ZIPFoundation
 Thomas Zoechling. MIT License; full text: ZIPFoundation-MIT.txt.
 Used for ZIP archive reading and decompression. No wallpaper theme assets are bundled.
+
+4. Native device console (pairing + notification-sound capture)
+AirCard-iOS — Johnny Franks (MIT), https://github.com/Mak5er/AirCard-iOS
+idevice / idevice-ffi — Jackson Coxson (MIT), https://github.com/jkcoxson/idevice
+GestaltX reuses AirCard-iOS's device connection path (RSD/Lockdown tunnel, RPPairing self-pairing host, syslog_relay read loop) over the vendored idevice crate (revision 7bd551c, MIT), to determine which app plays which notification sound. AirCard's Airlift file-injection exploit is NOT included. Cancellation is rewritten to be serialized and generation-scoped; the pairing PIN and key material are never logged. The vendored idevice carries one local change (OPACK back-reference decoding). Full texts: AirCard-MIT.txt, idevice-MIT.txt; details in Native/DeviceConsole/NOTICE.md.

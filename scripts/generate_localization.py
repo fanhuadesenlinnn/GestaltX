@@ -2,6 +2,23 @@ from pathlib import Path
 import json
 ROOT = Path(__file__).resolve().parents[1]
 TRANSLATIONS = '''
+Enter the notification sound's exact filename, including its extension.	请输入通知铃声的完整文件名，包含扩展名。
+A file with this name already exists. Select it from the list to replace it.	同名文件已存在，请从列表中选择后替换。
+App Sound Library	App 通知音库
+Not every sound listed is the current notification sound. Preview the sounds before replacing one.	列表中的音频不一定是当前通知音，可先试听，确认后再替换。
+Audio replaced.	已替换音频。
+Share Log	分享日志
+No Notification Sounds	未找到通知音
+Play Current Audio	试听当前音频
+Choose Audio	选择音频
+Play Replacement	试听替换音频
+Original audio restored.	已恢复原始音频。
+Some folders could not be read or the scan limit was reached.	部分目录无法读取，或已达到扫描上限。
+Choose notification audio shorter than 30 seconds and smaller than 32 MB.	请选择短于 30 秒且小于 32 MB 的通知音频。
+This audio format is not supported.	不支持此音频格式。
+This format cannot be converted. Import audio with the same format, sample rate and channel count.	此格式暂不支持转换，请导入格式、采样率及声道数相同的音频。
+The app replaced this file. Its existing backup was kept.	该文件已被 App 更新，现有备份已保留。
+The original backup is invalid or belongs to another file. It was kept unchanged.	原始备份无效或属于其他文件，已保持不变。
 Save Current Launch Image	保存当前启动图
 Allow GestaltX to add photos in Settings, then try again.	请在“设置”中允许 GestaltX 添加照片，然后重试。
 The launch image was saved to Photos.	启动图已保存到相册。
@@ -28,9 +45,9 @@ Applied	已应用
 Customization	个性化
 Import Wallpaper	导入壁纸
 No Wallpapers	暂无壁纸
-This only deletes the imported pack from GestaltX. Applied wallpapers will be kept.	只从 GestaltX 删除导入包，已应用的壁纸会保留。
+Only wallpapers added by this pack will be removed.	仅移除此包添加的壁纸。
 Open Wallpaper Gallery	打开壁纸图库
-Delete the imported wallpaper pack?	删除导入的壁纸包？
+Remove this wallpaper pack?	删除这个壁纸包？
 Some files could not be restored. The backup has been kept.	部分文件未能恢复，备份已保留。
 System Settings	系统设置
 The app could not be opened. Open it manually.	未能打开应用，请手动打开。
@@ -49,7 +66,6 @@ Disable WAPI	关闭 WAPI
 Disabling may show Wi-Fi and change some network options. Restart to apply.	关闭后可显示为 Wi-Fi，部分联网选项可能随之变化。重启后生效。
 Restore Original	恢复原值
 Special Thanks	特别鸣谢
-
 Supported	支持
 Unsupported	不支持
 Welcome	欢迎
@@ -63,14 +79,11 @@ Back up your device before making changes, and export a copy of the original pli
 Capability flags cannot add missing hardware. Some changes require a device restart.	功能标记无法增加设备缺少的硬件，部分更改需要重新启动设备才能生效。
 Use only devices you own or are authorized to manage. You are responsible for the changes you choose to apply.	仅在你拥有或获授权管理的设备上使用，并自行承担所选修改带来的风险。
 This software is provided without warranty. Read the included license before use.	本软件不提供任何担保，使用前请阅读随附的开源许可证。
-
 GitHub Repository	GitHub 仓库
-
 Credits & Licenses	鸣谢与许可
 License	许可证
 Respring Technique	注销方法
 Read Again	重新读取
-
 A device restart may be required.	可能需要重新启动设备才能生效。
 Restart the device after changing the region.	更改地区后需要重新启动设备。
 Some changes require a device restart.	部分更改需要重新启动设备。
@@ -78,7 +91,6 @@ Restart required. Apple Intelligence also depends on device and region.	需要�
 Restart the device, then reopen Settings. Pencil hardware support is still required.	重新启动设备后再打开“设置”，仍需要 Apple Pencil 硬件支持。
 Respring first. Restart the device if the change does not appear.	先执行注销，若未生效则重新启动设备。
 Write verified. Some features require a device restart.	写入已验证。部分功能需要重新启动设备才能生效。
-
 Model	机型
 Status	状态
 Connected	已连接
@@ -97,7 +109,6 @@ A backup is created before each write.	每次写入前会自动备份。
 This will attempt to restart SpringBoard using NeoSpring.	将通过 NeoSpring 尝试重新启动 SpringBoard。
 GitHub Projects	GitHub 项目
 GNU GPL v3	GNU GPL v3
-
 Date	日期
 Enter an ISO 8601 date, such as 2026-11-09T12:00:00Z.	请输入 ISO 8601 日期，例如 2026-11-09T12:00:00Z。
 Tools	工具
@@ -440,6 +451,77 @@ System settings could not be verified after writing.	写入后无法验证系统
 Some settings could not be restored automatically. Read them again and use Revert.	部分设置未能自动恢复，请重新读取并使用“还原”。
 These system settings are not accessible on this device.	当前设备无法访问这些系统设置。
 Lock screen text updated.	锁屏文字已更新。
+Capture	采集
+Pairing	配对
+Pairing Code	配对码
+Pairing failed.	配对失败。
+Start Pairing	开始配对
+Forget Pairing	解除配对
+Start Capture	开始采集
+Stop Capture	停止采集
+Capture stopped.	采集已停止。
+Capturing…	正在采集…
+Captured	已采集
+Captured Notification Sounds	已采集的通知音
+File	文件
+Source	来源
+System default (not replaceable)	系统默认（不可替换）
+Enter this code on the device to confirm pairing.	在设备上输入这串配对码即可完成配对。
+Another pairing or capture is already running.	已有配对或采集正在进行。
+The device console is not available in this build.	此版本未启用设备控制台。
+Build the GXDeviceConsole library and enable it to use pairing and capture.	需要构建并启用 GXDeviceConsole 库后才能配对和采集。
+Pair this device once in Settings › Privacy & Security › Developer Mode › Pair with the broadcast host. The exact path can vary by iOS version.	在“设置 › 隐私与安全性 › 开发者模式 › 与广播的主机配对”中配对一次。具体路径因 iOS 版本而异。
+Start a loopback VPN (e.g. LocalDevVPN), then start capture and trigger a notification in the target app.	先打开回路 VPN（如 LocalDevVPN），再开始采集，然后在目标 App 里触发一条通知。
+These filenames were captured from notifications. Add a same-name audio to override them.	这些文件名来自通知采集。添加同名音频即可覆盖。
+A same-name audio will be written to this app's Library/Sounds so the system uses it instead of the bundled sound.	会在该 App 的 Library/Sounds 写入同名音频，系统会优先使用它，而不是包内音频。
+Restore Original Audio	还原原始音频
+Restore Audio	还原音频
+Loopback VPN	回路 VPN
+Open LocalDevVPN	打开 LocalDevVPN
+Not checked	尚未检测
+Checking…	正在检测…
+Not reachable	不可达
+Loopback VPN is not reachable. Open LocalDevVPN, wait until it connects, then try again.	回路 VPN 不可达。请打开 LocalDevVPN，等它连接成功后重试。
+The saved pairing file is missing. Pair this iPhone again before capturing.	配对文件不见了，请重新配对这个 iPhone 再开始采集。
+Device Pairing	设备配对
+Pairing & Device Connection	配对与设备连接
+App Audio Library	应用音频库
+Apps that already have notification sounds or audio files	这里列出包含通知音或音频文件的 App
+Capture Notification Sounds	采集通知音
+Pairing is in progress. Finish it in Tools → Device Pairing.	正在配对，请到「工具 → 设备配对」里完成。
+Open Device Pairing	去设备配对
+Existing Audio	已有音频
+Captured Apps	已采集的 App
+Delete Capture	删除采集记录
+No saved original was found for this sound. The app may have replaced it after the last edit.	找不到这个音频的原始备份，App 可能在编辑后替换了它。
+Pair once before capturing.	采集前先配对一次。
+GestaltX Pairing	GestaltX 配对
+Broadcasting as GestaltX	GestaltX 正在广播
+Privacy & Security → Developer Mode	隐私与安全性 → 开发者模式
+Open Settings	前往设置
+Pair this iPhone once	这台 iPhone 只需配对一次
+Tap Pair with GestaltX	点按“与 GestaltX 配对”
+Enter the 6-digit code shown below, in the Dynamic Island, or in the notification	输入下方、灵动岛或通知里显示的 6 位配对码
+The pairing code appears here, in the Dynamic Island, and as a notification.	配对码会显示在这里，也会出现在灵动岛和通知里。
+Enter this code in Settings to finish pairing.	在“设置”里输入这串配对码即可完成配对。
+Copy Code	复制配对码
+Copied	已复制
+Dynamic Island + notification	灵动岛 + 通知
+iOS could not start the background pairing task. Keep GestaltX open, or try again in a moment.	iOS 没能启动后台配对任务。请保持 GestaltX 在前台，或稍后重试。
+Siri AI Mode	Siri AI 模式
+Set SiriMode to 2 without spoofing hardware. Experimental; resource downloads and availability are not guaranteed.	将 SiriMode 设为 2，不伪装硬件。此功能为实验性质，不保证资源下载或功能可用。
+Restore Hardware Identity	恢复硬件身份
+Restore only the original product, board, CPU and model number from this backup. AI and region settings are kept. Restart and test Face ID and dictation afterward.	仅从此备份恢复原始产品标识、板号、CPU 和监管型号，保留 AI 与地区设置。随后请完整重启并测试 Face ID 与听写。
+A verified original hardware backup matching this device and cache is required.	需要经过验证且与当前设备和缓存匹配的原始硬件备份。
+This only deletes the imported pack from GestaltX. Applied wallpapers will be kept.	只从 GestaltX 删除导入包，已应用的壁纸会保留。
+Delete the imported wallpaper pack?	删除导入的壁纸包？
+Enjoying GestaltX?	喜欢 GestaltX 吗？
+If GestaltX is useful to you, a GitHub star helps a lot.	如果它对你有帮助，去 GitHub 点个 Star 支持一下。
+Star on GitHub	去 GitHub 点 Star
+Maybe Later	以后再说
+Don't Ask Again	不再提醒
+Cannot reach the device console. Open LocalDevVPN, wait for it to connect, then try again.	无法连接设备控制台。请打开 LocalDevVPN，等它连接成功后重试。
+If this stays here, open LocalDevVPN and wait for it to finish connecting.	如果一直停在这里，请打开 LocalDevVPN，等它连接完成。
 '''
 entries = {}
 for line in TRANSLATIONS.strip().splitlines():

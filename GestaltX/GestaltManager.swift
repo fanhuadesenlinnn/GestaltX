@@ -268,20 +268,40 @@ final class GestaltManager: ObservableObject {
     }
 
     private func diffLines(_ before: [String: Any], _ after: [String: Any], prefix: String = "") -> [String] {
+        enum Difference { case line(String), nested([String]) }
+        var changes: [(key: String, value: Difference)] = []
+        func path(_ key: String) -> String { prefix.isEmpty ? key : prefix + "." + key }
+        var matched = 0
+        for (key, oldValue) in before {
+            guard let newValue = after[key] else {
+                changes.append((key, .line("- \(path(key))  (was \(describe(oldValue)))")))
+                continue
+            }
+            matched += 1
+            if let oldDict = oldValue as? [String: Any], let newDict = newValue as? [String: Any] {
+                // Recursion identifies changed members directly; comparing
+                // the whole dictionary first would traverse it again.
+                let nested = diffLines(oldDict, newDict, prefix: path(key))
+                if !nested.isEmpty { changes.append((key, .nested(nested))) }
+            } else if !GestaltDocument.valuesEqual(oldValue, newValue) {
+                changes.append((key, .line("~ \(path(key)): \(describe(oldValue)) → \(describe(newValue))")))
+            }
+        }
+        // A second walk is needed only if some destination keys were not
+        // encountered above. Ordinary value edits have no added keys.
+        if matched < after.count {
+            for (key, value) in after where before[key] == nil {
+                changes.append((key, .line("+ \(path(key)) = \(describe(value))")))
+            }
+        }
+        // Preserve the existing depth-first key order, sorting only branches
+        // that actually produced log messages.
+        changes.sort { $0.key < $1.key }
         var lines: [String] = []
-        for key in Set(before.keys).union(after.keys).sorted() {
-            let path = prefix.isEmpty ? key : prefix + "." + key
-            switch (before[key], after[key]) {
-            case (nil, let value?): lines.append("+ \(path) = \(describe(value))")
-            case (let value?, nil): lines.append("- \(path)  (was \(describe(value)))")
-            case (let oldValue?, let newValue?):
-                guard !GestaltDocument.valuesEqual(oldValue, newValue) else { continue }
-                if let oldDict = oldValue as? [String: Any], let newDict = newValue as? [String: Any] {
-                    lines.append(contentsOf: diffLines(oldDict, newDict, prefix: path))
-                } else {
-                    lines.append("~ \(path): \(describe(oldValue)) → \(describe(newValue))")
-                }
-            default: break
+        for (_, difference) in changes {
+            switch difference {
+            case .line(let line): lines.append(line)
+            case .nested(let nested): lines.append(contentsOf: nested)
             }
         }
         return lines
@@ -449,8 +469,11 @@ final class GestaltManager: ObservableObject {
     }
 
     func stage(_ draft: FieldDraft) throws {
-        let key = draft.key.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !key.isEmpty else { throw GestaltFailure("Enter a field key.") }
+        // Imported plist keys may legitimately contain surrounding whitespace
+        // or be empty. Editing their values must not rename those existing keys.
+        let preservesKey = draft.originalKey == draft.key && working?.extra[draft.key] != nil
+        let key = preservesKey ? draft.key : draft.key.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard preservesKey || !key.isEmpty else { throw GestaltFailure("Enter a field key.") }
         guard var doc = working else { throw GestaltFailure("Load a document first.") }
         if draft.originalKey != key && doc.extra[key] != nil { throw GestaltFailure("That key already exists. Edit the existing field instead.") }
         let value = try draft.parsedValue()
@@ -460,7 +483,7 @@ final class GestaltManager: ObservableObject {
         let changedKeys = Set([key, draft.originalKey].compactMap { $0 })
         for capability in Capability.all where !changedKeys.isDisjoint(with: capability.keys) { choices[capability.id] = .keep }
         if !changedKeys.isDisjoint(with: [GestaltKeys.regionCode, GestaltKeys.regionInfo, GestaltKeys.legacyRegionInfo]) { regionID = "keep"; regionCodeID = "keep" }
-        if changedKeys.contains(GestaltKeys.artwork) { subtype = 0 }
+        resetLayoutPresets(overriddenBy: changedKeys)
         if changedKeys.contains(GestaltKeys.modelNumber) { modelID = "keep" }
         if !changedKeys.isDisjoint(with: [GestaltKeys.artwork, "Z/dqyWS6OZTRy10UcmUAhw", "bbtR9jQx50Fv5Af/affNtA"]) { changesName = false }
     }
@@ -468,9 +491,21 @@ final class GestaltManager: ObservableObject {
         working?.set(nil, for: key)
         for capability in Capability.all where capability.keys.contains(key) { choices[capability.id] = .keep }
         if [GestaltKeys.regionCode, GestaltKeys.regionInfo, GestaltKeys.legacyRegionInfo].contains(key) { regionID = "keep"; regionCodeID = "keep" }
-        if key == GestaltKeys.artwork { subtype = 0 }
+        resetLayoutPresets(overriddenBy: [key])
         if key == GestaltKeys.modelNumber { modelID = "keep" }
         if [GestaltKeys.artwork, "Z/dqyWS6OZTRy10UcmUAhw", "bbtR9jQx50Fv5Af/affNtA"].contains(key) { changesName = false }
+    }
+
+    private func resetLayoutPresets(overriddenBy keys: Set<String>) {
+        // A subtype preset writes both the artwork member and the capability
+        // flag. Explicit edits to either field must win over that preset.
+        if !keys.isDisjoint(with: [GestaltKeys.artwork, "YlEtTtHlNesRBMal1CqRaA"]) { subtype = 0 }
+        // Restoring/removing the capability also restores its artwork subtype.
+        // Enabling only changes the flag, so it can coexist with artwork edits.
+        if keys.contains(GestaltKeys.artwork),
+           [.disable, .removeAdded].contains(choices["dynamicIsland"] ?? .keep) {
+            choices["dynamicIsland"] = .keep
+        }
     }
 
     func apply() async {
@@ -503,6 +538,39 @@ final class GestaltManager: ObservableObject {
     }
     func reloadBackups() async {
         do { backups = try await files.backups() } catch { failed(error) }
+    }
+    func restoreHardwareIdentity(from record: BackupRecord? = nil) async {
+        guard !isBusy, let before = snapshot else { return }
+        guard changeCount == 0 else {
+            failed(GestaltFailure("Save or discard your current changes before opening another plist."))
+            return
+        }
+        isBusy = true
+        defer { isBusy = false }
+        do {
+            let physical = GXCopyPhysicalHardwareIdentity()
+            guard let product = physical["hw.machine"], let board = physical["hw.model"] else {
+                throw GestaltFailure("This device's identity could not be verified. Read MobileGestalt on this device and try sharing again.")
+            }
+            let live: DocumentSnapshot
+            let result: DocumentSnapshot
+            if let record {
+                live = before
+                result = try await files.restoreHardwareIdentity(from: record, expected: live,
+                                                                 physicalProduct: product, physicalBoard: board)
+            } else {
+                live = try await files.loadDevice()
+                result = try await files.restoreHardwareIdentity(from: before, expected: live,
+                                                                 physicalProduct: product, physicalBoard: board)
+            }
+            logChanges(from: live.document, to: result.document, prefix: "[restore-hardware] ")
+            let changed = !result.document.matches(live.document)
+            accept(result)
+            needsRespring = needsRespring || changed
+            message = L(changed ? "Backup restored and verified." : "This backup already matches the device. No changes were made.")
+                + " " + L("Some changes require a device restart.")
+            await reloadBackups()
+        } catch { failed(error); await reloadBackups() }
     }
     func restore(_ record: BackupRecord) async {
         guard !isBusy, let snapshot else { return }

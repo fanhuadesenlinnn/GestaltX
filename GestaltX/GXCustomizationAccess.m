@@ -202,6 +202,40 @@ static void GXDiscoverLaunchPaths(void) {
 }
 
 @implementation GXCustomizationAccess
++ (NSDictionary<NSString *,NSString *> *)applicationGroupContainersForIdentifier:(NSString *)identifier {
+    if(!GXLaunchIdentifier(identifier))return @{};
+    id maps=[GXLaunchServicesDatabase applications:NO][identifier][@"groups"];
+    if(![maps isKindOfClass:NSDictionary.class]||[maps count]>64)return @{};
+    NSMutableDictionary *verified=NSMutableDictionary.new;
+    NSString *prefix=@"/private/var/mobile/Containers/Shared/AppGroup/";
+    for(id group in maps){
+        id path=maps[group];
+        if(![group isKindOfClass:NSString.class]||![path isKindOfClass:NSString.class]||
+           ![path hasPrefix:prefix]||![[NSUUID alloc]initWithUUIDString:[path substringFromIndex:prefix.length]])continue;
+        int64_t lease=[self acquirePath:path];if(lease<0)continue;
+        @try {
+            struct stat info;
+            if(!lstat([path fileSystemRepresentation],&info)&&S_ISDIR(info.st_mode)&&[GXContainerIdentity(path)isEqualToString:group])verified[group]=path;
+        } @finally {worse_query_release(lease);}
+    }
+    return verified;
+}
++ (NSString *)applicationContainerForIdentifier:(NSString *)identifier hint:(NSString *)hint {
+    if (!GXLaunchIdentifier(identifier)) return nil;
+    if ([identifier isEqualToString:NSBundle.mainBundle.bundleIdentifier]) return NSHomeDirectory();
+    NSString *key = [@"GestaltX.launch.container." stringByAppendingString:identifier];
+    NSString *path = GXApplicationPath(hint) ? hint : [NSUserDefaults.standardUserDefaults stringForKey:key];
+    if (!GXApplicationPath(path)) return nil;
+    int64_t handle = [self acquirePath:path];
+    if (handle < 0) return nil;
+    @try {
+        struct stat info;
+        if (lstat(path.fileSystemRepresentation, &info) || !S_ISDIR(info.st_mode) ||
+            ![GXContainerIdentity(path) isEqualToString:identifier]) return nil;
+        [NSUserDefaults.standardUserDefaults setObject:path forKey:key];
+        return path;
+    } @finally { worse_query_release(handle); }
+}
 + (NSDictionary<NSString *,id> *)launchApplicationInventory:(BOOL)discover {
     NSDictionary *database=[GXLaunchServicesDatabase applications:discover];
     if(discover&&!database.count)GXDiscoverLaunchPaths();

@@ -80,6 +80,8 @@ struct CreditsView: View {
                 licensedCredit("Gester", author: "sasobhabha · KAMUI contributors", license: "MIT", file: "Gester-MIT", url: "https://github.com/sasobhabha/Gester")
                 licensedCredit("Erosion", author: "lunginspector · jailbreak.party", license: "GPL v3", file: "Erosion-GPL-3.0", url: "https://github.com/jailbreakdotparty/Erosion")
                 licensedCredit("ZIPFoundation", author: "Thomas Zoechling", license: "MIT", file: "ZIPFoundation-MIT", url: "https://github.com/weichsel/ZIPFoundation")
+                licensedCredit("AirCard-iOS", author: "Johnny Franks", license: "MIT", file: "AirCard-MIT", url: "https://github.com/Mak5er/AirCard-iOS")
+                licensedCredit("idevice", author: "Jackson Coxson", license: "MIT", file: "idevice-MIT", url: "https://github.com/jkcoxson/idevice")
             }
         }
         .navigationTitle(L("Credits & Licenses"))

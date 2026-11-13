@@ -1,0 +1,48 @@
+[package]
+name = "gx_device_console"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-only"
+description = "GestaltX native device console: on-device self-pairing (RPPairing host) + com.apple.syslog_relay capture over a loopback RSD tunnel. Reuses the MIT-licensed idevice crate. No file-injection exploit."
+publish = false
+
+[lib]
+name = "gx_device_console"
+crate-type = ["staticlib"]
+
+[features]
+# Host builds (and `cargo test`) use no features: the FFI and the session
+# lifecycle compile everywhere, while pairing/syslog return an error. The
+# `device` feature pulls in idevice/idevice-ffi and is built for iOS on a
+# toolchain with cmake + nasm (aws-lc builds from C source).
+default = []
+device = ["dep:idevice", "dep:idevice-ffi", "dep:tokio", "dep:tracing", "dep:tracing-subscriber"]
+
+[dependencies]
+# Pinned to the same revision AirCard vendored (jkcoxson/idevice @ 7bd551c, MIT),
+# redirected below to the vendored copy that carries the OPACK back-reference
+# patch. See NOTICE.md.
+idevice = { git = "https://github.com/jkcoxson/idevice.git", rev = "7bd551c16c6dd2e058740d85a2d9399a51a776e9", default-features = false, optional = true, features = [
+  "aws-lc",
+  "remote_pairing",
+  "tunnel_tcp_stack",
+  "rsd",
+  "tcp",
+  "xpc",
+  "pair",
+  "usbmuxd",
+  "syslog_relay",
+] }
+idevice-ffi = { path = "vendor/idevice-ffi", optional = true, features = ["full", "aws-lc"] }
+tokio = { version = "1", optional = true, features = ["rt-multi-thread", "net", "macros", "time", "io-util"] }
+tracing = { version = "0.1", optional = true }
+tracing-subscriber = { version = "0.3", optional = true }
+
+# Unify idevice (our direct dep and idevice-ffi's git dep) onto the vendored copy
+# that holds the OPACK patch, exactly as the AirCard reference does.
+[patch."https://github.com/jkcoxson/idevice.git"]
+idevice = { path = "vendor/idevice" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"

@@ -44,7 +44,7 @@ struct Capability: Identifiable {
     var requiresEnableConfirmation: Bool { id == "storage" }
     var effectHint: String {
         switch id {
-        case "ai", "siriOnDevice", "audioIntelligence", "personalTranslator", "photosCleanUp",
+        case "ai", "siriAIMode", "siriOnDevice", "audioIntelligence", "personalTranslator", "photosCleanUp",
              "handwritingSynthesis", "alwaysListeningSiri":
             "Restart required. Apple Intelligence also depends on device and region."
         case "pencil": "Restart the device, then reopen Settings. Pencil hardware support is still required."
@@ -104,6 +104,7 @@ struct Capability: Identifiable {
         .init(id: "stageManager", category: .ipad, title: "Stage Manager", detail: "Expose Stage Manager support. Layout behavior varies by device.", keys: ["qeaj75wk3HF4DwQ8qbIi7g"], caution: true),
         .init(id: "ipadApps", category: .ipad, title: "iPad App Compatibility", detail: "Allow iPad app compatibility types on iPhone.", keys: ["9MZ5AdH43csAUajl/dU+IQ"]),
         .init(id: "ai", category: .intelligence, title: "Apple Intelligence Capability", detail: "Set the generative models capability. Availability also depends on hardware, region and Apple services.", keys: ["A62OafQ85EJAiiqKn4agtg"]),
+        .init(id: "siriAIMode", category: .intelligence, title: "Siri AI Mode", detail: "Set SiriMode to 2 without spoofing hardware. Experimental; resource downloads and availability are not guaranteed.", keys: [GestaltKeys.siriMode], caution: true, values: [GestaltKeys.siriMode: NSNumber(value: 2)]),
         .init(id: "siriOnDevice", category: .intelligence, title: "On-Device Siri", detail: "Siri uses a device-specific capability type. Changing it may affect the Apple Intelligence Siri interface. Keep the current value or restore the recorded original.", keys: ["K/R1GfGfCkXvEhaPS2Vrng"], caution: true),
         .init(id: "audioIntelligence", category: .intelligence, title: "Audio Intelligence", detail: "Advertise the iOS 27 audio intelligence capability.", keys: ["rb2tKZxlj0Gm2tBmUQSLqQ"], caution: true),
         .init(id: "personalTranslator", category: .intelligence, title: "Personal Translator", detail: "Advertise the personal translator capability.", keys: ["M1n2sAqf33NAOgZRGxQYBA"], caution: true),

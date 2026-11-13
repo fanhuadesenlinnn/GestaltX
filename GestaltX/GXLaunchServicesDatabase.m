@@ -93,6 +93,7 @@ static NSString *GXLSSignature;
             [bundles enumerateKeysAndObjectsUsingBlock:^(NSString *bid,NSString *bundle,BOOL *stop){
                 if(!GXLSBundlePath(bundle))return;
                 apps[bid]=[@{@"bundle":bundle,@"name":display[bid]?:GXLSSystemNames()[bid]?:names[bid]?:bundle.lastPathComponent.stringByDeletingPathExtension}mutableCopy];
+                if(snapshot.groupContainers[bid])apps[bid][@"groups"]=snapshot.groupContainers[bid];
             }];
             [containers enumerateKeysAndObjectsUsingBlock:^(NSString *folder,NSString *bid,BOOL *stop){
                 if(![folder hasPrefix:@"/private/var/mobile/Containers/Data/Application/"])return;

@@ -61,29 +61,39 @@ struct MobileGestaltCacheLayout: Codable, Equatable, Sendable {
         guard !strings.isEmpty, strings.count <= 32 * 1024 * 1024,
               stringAddress <= UInt64.max - UInt64(strings.count),
               constants.count <= 8, constants.allSatisfy({ $0.count <= 32 * 1024 * 1024 }) else { throw failure }
-        let bytes = [UInt8](strings)
-        var hashes: [UInt64: String] = [:]
+        enum Key: Hashable { case other, greenTea, notGreenTea, wapi }
+        var hashes: [UInt64: Key] = [:]
         var uuids = Set<String>()
-        var start = 0
-        for end in bytes.indices where bytes[end] == 0 {
-            let token = bytes[start..<end]
-            if token.count == 22 && token.allSatisfy({
-                (65...90).contains($0) || (97...122).contains($0) || (48...57).contains($0) || $0 == 43 || $0 == 47
-            }) {
-                hashes[stringAddress + UInt64(start)] = String(decoding: token, as: UTF8.self)
-            } else if token.count == 36, let text = String(bytes: token, encoding: .utf8), let uuid = UUID(uuidString: text) {
-                uuids.insert(uuid.uuidString)
+        strings.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+            let base = bytes.baseAddress!.assumingMemoryBound(to: UInt8.self)
+            var start = 0
+            while start < bytes.count {
+                guard let terminator = memchr(base.advanced(by: start), 0, bytes.count - start) else { break }
+                let end = base.distance(to: UnsafePointer(terminator.assumingMemoryBound(to: UInt8.self)))
+                let token = UnsafeBufferPointer(start: base.advanced(by: start), count: end - start)
+                if token.count == 22 && token.allSatisfy({
+                    (65...90).contains($0) || (97...122).contains($0) || (48...57).contains($0) || $0 == 43 || $0 == 47
+                }) {
+                    let key: Key
+                    if token.elementsEqual(DeviceCacheOptions.greenTeaKey.utf8) { key = .greenTea }
+                    else if token.elementsEqual(DeviceCacheOptions.notGreenTeaKey.utf8) { key = .notGreenTea }
+                    else if token.elementsEqual(DeviceCacheOptions.wapiKey.utf8) { key = .wapi }
+                    else { key = .other }
+                    hashes[stringAddress + UInt64(start)] = key
+                } else if token.count == 36, let text = String(bytes: token, encoding: .utf8), let uuid = UUID(uuidString: text) {
+                    uuids.insert(uuid.uuidString)
+                }
+                start = end + 1
             }
-            start = end + 1
         }
         // Ambiguous UUIDs or descriptors are rejected rather than guessed.
         guard uuids.count == 1, let uuid = uuids.first else { throw failure }
         var indices = Set<Int>()
-        var targets: [String: Set<Int>] = [:]
+        var targets: [Key: Set<Int>] = [:]
         var wapiIndices = Set<Int>()
         var wapiLocations = Set<String>()
         var invalidWAPI = false
-        var targetLocations: [String: Set<String>] = [:]
+        var targetLocations: [Key: Set<String>] = [:]
         for (sectionID, section) in constants.enumerated() where section.count >= 64 {
             try section.withUnsafeBytes { raw in
                 for offset in stride(from: 0, through: section.count - 64, by: 8) {
@@ -93,13 +103,13 @@ struct MobileGestaltCacheLayout: Codable, Equatable, Sendable {
                     guard let key = hashes[pointer] else { continue }
                     let index = Int(Int16(littleEndian: raw.loadUnaligned(fromByteOffset: offset + 0x3A, as: Int16.self)))
                     let type = UInt32(littleEndian: raw.loadUnaligned(fromByteOffset: offset + 0x3C, as: UInt32.self))
-                    if key == DeviceCacheOptions.wapiKey {
+                    if key == .wapi {
                         if type == 11 && index >= 0 && index < 16384 {
                             wapiIndices.insert(index)
                             wapiLocations.insert("\(sectionID):\(offset % 64)")
                         } else { invalidWAPI = true }
                     }
-                    if key == DeviceCacheOptions.greenTeaKey || key == DeviceCacheOptions.notGreenTeaKey {
+                    if key == .greenTea || key == .notGreenTea {
                         // Every reference to a target must be usable. Ignoring an
                         // invalid duplicate would silently select another offset.
                         guard type == 11, (0..<16384).contains(index) else { throw failure }
@@ -113,11 +123,11 @@ struct MobileGestaltCacheLayout: Codable, Equatable, Sendable {
         }
         guard let maximum = indices.max(), maximum >= 1,
               indices.count > (maximum + 1) / 2,
-              let green = targets[DeviceCacheOptions.greenTeaKey], green.count == 1,
-              let notGreen = targets[DeviceCacheOptions.notGreenTeaKey], notGreen.count == 1,
+              let green = targets[.greenTea], green.count == 1,
+              let notGreen = targets[.notGreenTea], notGreen.count == 1,
               let greenIndex = green.first, let notGreenIndex = notGreen.first, greenIndex != notGreenIndex,
-              let greenLocation = targetLocations[DeviceCacheOptions.greenTeaKey], greenLocation.count == 1,
-              greenLocation == targetLocations[DeviceCacheOptions.notGreenTeaKey] else { throw failure }
+              let greenLocation = targetLocations[.greenTea], greenLocation.count == 1,
+              greenLocation == targetLocations[.notGreenTea] else { throw failure }
         let wapi = !invalidWAPI && wapiIndices.count == 1 && !wapiIndices.contains(greenIndex) && !wapiIndices.contains(notGreenIndex) && wapiLocations == greenLocation
             ? wapiIndices.first : nil
         return Self(uuid: uuid, slotCount: maximum + 1, greenTeaIndex: greenIndex,

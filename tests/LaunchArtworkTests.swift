@@ -61,7 +61,8 @@ private final class WriteCounter: @unchecked Sendable {
 
         _ = try await store.apply(blue, to: app)
         let foreign = LaunchArtworkStore(storage: storage, device: "other-device", resolver: { _ in container })
-        do { _ = try await foreign.restore(app); throw CocoaError(.coderInvalidValue) } catch is CustomizationFailure {}
+        try expect(try await foreign.restore(app) == 2, "A changed installation ID orphaned sibling backups")
+        _ = try await store.apply(blue, to: app)
         try fm.removeItem(at: first)
         try green.write(to: second, options: .atomic)
         try expect(try await store.restore(app) == 0, "Restore overwrote OS-generated data")
@@ -77,17 +78,16 @@ private final class WriteCounter: @unchecked Sendable {
         try expect(try Data(contentsOf: first) == red && Data(contentsOf: second) == red, "Interrupted write did not roll back")
 
         _ = try await store.apply(blue, to: app)
-        let activeURL = storage.appendingPathComponent(app.id).appendingPathComponent("Originals.plist")
-        let goodRecord = try Data(contentsOf: activeURL)
-        var corrupt = try PropertyListSerialization.propertyList(from: goodRecord, format: nil) as! [String: Any]
-        var savedFiles = corrupt["files"] as! [String: [String: Any]]
-        savedFiles[first.lastPathComponent]!["original"] = green
-        corrupt["files"] = savedFiles
-        try PropertyListSerialization.data(fromPropertyList: corrupt, format: .binary, options: 0).write(to: activeURL)
+        let sibling = first.appendingPathExtension("bak")
+        try expect(try Data(contentsOf: sibling) == red, "Sibling backup did not retain the earliest original")
+        try green.write(to: sibling)
         do { _ = try await store.restore(app); throw CocoaError(.coderInvalidValue) } catch is CustomizationFailure {}
-        try expect(try Data(contentsOf: first) != red, "A corrupted backup was restored")
-        try goodRecord.write(to: activeURL)
-        _ = try await store.restore(app)
+        try expect(try Data(contentsOf: first) != red, "A corrupted sibling backup was restored")
+        try red.write(to: sibling)
+        try fm.removeItem(at: storage)
+        let fresh = LaunchArtworkStore(storage: root.appendingPathComponent("NewInstallation"), device: "new-IDFV", resolver: { _ in container })
+        try expect(try await fresh.restore(app) == 2, "Reinstalling GestaltX lost the originals")
+        try expect(fm.fileExists(atPath: sibling.path), "Restore removed the persistent original")
 
         _ = try await store.apply(blue, to: app)
         let reinstall = root.appendingPathComponent(UUID().uuidString)
@@ -95,7 +95,7 @@ private final class WriteCounter: @unchecked Sendable {
         try fm.createDirectory(at: newGroup, withIntermediateDirectories: true)
         try green.write(to: newGroup.appendingPathComponent("new.ktx"))
         let newStore = LaunchArtworkStore(storage: storage, device: "device", resolver: { _ in reinstall })
-        do { _ = try await newStore.restore(app); throw CocoaError(.coderInvalidValue) } catch is CustomizationFailure {}
+        try expect(try await newStore.restore(app) == 0, "Reinstalled target adopted another container's backup")
         _ = try await newStore.apply(blue, to: app)
         _ = try await newStore.restore(app)
         try expect(try Data(contentsOf: newGroup.appendingPathComponent("new.ktx")) == green, "Reinstallation reused another container's originals")
@@ -118,6 +118,26 @@ private final class WriteCounter: @unchecked Sendable {
         try reject { _ = try LaunchArtworkDirectory(container: container, identifier: app.id) }
         try fm.removeItem(at: group); try fm.moveItem(at: moved, to: group)
 
+        let legacyContainer = root.appendingPathComponent(UUID().uuidString)
+        let legacyGroup = legacyContainer.appendingPathComponent("Library/SplashBoard/Snapshots/\(app.id) - {DEFAULT GROUP}")
+        try fm.createDirectory(at: legacyGroup, withIntermediateDirectories: true)
+        try blue.write(to: legacyGroup.appendingPathComponent("old.ktx"))
+        let legacyStorage = root.appendingPathComponent("Legacy")
+        let legacyRecord = LaunchArtworkStore.Record(version: 1, device: "old-installation", app: app.id,
+            container: legacyContainer.lastPathComponent, files: ["old.ktx": .init(original: red,
+                originalHash: CustomizationFiles.digest(red), expected: CustomizationFiles.digest(blue), mode: 0o640, protection: nil)])
+        let legacyURL = legacyStorage.appendingPathComponent(app.id).appendingPathComponent("Originals.plist")
+        try CustomizationFiles.saveVerified(legacyRecord, to: legacyURL)
+        let historyURL = legacyURL.deletingLastPathComponent().appendingPathComponent("Backups/\(UUID().uuidString).plist")
+        try CustomizationFiles.saveVerified(["old.ktx": CustomizationOriginal(data: red)], to: historyURL)
+        let migrator = LaunchArtworkStore(storage: legacyStorage, device: "current-installation", resolver: { _ in legacyContainer })
+        await migrator.migrateLegacyBackups()
+        try expect(!fm.fileExists(atPath: legacyURL.path) && !fm.fileExists(atPath: historyURL.path), "Verified migration retained original bytes inside GestaltX")
+        try expect(try Data(contentsOf: legacyGroup.appendingPathComponent("old.ktx.bak")) == red, "Migration lost the legacy original")
+        try expect(fm.fileExists(atPath: legacyGroup.appendingPathComponent(".GestaltX-legacy").path), "Legacy history was discarded")
+        let migrated = LaunchArtworkStore(storage: root.appendingPathComponent("AfterUpgradeReinstall"), device: "another-installation", resolver: { _ in legacyContainer })
+        try expect(try await migrated.restore(app) == 1, "Migrated .bak did not restore after reinstall")
+
         let rendered = try LaunchArtworkImages.render(blue, width: 160, height: 80)
         let size = try LaunchArtworkImages.dimensions(rendered)
         try expect(size.width == 160 && size.height == 80, "Aspect-fill output dimensions are wrong")
@@ -127,6 +147,6 @@ private final class WriteCounter: @unchecked Sendable {
         let exportedSize = try LaunchArtworkImages.dimensions(LaunchArtworkImages.export(originalLarge)!)
         let thumbnailSize = try LaunchArtworkImages.dimensions(LaunchArtworkImages.preview(originalLarge)!)
         try expect(exportedSize.width == 1200 && exportedSize.height == 2400 && thumbnailSize.height <= 900, "Saving used a preview instead of the full-resolution current image")
-        print("PASS: launch variants, exact original restoration, reopen, device binding, OS regeneration, rollback, stale writes, pinned parents and image bounds.")
+        print("PASS: launch variants, exact original restoration, reinstall survival, legacy migration, OS regeneration, rollback, stale writes, pinned parents and image bounds.")
     }
 }

@@ -1,16 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0-only
 import Foundation
 
-struct LaunchArtworkCandidate: Sendable {
+struct LaunchArtworkCandidate: Sendable, Codable {
     var app: LaunchArtworkApp
     let generation: String
     let container: String?
     var installed = true
 }
-struct LaunchArtworkInventory: Sendable {
+struct LaunchArtworkInventory: Sendable, Codable {
     let complete: Bool
     let candidates: [LaunchArtworkCandidate]
     var containerGeneration = ""
+    var refreshNeeded = false
 }
 struct LaunchArtworkAvailability: Sendable {
     let available: Bool
@@ -49,6 +50,7 @@ actor LaunchArtworkCatalogStore {
         static var device: Backend {
             #if os(iOS) && !targetEnvironment(simulator)
             return Backend(inventory: { discover in
+                SharedApplicationInventory.shared.inventory(discover: discover) { discover in
                 let raw = GXCustomizationAccess.launchApplicationInventory(discover)
                 let candidates = (raw["applications"] as? [[String: Any]] ?? []).compactMap { item -> LaunchArtworkCandidate? in
                     guard let id = item["identifier"] as? String, LaunchArtworkDirectory.validIdentifier(id) else { return nil }
@@ -58,6 +60,7 @@ actor LaunchArtworkCatalogStore {
                 }
                 return LaunchArtworkInventory(complete: (raw["complete"] as? NSNumber)?.boolValue ?? false, candidates: candidates,
                                               containerGeneration: raw["containerGeneration"] as? String ?? "")
+                }
             }, verify: { candidate in
                 var metadata: [String: Any] = ["identifier": candidate.app.id]
                 if let container = candidate.container { metadata["container"] = container }
@@ -142,7 +145,7 @@ actor LaunchArtworkCatalogStore {
         let containersChanged = !first.containerGeneration.isEmpty && first.containerGeneration != containerGeneration
         let needsPaths = first.candidates.contains { $0.installed && $0.container == nil }
         let unknownDirectoryState = first.containerGeneration.isEmpty && Date().timeIntervalSince(discoveryDate) > 120
-        if force || containersChanged || (rosterChanged && needsPaths) || (!first.complete && unknownDirectoryState) {
+        if force || first.refreshNeeded || containersChanged || (rosterChanged && needsPaths) || (!first.complete && unknownDirectoryState) {
             let discovered = backend.inventory(true)
             process(discovered, force: force, processed: &processed, continuation: continuation)
             discoveryDate = Date()
