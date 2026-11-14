@@ -9,7 +9,7 @@
 [![SwiftUI](https://img.shields.io/badge/Swift-SwiftUI-orange?logo=swift)](https://github.com/huamidev/GestaltX)
 [![License](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
 
-[English](README.md) · [简体中文](README_ZH-CN.md) · [日本語](README_JA.md)
+[English](README.md) · [简体中文](README_ZH-CN.md) · [日本語](README_JA.md) · [한국어](README_KO.md)
 
 iPhone と iPad 向けの MobileGestalt エディターです。開発者は [huamidev](https://github.com/huamidev) です。
 
