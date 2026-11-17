@@ -636,7 +636,7 @@ struct WAPIPresetRow: View {
                 }
                 .pickerStyle(.menu)
                 .accessibilityIdentifier("wapi-choice")
-                Text(L("Disabling may show Wi-Fi and change some network options. Restart to apply."))
+                Text(L("Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply."))
                     .font(.caption).foregroundStyle(.secondary)
             }
         } else {

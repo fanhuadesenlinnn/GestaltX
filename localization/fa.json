@@ -371,7 +371,6 @@
   "This stages the system-wide InternalBuild flag. It can affect system services beyond the storage screen. You can review the change before applying it.": "این کار تغییر پرچم سراسری InternalBuild را آماده می‌کند. اثر آن بر سرویس‌های سیستم ممکن است فراتر از صفحهٔ فضای ذخیره‌سازی باشد. پیش از اعمال، می‌توانید تغییر را بررسی کنید.",
   "The device proof is temporarily unavailable. Unlock this device and try again.": "گواه دستگاه موقتاً در دسترس نیست. قفل این دستگاه را باز کنید و دوباره تلاش کنید.",
   "Supported OS": "سیستم‌عامل‌های پشتیبانی‌شده",
-  "Disabling may show Wi-Fi and change some network options. Restart to apply.": "با غیرفعال کردن، ممکن است نام Wi-Fi نمایش داده شود و برخی گزینه‌های شبکه تغییر کنند. برای اعمال، دستگاه را راه‌اندازی مجدد کنید.",
   "Lock Screen Text": "متن صفحهٔ قفل",
   "Add your own text at the bottom of the Lock Screen.": "متن دلخواه شما را در پایین صفحهٔ قفل نمایش می‌دهد.",
   "System Default": "پیش‌فرض سیستم",
@@ -518,5 +517,6 @@
   "Maybe Later": "بعداً",
   "Don't Ask Again": "دیگر نپرس",
   "Cannot reach the device console. Open LocalDevVPN, wait for it to connect, then try again.": "اتصال به کنسول دستگاه ممکن نیست. LocalDevVPN را باز کنید، منتظر اتصال بمانید و دوباره تلاش کنید.",
-  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "اگر همین‌جا ماند، LocalDevVPN را باز کنید و منتظر تکمیل اتصال بمانید."
+  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "اگر همین‌جا ماند، LocalDevVPN را باز کنید و منتظر تکمیل اتصال بمانید.",
+  "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.": "با غیرفعال کردن، ممکن است نام Wi-Fi نمایش داده شود و برخی گزینه‌های شبکه تغییر کنند. برای اعمال، دستگاه را راه‌اندازی مجدد کنید."
 }

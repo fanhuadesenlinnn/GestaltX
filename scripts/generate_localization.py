@@ -63,7 +63,7 @@ Wallpaper added. Open the wallpaper gallery to select it. If it does not appear,
 Wallpaper Settings	壁纸设置
 WAPI	WAPI
 Disable WAPI	关闭 WAPI
-Disabling may show Wi-Fi and change some network options. Restart to apply.	关闭后可显示为 Wi-Fi，部分联网选项可能随之变化。重启后生效。
+Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.	关闭后可能改为显示 Wi-Fi（而非 WLAN），部分网络选项可能随之变化。重启后生效。
 Restore Original	恢复原值
 Special Thanks	特别鸣谢
 Supported	支持

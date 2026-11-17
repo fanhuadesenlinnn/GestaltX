@@ -371,7 +371,6 @@
   "This stages the system-wide InternalBuild flag. It can affect system services beyond the storage screen. You can review the change before applying it.": "Изменение системного флага InternalBuild будет подготовлено. Оно может затронуть службы за пределами экрана хранилища. Перед применением можно проверить изменение.",
   "The device proof is temporarily unavailable. Unlock this device and try again.": "Подтверждение устройства временно недоступно. Разблокируйте устройство и повторите попытку.",
   "Supported OS": "Поддерживаемые ОС",
-  "Disabling may show Wi-Fi and change some network options. Restart to apply.": "Отключение может изменить название на Wi-Fi и повлиять на некоторые параметры сети. Для применения перезагрузите устройство.",
   "Lock Screen Text": "Текст на экране блокировки",
   "Add your own text at the bottom of the Lock Screen.": "Добавляет ваш текст внизу экрана блокировки.",
   "System Default": "По умолчанию",
@@ -518,5 +517,6 @@
   "Maybe Later": "Позже",
   "Don't Ask Again": "Больше не спрашивать",
   "Cannot reach the device console. Open LocalDevVPN, wait for it to connect, then try again.": "Не удаётся подключиться к консоли устройства. Откройте LocalDevVPN, дождитесь подключения и повторите попытку.",
-  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "Если экран не меняется, откройте LocalDevVPN и дождитесь завершения подключения."
+  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "Если экран не меняется, откройте LocalDevVPN и дождитесь завершения подключения.",
+  "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.": "Отключение может изменить название на Wi-Fi и повлиять на некоторые параметры сети. Для применения перезагрузите устройство."
 }

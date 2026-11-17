@@ -379,7 +379,6 @@
   "Choose a MobileGestalt plist or a wallpaper pack.": "MobileGestaltのplistまたは壁紙パックを選択してください。",
   "Current Value": "現在の値",
   "Customization": "カスタマイズ",
-  "Disabling may show Wi-Fi and change some network options. Restart to apply.": "無効にするとWi-Fi表記や一部の通信設定が変わる場合があります。反映するには再起動してください。",
   "Empty": "空",
   "Import Wallpaper": "壁紙をインポート",
   "Import a .tendies or .zip wallpaper pack. You can also share it to GestaltX.": ".tendiesまたは.zipの壁紙パックをインポートします。共有メニューからGestaltXに送ることもできます。",
@@ -518,5 +517,6 @@
   "Maybe Later": "あとで",
   "Don't Ask Again": "今後表示しない",
   "Cannot reach the device console. Open LocalDevVPN, wait for it to connect, then try again.": "デバイスコンソールに接続できません。LocalDevVPN を開いて接続を待ち、もう一度お試しください。",
-  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "ここから進まない場合は、LocalDevVPN を開いて接続が完了するまで待ってください。"
+  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "ここから進まない場合は、LocalDevVPN を開いて接続が完了するまで待ってください。",
+  "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.": "無効にするとWi-Fi表記や一部の通信設定が変わる場合があります。反映するには再起動してください。"
 }

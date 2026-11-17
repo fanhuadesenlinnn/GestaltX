@@ -371,7 +371,6 @@
   "A3517 — Air · Other regions": "A3517 — Air · Otras regiones",
   "A3518 — Air · China mainland": "A3518 — Air · China continental",
   "Supported OS": "Sistemas compatibles",
-  "Disabling may show Wi-Fi and change some network options. Restart to apply.": "Al desactivarlo, puede mostrarse Wi-Fi y cambiar algunas opciones de red. Reinicia el dispositivo para aplicar los cambios.",
   "Lock Screen Text": "Texto de la pantalla de bloqueo",
   "Add your own text at the bottom of the Lock Screen.": "Añade tu texto en la parte inferior de la pantalla de bloqueo.",
   "System Default": "Predeterminado del sistema",
@@ -518,5 +517,6 @@
   "Maybe Later": "Más tarde",
   "Don't Ask Again": "No volver a preguntar",
   "Cannot reach the device console. Open LocalDevVPN, wait for it to connect, then try again.": "No se puede conectar con la consola del dispositivo. Abre LocalDevVPN, espera a que conecte y vuelve a intentarlo.",
-  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "Si se queda aquí, abre LocalDevVPN y espera a que termine de conectar."
+  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "Si se queda aquí, abre LocalDevVPN y espera a que termine de conectar.",
+  "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.": "Al desactivarlo, puede mostrarse Wi-Fi y cambiar algunas opciones de red. Reinicia el dispositivo para aplicar los cambios."
 }

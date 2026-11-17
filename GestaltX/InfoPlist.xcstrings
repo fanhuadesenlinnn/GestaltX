@@ -62,6 +62,12 @@
             "state": "translated",
             "value": "アプリの起動画面を写真ライブラリに保存します。"
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlatma görsellerini fotoğraf kitaplığınıza kaydeder."
+          }
         }
       }
     }

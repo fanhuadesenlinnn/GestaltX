@@ -63,6 +63,7 @@ ALL_LOCALE_SCRIPTS = {
     "ko": {"LATIN", "HANGUL"},
     "es": {"LATIN"},
     "ja": {"LATIN", "CJK", "HIRAGANA", "KATAKANA", "KATAKANA-HIRAGANA", "IDEOGRAPHIC"},
+    "tr": {"LATIN"},
 }
 
 

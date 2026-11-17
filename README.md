@@ -9,7 +9,7 @@
 [![SwiftUI](https://img.shields.io/badge/Swift-SwiftUI-orange?logo=swift)](https://github.com/huamidev/GestaltX)
 [![License](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
 
-[English](README.md) · [简体中文](README_ZH-CN.md) · [日本語](README_JA.md) · [한국어](README_KO.md)
+[English](README.md) · [简体中文](README_ZH-CN.md) · [日本語](README_JA.md) · [한국어](README_KO.md) · [Türkçe](README_TR.md)
 
 A MobileGestalt editor for iPhone and iPad. Developed by [huamidev](https://github.com/huamidev).
 
@@ -37,7 +37,7 @@ Presets modify capability flags; actual effects depend on the device and OS. Chi
 
 ### Apple Intelligence, Face ID and dictation
 
-The [YumEdit 1.2.1 approach](https://github.com/H4CNPE/YumEdit/tree/v1.2.1) avoids spoofing the product, board and CPU. In Intelligence, **Apple Intelligence Capability** sets the generative-model flag to `1`, while the separate **Siri AI Mode** preset sets `SiriMode` to `2`. Neither changes hardware identity or the device-specific On-Device Siri capability. These are experimental flags, not a guarantee of resource downloads or working Apple Intelligence. YumEdit later replaced this activation approach with an experimental two-stage workflow; GestaltX does not implement temporary hardware spoofing.
+The [YumEdit 1.2.1 approach](https://github.com/H4CNPE/YumEdit/tree/v1.2.1) avoids spoofing the product, board and CPU. In Intelligence, **Apple Intelligence Capability** sets the generative-model flag to `1`, while the separate **Siri AI Mode** preset sets `SiriMode` to `2`. Neither changes hardware identity nor the device-specific On-Device Siri capability. These are experimental flags, not a guarantee of resource downloads or working Apple Intelligence. YumEdit later replaced this activation approach with an experimental two-stage workflow; GestaltX does not implement temporary hardware spoofing.
 
 If a previous hardware spoof broke Face ID or dictation, choose an original device backup in **Backups → Restore Hardware Identity**. Alternatively, import a verified original plist and use **Intelligence → Restore Hardware Identity**. Save or discard pending changes first. Recovery requires a verified same-device backup with the same `CacheData`, `CacheUUID` and cache version, whose product and board match the kernel-reported hardware. It restores only product, board, CPU and the original regulatory model number, preserving current AI, Siri, region and unrelated settings. Unlike YumEdit's region activation, recovery does not substitute a US regulatory model. Missing, incompatible or already-spoofed backups are rejected; original hardware values are never guessed.
 
@@ -80,6 +80,7 @@ GestaltX follows your iOS language settings, with English as the default and fal
 | 한국어 — Korean | `ko` |
 | Español — Spanish | `es` |
 | 日本語 — Japanese | `ja` |
+| Türkçe — Turkish | `tr` |
 
 ## Credits
 

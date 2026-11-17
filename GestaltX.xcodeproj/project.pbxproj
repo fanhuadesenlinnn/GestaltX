@@ -251,6 +251,7 @@
 				ko,
 				es,
 				ja,
+				tr,
 				Base,
 			);
 			mainGroup = 3657C2D0303730E800908AE2;

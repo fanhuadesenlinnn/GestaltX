@@ -45,6 +45,12 @@
             "value": "Введите точное имя файла звука уведомления, включая расширение."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildirim sesinin tam dosya adını, uzantısıyla birlikte girin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -107,6 +113,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Файл с таким именем уже существует. Выберите его в списке для замены."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ada sahip bir dosya zaten var. Değiştirmek için listeden seçin."
           }
         },
         "vi": {
@@ -173,6 +185,12 @@
             "value": "Библиотека звуков приложений"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama Ses Kitaplığı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -235,6 +253,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не каждый звук в списке используется сейчас для уведомлений. Прослушайте звуки перед заменой."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listedeki seslerin tümü geçerli bildirim sesi değildir. Değiştirmeden önce sesleri dinleyin."
           }
         },
         "vi": {
@@ -301,6 +325,12 @@
             "value": "Звук заменён."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ses değiştirildi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -363,6 +393,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Поделиться журналом"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günlüğü Paylaş"
           }
         },
         "vi": {
@@ -429,6 +465,12 @@
             "value": "Звуки уведомлений не найдены"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildirim Sesi Yok"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -491,6 +533,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Прослушать текущий звук"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geçerli Sesi Çal"
           }
         },
         "vi": {
@@ -557,6 +605,12 @@
             "value": "Выбрать аудио"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ses Seç"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -619,6 +673,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Прослушать замену"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değiştirilecek Sesi Çal"
           }
         },
         "vi": {
@@ -685,6 +745,12 @@
             "value": "Исходный звук восстановлен."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün ses geri yüklendi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -747,6 +813,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Некоторые папки недоступны или достигнут предел сканирования."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bazı klasörler okunamadı veya tarama sınırına ulaşıldı."
           }
         },
         "vi": {
@@ -813,6 +885,12 @@
             "value": "Выберите звук уведомления короче 30 секунд и размером менее 32 МБ."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "30 saniyeden kısa ve 32 MB'tan küçük bir bildirim sesi seçin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -875,6 +953,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Этот аудиоформат не поддерживается."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ses biçimi desteklenmiyor."
           }
         },
         "vi": {
@@ -941,6 +1025,12 @@
             "value": "Этот формат нельзя преобразовать. Импортируйте аудио с тем же форматом, частотой дискретизации и числом каналов."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu biçim dönüştürülemiyor. Aynı biçimde, örnekleme hızında ve kanal sayısında bir ses aktarın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -1003,6 +1093,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Приложение заменило этот файл. Имеющаяся резервная копия сохранена."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama bu dosyayı değiştirmiş. Var olan yedeği korundu."
           }
         },
         "vi": {
@@ -1069,6 +1165,12 @@
             "value": "Исходная резервная копия повреждена или относится к другому файлу. Она оставлена без изменений."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün yedek geçersiz veya başka bir dosyaya ait. Değişmeden korundu."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -1131,6 +1233,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сохранить текущее изображение запуска"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geçerli Başlatma Görselini Kaydet"
           }
         },
         "vi": {
@@ -1197,6 +1305,12 @@
             "value": "Разрешите GestaltX добавлять фото в Настройках и повторите попытку."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlar'da GestaltX'in fotoğraf eklemesine izin verin, sonra tekrar deneyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -1259,6 +1373,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Изображение запуска сохранено в Фото."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlatma görseli Fotoğraflar'a kaydedildi."
           }
         },
         "vi": {
@@ -1325,6 +1445,12 @@
             "value": "Изображения запуска приложений"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama Başlatma Görselleri"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -1387,6 +1513,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Нет изображений запуска"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlatma Görseli Yok"
           }
         },
         "vi": {
@@ -1453,6 +1585,12 @@
             "value": "Показаны приложения с доступными изображениями запуска. iOS может пересоздать эти изображения."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yalnızca başlatma görselleri okunabilen uygulamalar listelenir. iOS bu görselleri yenileyebilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -1515,6 +1653,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Выбрать фото"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fotoğraf Seç"
           }
         },
         "vi": {
@@ -1581,6 +1725,12 @@
             "value": "Отображается на короткое время при запуске. Закройте выбранное приложение перед применением."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama açılırken kısa süre gösterilir. Uygulamadan önce seçili uygulamayı kapatın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -1643,6 +1793,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перед применением исходные изображения запуска будут сохранены."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamadan önce özgün başlatma görsellerinin yedeği alınır."
           }
         },
         "vi": {
@@ -1709,6 +1865,12 @@
             "value": "Будут восстановлены только изображения запуска, изменённые GestaltX."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yalnızca GestaltX'in değiştirdiği başlatma görselleri geri yüklenir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -1771,6 +1933,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Изображение запуска сохранено. Закройте и снова откройте приложение."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlatma görseli kaydedildi. Görmek için uygulamayı kapatıp yeniden açın."
           }
         },
         "vi": {
@@ -1837,6 +2005,12 @@
             "value": "Восстановлено. Изображения, пересозданные iOS, оставлены без изменений."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri yüklendi. iOS'in yenilediği başlatma görsellerine dokunulmadı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -1899,6 +2073,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Изображения запуска не найдены. Откройте приложение один раз, закройте и прочитайте снова."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlatma görseli bulunamadı. Uygulamayı bir kez açıp kapatın, sonra yeniden okuyun."
           }
         },
         "vi": {
@@ -1965,6 +2145,12 @@
             "value": "Приложение было переустановлено. Его старые изображения запуска нельзя восстановить."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama yeniden yüklendi. Kaydedilen başlatma görselleri geri yüklenemiyor."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -2027,6 +2213,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не удалось использовать это изображение. Выберите другое."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu görsel kullanılamadı. Başka bir görsel seçin."
           }
         },
         "vi": {
@@ -2093,6 +2285,12 @@
             "value": "Импорт…"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçe aktarılıyor…"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -2155,6 +2353,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отправляйте по одному файлу."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir seferde tek dosya paylaşın."
           }
         },
         "vi": {
@@ -2221,6 +2425,12 @@
             "value": "Выберите plist MobileGestalt или набор обоев."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir MobileGestalt plist dosyası ya da duvar kağıdı paketi seçin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -2283,6 +2493,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Откройте GestaltX, чтобы подтвердить импорт набора обоев."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duvar kağıdı paketinin aktarımını onaylamak için GestaltX'i açın."
           }
         },
         "vi": {
@@ -2349,6 +2565,12 @@
             "value": "Импортировать этот набор обоев? Он появится в настройках обоев."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu duvar kağıdı paketi içe aktarılsın mı? Duvar Kağıdı Ayarları'na eklenecek."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -2411,6 +2633,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Получен файл. Сохраните или отмените текущие изменения, затем импортируйте его."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paylaşılmış bir dosya bekliyor. Geçerli değişikliklerinizi kaydedin veya geri alın, sonra onu içe aktarın."
           }
         },
         "vi": {
@@ -2477,6 +2705,12 @@
             "value": "Импортируйте набор обоев .tendies или .zip либо отправьте его в GestaltX через меню «Поделиться»."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ".tendies veya .zip duvar kağıdı paketi içe aktarın. Bunu GestaltX'e paylaşarak da gönderebilirsiniz."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -2539,6 +2773,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Применено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulandı"
           }
         },
         "vi": {
@@ -2605,6 +2845,12 @@
             "value": "Оформление"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kişiselleştirme"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -2667,6 +2913,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Импорт обоев"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duvar Kağıdı İçe Aktar"
           }
         },
         "vi": {
@@ -2733,6 +2985,12 @@
             "value": "Нет обоев"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duvar Kağıdı Yok"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -2795,6 +3053,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Будут удалены только обои, добавленные этим набором."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yalnızca bu paketin eklediği duvar kağıtları kaldırılır."
           }
         },
         "vi": {
@@ -2861,6 +3125,12 @@
             "value": "Открыть галерею обоев"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duvar Kağıdı Galerisini Aç"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -2923,6 +3193,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Удалить этот набор обоев?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu duvar kağıdı paketi kaldırılsın mı?"
           }
         },
         "vi": {
@@ -2989,6 +3265,12 @@
             "value": "Не удалось восстановить некоторые файлы. Резервная копия сохранена."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bazı dosyalar geri yüklenemedi. Yedek korundu."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -3051,6 +3333,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Системные настройки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem Ayarları"
           }
         },
         "vi": {
@@ -3117,6 +3405,12 @@
             "value": "Не удалось открыть приложение. Откройте его вручную."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama açılamadı. Elle açın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -3179,6 +3473,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Архив содержит небезопасные пути или ссылки."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv güvenli olmayan yollar veya bağlantılar içeriyor."
           }
         },
         "vi": {
@@ -3245,6 +3545,12 @@
             "value": "Архив повреждён или превышает допустимый размер."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv geçersiz veya boyut sınırını aşıyor."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -3307,6 +3613,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не удалось найти контейнер устройства. Повторите чтение."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz konteyneri bulunamadı. Yeniden okuyun."
           }
         },
         "vi": {
@@ -3373,6 +3685,12 @@
             "value": "Файлы изменились. Повторите чтение перед применением."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosyalar değişti. Uygulamadan önce yeniden okuyun."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -3435,6 +3753,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не удалось сохранить исходные файлы."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün dosyaların yedeği alınamadı."
           }
         },
         "vi": {
@@ -3501,6 +3825,12 @@
             "value": "Будут добавлены новые обои с сохранением существующих."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu, mevcut duvar kağıtlarınızı değiştirmeden yenilerini ekler."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -3563,6 +3893,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "В наборе нет совместимых обоев."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu pakette uyumlu duvar kağıdı yok."
           }
         },
         "vi": {
@@ -3629,6 +3965,12 @@
             "value": "Обои изменены вне GestaltX и не были удалены."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu duvar kağıdı GestaltX dışında değiştirilmiş. Kaldırılmadı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -3691,6 +4033,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Обои добавлены. Выберите их в галерее. Если они не появились, перезапустите PosterBoard или SpringBoard."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duvar kağıdı eklendi. Seçmek için duvar kağıdı galerisini açın. Görünmezse PosterBoard'u yeniden başlatın veya respring yapın."
           }
         },
         "vi": {
@@ -3757,6 +4105,12 @@
             "value": "Настройки обоев"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duvar Kağıdı Ayarları"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -3816,6 +4170,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WAPI"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "WAPI"
@@ -3885,6 +4245,12 @@
             "value": "Отключить WAPI"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WAPI'yi Kapat"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -3905,18 +4271,18 @@
         }
       }
     },
-    "Disabling may show Wi-Fi and change some network options. Restart to apply.": {
+    "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disabling may show Wi-Fi and change some network options. Restart to apply."
+            "value": "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "关闭后可显示为 Wi-Fi，部分联网选项可能随之变化。重启后生效。"
+            "value": "关闭后可能改为显示 Wi-Fi（而非 WLAN），部分网络选项可能随之变化。重启后生效。"
           }
         },
         "es": {
@@ -3947,6 +4313,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отключение может изменить название на Wi-Fi и повлиять на некоторые параметры сети. Для применения перезагрузите устройство."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bunu devre dışı bırakmak WLAN yerine Wi-Fi ibaresini gösterebilir ve bazı ağ seçeneklerini değiştirebilir. Uygulamak için cihazı yeniden başlatın."
           }
         },
         "vi": {
@@ -4013,6 +4385,12 @@
             "value": "Вернуть исходное значение"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgünü Geri Yükle"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -4075,6 +4453,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Особая благодарность"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özel Teşekkürler"
           }
         },
         "vi": {
@@ -4141,6 +4525,12 @@
             "value": "Поддерживается"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Destekleniyor"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -4203,6 +4593,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не поддерживается"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desteklenmiyor"
           }
         },
         "vi": {
@@ -4269,6 +4665,12 @@
             "value": "Добро пожаловать"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoş Geldiniz"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -4331,6 +4733,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Добро пожаловать в GestaltX"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX'e Hoş Geldiniz"
           }
         },
         "vi": {
@@ -4397,6 +4805,12 @@
             "value": "Редактор MobileGestalt"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt Düzenleyici"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -4459,6 +4873,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отказ от ответственности"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sorumluluk Reddi"
           }
         },
         "vi": {
@@ -4525,6 +4945,12 @@
             "value": "Понятно, продолжить"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anladım, Devam Et"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -4587,6 +5013,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Доступ к системе и доступность функций зависят от версии ОС, устройства и подписи приложения."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem erişimi ve kullanılabilir özellikler işletim sistemi sürümüne, cihaza ve imzalamaya göre değişir."
           }
         },
         "vi": {
@@ -4653,6 +5085,12 @@
             "value": "Изменение MobileGestalt может вызвать нестабильность системы, сбои функций или циклическую перезагрузку. Может потребоваться восстановление устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt'ı değiştirmek sistem kararsızlığına, eksik özelliklere veya önyükleme döngüsüne yol açabilir. Cihazın kurtarılması bir geri yükleme gerektirebilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -4715,6 +5153,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перед изменениями создайте резервную копию устройства и экспортируйте исходный файл plist."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişiklik yapmadan önce cihazınızı yedekleyin ve özgün plist'in bir kopyasını dışa aktarın."
           }
         },
         "vi": {
@@ -4781,6 +5225,12 @@
             "value": "Флаги функций не добавляют отсутствующее оборудование. Некоторые изменения требуют перезагрузки устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yetenek bayrakları eksik donanımı ekleyemez. Bazı değişiklikler cihazı yeniden başlatmayı gerektirir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -4843,6 +5293,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Используйте приложение только на своих устройствах или с разрешения владельца. Вы несёте ответственность за применяемые изменения."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yalnızca sahip olduğunuz veya yönetmeye yetkili olduğunuz cihazlarda kullanın. Uygulamayı seçtiğiniz değişikliklerin sorumluluğu size aittir."
           }
         },
         "vi": {
@@ -4909,6 +5365,12 @@
             "value": "Программа предоставляется без гарантий. Перед использованием прочитайте прилагаемую лицензию."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu yazılım garanti olmaksızın sunulur. Kullanmadan önce eklenen lisansı okuyun."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -4971,6 +5433,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Репозиторий GitHub"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Deposu"
           }
         },
         "vi": {
@@ -5037,6 +5505,12 @@
             "value": "Благодарности и лицензии"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teşekkürler ve Lisanslar"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -5099,6 +5573,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Лицензия"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lisans"
           }
         },
         "vi": {
@@ -5165,6 +5645,12 @@
             "value": "Метод респринга"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respring Tekniği"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -5227,6 +5713,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Прочитать снова"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeniden Oku"
           }
         },
         "vi": {
@@ -5293,6 +5785,12 @@
             "value": "Может потребоваться перезагрузка устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihazı yeniden başlatmak gerekebilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -5355,6 +5853,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "После смены региона перезагрузите устройство."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bölgeyi değiştirdikten sonra cihazı yeniden başlatın."
           }
         },
         "vi": {
@@ -5421,6 +5925,12 @@
             "value": "Некоторые изменения требуют перезагрузки устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bazı değişiklikler cihazın yeniden başlatılmasını gerektirir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -5483,6 +5993,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Требуется перезагрузка. Доступность Apple Intelligence также зависит от устройства и региона."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeniden başlatma gerekli. Apple Intelligence ayrıca cihaza ve bölgeye bağlıdır."
           }
         },
         "vi": {
@@ -5549,6 +6065,12 @@
             "value": "Перезагрузите устройство и снова откройте «Настройки». Требуется аппаратная поддержка Apple Pencil."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihazı yeniden başlatın, sonra Ayarlar'ı yeniden açın. Yine de Pencil donanım desteği gerekir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -5611,6 +6133,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сначала выполните респринг. Если изменения не появились, перезагрузите устройство."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önce respring yapın. Değişiklik görünmezse cihazı yeniden başlatın."
           }
         },
         "vi": {
@@ -5677,6 +6205,12 @@
             "value": "Запись проверена. Некоторые функции требуют перезагрузки устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazma doğrulandı. Bazı özellikler cihazın yeniden başlatılmasını gerektirir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -5739,6 +6273,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Модель"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model"
           }
         },
         "vi": {
@@ -5805,6 +6345,12 @@
             "value": "Состояние"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durum"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -5867,6 +6413,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Подключено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlandı"
           }
         },
         "vi": {
@@ -5933,6 +6485,12 @@
             "value": "Локальный файл"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerel Dosya"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -5995,6 +6553,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не загружено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yüklenmedi"
           }
         },
         "vi": {
@@ -6061,6 +6625,12 @@
             "value": "Чтение…"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okunuyor…"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -6123,6 +6693,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Прочитать MobileGestalt"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt'ı Oku"
           }
         },
         "vi": {
@@ -6189,6 +6765,12 @@
             "value": "Импортировать plist"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plist İçe Aktar"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -6251,6 +6833,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Действия"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eylemler"
           }
         },
         "vi": {
@@ -6317,6 +6905,12 @@
             "value": "Применить изменения"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişiklikleri Uygula"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -6379,6 +6973,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Требуется респринг"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respring Gerekli"
           }
         },
         "vi": {
@@ -6445,6 +7045,12 @@
             "value": "Журнал"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günlük"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -6507,6 +7113,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Экспериментальные настройки. Перед применением создайте резервную копию."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deneysel ayarlar. Uygulamadan önce yedekleyin."
           }
         },
         "vi": {
@@ -6573,6 +7185,12 @@
             "value": "Нет резервных копий"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedek Yok"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -6635,6 +7253,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Резервная копия создаётся перед каждой записью."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her yazmadan önce bir yedek oluşturulur."
           }
         },
         "vi": {
@@ -6701,6 +7325,12 @@
             "value": "Будет выполнена попытка перезапустить SpringBoard с помощью NeoSpring."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu, NeoSpring kullanarak SpringBoard'ı yeniden başlatmayı dener."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -6765,6 +7395,12 @@
             "value": "Проекты на GitHub"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Projeleri"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -6824,6 +7460,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GNU GPL v3"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "GNU GPL v3"
@@ -6893,6 +7535,12 @@
             "value": "Дата"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarih"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -6955,6 +7603,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Введите дату в формате ISO 8601, например 2026-11-09T12:00:00Z."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2026-11-09T12:00:00Z gibi bir ISO 8601 tarihi girin."
           }
         },
         "vi": {
@@ -7021,6 +7675,12 @@
             "value": "Инструменты"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Araçlar"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -7083,6 +7743,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Резервные копии"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedekler"
           }
         },
         "vi": {
@@ -7149,6 +7815,12 @@
             "value": "О приложении"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hakkında"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -7208,6 +7880,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "GestaltX"
@@ -7277,6 +7955,12 @@
             "value": "ОК"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamam"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -7339,6 +8023,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отмена"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İptal"
           }
         },
         "vi": {
@@ -7405,6 +8095,12 @@
             "value": "Применить"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygula"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -7467,6 +8163,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Готово"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitti"
           }
         },
         "vi": {
@@ -7533,6 +8235,12 @@
             "value": "Закрыть"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapat"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -7595,6 +8303,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ещё"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diğer"
           }
         },
         "vi": {
@@ -7661,6 +8375,12 @@
             "value": "Готово"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hazır"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -7723,6 +8443,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Включить"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etkinleştir"
           }
         },
         "vi": {
@@ -7789,6 +8515,12 @@
             "value": "Выключить"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Devre Dışı Bırak"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -7851,6 +8583,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отключить (вернуть исходные значения)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Devre Dışı Bırak (Özgünü Geri Yükle)"
           }
         },
         "vi": {
@@ -7917,6 +8655,12 @@
             "value": "Удалить добавленные поля"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eklenen Alanları Kaldır"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -7979,6 +8723,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "При отключении восстанавливаются записанные исходные значения. Удаляйте добавленные поля только если уверены, что изначально их не было."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Devre dışı bırakmak kaydedilen özgün değerleri geri yükler. Eklenen Alanları Kaldır'ı yalnızca baştan yok olduğunu bildiğiniz alanlar için kullanın."
           }
         },
         "vi": {
@@ -8045,6 +8795,12 @@
             "value": "Не удалось прочитать исходные значения. Системные файлы не изменены."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün değerler okunamadı. Sistemde hiçbir değişiklik yapılmadı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -8107,6 +8863,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Запись исходных значений принадлежит другому устройству."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün değer kaydı başka bir cihaza ait."
           }
         },
         "vi": {
@@ -8173,6 +8935,12 @@
             "value": "Не удалось сохранить и проверить исходные значения. Запись системного файла не началась."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün değerler kaydedilip doğrulanamadı. Sistem yazması başlatılmadı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -8235,6 +9003,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перед применением выбранные добавленные поля должны быть удалены."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamadan önce seçili eklenen alanlar kaldırılmalıdır."
           }
         },
         "vi": {
@@ -8301,6 +9075,12 @@
             "value": "Поля идентификации устройства нельзя изменять в системном plist. Для их редактирования откройте локальный файл."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz kimliği alanları sistem plist'inde değiştirilemez. Bu alanları düzenlemek için yerel bir dosya açın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -8363,6 +9143,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Без изменений"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mevcut Değeri Koru"
           }
         },
         "vi": {
@@ -8429,6 +9215,12 @@
             "value": "Экран"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -8493,6 +9285,12 @@
             "value": "Устройство"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -8552,6 +9350,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPad"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "iPad"
@@ -8621,6 +9425,12 @@
             "value": "Интеллект"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zekâ"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -8683,6 +9493,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Дополнительно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelişmiş"
           }
         },
         "vi": {
@@ -8749,6 +9565,12 @@
             "value": "Строка"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dize"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -8811,6 +9633,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Целое число"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tam Sayı"
           }
         },
         "vi": {
@@ -8877,6 +9705,12 @@
             "value": "Вещественное число"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ondalık Sayı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -8939,6 +9773,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Логическое значение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boolean"
           }
         },
         "vi": {
@@ -9005,6 +9845,12 @@
             "value": "Данные"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veri"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -9067,6 +9913,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Массив"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dizi"
           }
         },
         "vi": {
@@ -9133,6 +9985,12 @@
             "value": "Словарь"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sözlük"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -9195,6 +10053,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Настройте устройство под себя."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihazınızı kendinize göre özelleştirin."
           }
         },
         "vi": {
@@ -9261,6 +10125,12 @@
             "value": "Возможности"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yetenekler"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -9323,6 +10193,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Выберите, что изменить."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neyi değiştireceğinizi seçin."
           }
         },
         "vi": {
@@ -9389,6 +10265,12 @@
             "value": "Подключитесь к устройству или откройте plist для редактирования."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düzenlemeye başlamak için cihaza bağlanın veya bir plist açın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -9451,6 +10333,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Быстрые действия"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Eylemler"
           }
         },
         "vi": {
@@ -9517,6 +10405,12 @@
             "value": "Сохраните копию. Обновите данные, когда будете готовы."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir kopya saklayın. Hazır olduğunuzda yenileyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -9579,6 +10473,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Создать копию"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedekle"
           }
         },
         "vi": {
@@ -9645,6 +10545,12 @@
             "value": "Экспортировать plist"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plist Dışa Aktar"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -9707,6 +10613,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Респринг"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respring"
           }
         },
         "vi": {
@@ -9773,6 +10685,12 @@
             "value": "Изменения проверены. Выполните респринг, когда будете готовы."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişiklikler doğrulandı. Hazır olduğunuzda respring yapın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -9835,6 +10753,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Журнал сеанса"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oturum Günlüğü"
           }
         },
         "vi": {
@@ -9901,6 +10825,12 @@
             "value": "Открыть plist…"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plist Aç…"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -9963,6 +10893,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Подключиться к устройству"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaza Bağlan"
           }
         },
         "vi": {
@@ -10029,6 +10965,12 @@
             "value": "Ожидающие изменения"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bekleyen Değişiklikler"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -10091,6 +11033,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Изменено полей: %lld"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld alan değişti"
           }
         },
         "vi": {
@@ -10157,6 +11105,12 @@
             "value": "Просмотреть"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İncele"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -10219,6 +11173,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "На устройстве"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihazda"
           }
         },
         "vi": {
@@ -10285,6 +11245,12 @@
             "value": "Локальный документ"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerel Belge"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -10347,6 +11313,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ваше устройство"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihazınız"
           }
         },
         "vi": {
@@ -10413,6 +11385,12 @@
             "value": "Не подключено"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlı Değil"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -10475,6 +11453,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Полей: %lld"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld alan"
           }
         },
         "vi": {
@@ -10541,6 +11525,12 @@
             "value": "Текущий снимок"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canlı anlık görüntü"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -10603,6 +11593,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Откройте системный кэш или работайте с plist из приложения «Файлы»."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem önbelleğini açın veya Dosyalar'dan bir plist ile çalışın."
           }
         },
         "vi": {
@@ -10669,6 +11665,12 @@
             "value": "Подключение…"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlanılıyor…"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -10731,6 +11733,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Подключиться"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlan"
           }
         },
         "vi": {
@@ -10797,6 +11805,12 @@
             "value": "Открыть файл"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosya Aç"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -10859,6 +11873,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Обновить"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yenile"
           }
         },
         "vi": {
@@ -10925,6 +11945,12 @@
             "value": "Доступ к системному кэшу зависит от ОС и подписи. Исходный проект заявляет доступ к SystemGroup для iOS 27; на iOS 26 доступны локальные файлы."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem önbelleği erişimi işletim sistemine ve imzalamaya bağlıdır. Upstream yalnızca iOS 27 için SystemGroup erişimi listeler; iOS 26 yerel dosyaları kullanabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -10987,6 +12013,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Макет Dynamic Island"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island Düzeni"
           }
         },
         "vi": {
@@ -11053,6 +12085,12 @@
             "value": "Другой макет может повлиять на строку состояния и клавиатуру. Сохраните резервную копию."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farklı bir düzen durum çubuğunu ve klavyeyi etkileyebilir. Bir yedek saklayın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -11115,6 +12153,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Идентификация устройства"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz Kimliği"
           }
         },
         "vi": {
@@ -11181,6 +12225,12 @@
             "value": "Изменить название модели"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model Adını Değiştir"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -11243,6 +12293,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Название модели"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model Adı"
           }
         },
         "vi": {
@@ -11309,6 +12365,12 @@
             "value": "Регион продажи"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satış Bölgesi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -11371,6 +12433,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Код региона"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bölge Kodu"
           }
         },
         "vi": {
@@ -11437,6 +12505,12 @@
             "value": "Обычно достаточно изменить код региона. Менять регион продажи не нужно."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genellikle bölge kodunu değiştirmek yeterli. Satış Bölgesi'ni değiştirmeye gerek yok."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -11499,6 +12573,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "* Если вы ранее меняли регион продажи, сначала верните исходный регион продажи устройства и примените изменения."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "* Daha önce Satış Bölgesi'ni değiştirdiyseniz, önce cihazınızın özgün satış bölgesini geri yükleyip uygulayın."
           }
         },
         "vi": {
@@ -11565,6 +12645,12 @@
             "value": "Изменение суффикса региона продажи может вызвать предупреждение о несовпадении с заводскими данными в программах проверки."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satış bölgesi son ekini değiştirmek, doğrulama araçlarının fabrika bilgileriyle uyuşmazlık bildirmesine yol açabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -11627,6 +12713,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Изменение флага региона не гарантирует работу Apple Intelligence или сервисов с региональными ограничениями."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bölge bayrağını değiştirmek Apple Intelligence'ı veya bölge kısıtlı hizmetleri garanti etmez."
           }
         },
         "vi": {
@@ -11693,6 +12785,12 @@
             "value": "Экспериментально"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deneysel"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -11755,6 +12853,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Предустановки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ön Ayarlar"
           }
         },
         "vi": {
@@ -11821,6 +12925,12 @@
             "value": "Изменения сохраняются до просмотра и применения. Флаги функций не добавляют отсутствующее оборудование."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seçimleriniz inceleyip uygulayana kadar aşamada bekler. Yetenek bayrakları eksik donanımı ekleyemez."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -11883,6 +12993,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Преобразование CacheData для режима iPadOS не включено для этих сборок ОС."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu işletim sistemi sürümlerinde iPadOS CacheData dönüştürmesi etkin değil."
           }
         },
         "vi": {
@@ -11949,6 +13065,12 @@
             "value": "Непроверенные патчи по смещению байтов исключены. Используйте поддерживаемые предустановки или проверьте отдельные поля."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doğrulanmamış bayt ofseti yamaları hariç tutulur. Desteklenen ön ayarları kullanın veya tek tek alanları inceleyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -12011,6 +13133,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Просмотр изменений"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişiklikleri İncele"
           }
         },
         "vi": {
@@ -12077,6 +13205,12 @@
             "value": "Документ не открыт"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açık Belge Yok"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -12139,6 +13273,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Подключитесь к устройству или откройте plist в разделе «Инструменты», чтобы просмотреть поля."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alanlarını görmek için Araçlar'da cihaza bağlanın veya bir plist açın."
           }
         },
         "vi": {
@@ -12205,6 +13345,12 @@
             "value": "%lld байт"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld bayt"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -12267,6 +13413,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Исходные системные поля. Перед сохранением проверьте ключ и тип."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ham sistem alanları. Kaydetmeden önce anahtarı ve türü gözden geçirin."
           }
         },
         "vi": {
@@ -12333,6 +13485,12 @@
             "value": "Поиск ключей и значений"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anahtar ve değer ara"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -12395,6 +13553,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Добавить поле"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alan Ekle"
           }
         },
         "vi": {
@@ -12461,6 +13625,12 @@
             "value": "Удалить"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sil"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -12523,6 +13693,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Удалить это поле?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu alan silinsin mi?"
           }
         },
         "vi": {
@@ -12589,6 +13765,12 @@
             "value": "Удаление отложено. Файл на устройстве изменится только после применения."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silme işlemi aşamaya alındı. Cihaz dosyası yalnızca uyguladıktan sonra değişir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -12651,6 +13833,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ключ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anahtar"
           }
         },
         "vi": {
@@ -12717,6 +13905,12 @@
             "value": "Ключ поля"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alan Anahtarı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -12779,6 +13973,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Значение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değer"
           }
         },
         "vi": {
@@ -12845,6 +14045,12 @@
             "value": "Тип"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tür"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -12907,6 +14113,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Используйте фрагмент XML plist с тегами array или dict. Вложенные данные и числовые типы сохраняются."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "array ve dict etiketleriyle birlikte bir XML plist parçası kullanın. İç içe geçmiş veri ve sayısal türler korunur."
           }
         },
         "vi": {
@@ -12973,6 +14185,12 @@
             "value": "Для значений данных используется кодировка Base64."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veri değerleri Base64 kodlaması kullanır."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -13035,6 +14253,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Изменить поле"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alanı Düzenle"
           }
         },
         "vi": {
@@ -13101,6 +14325,12 @@
             "value": "Подготовить"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aşamaya Al"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -13163,6 +14393,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Записать на это устройство"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu cihaza yaz"
           }
         },
         "vi": {
@@ -13229,6 +14465,12 @@
             "value": "Сохранить локальный документ"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerel belgeyi kaydet"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -13291,6 +14533,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перед записью создаётся резервная копия. Затем результат считывается и сравнивается."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazmadan önce bir yedek oluşturulur. Sonuç geri okunur ve karşılaştırılır."
           }
         },
         "vi": {
@@ -13357,6 +14605,12 @@
             "value": "Изменяется файл, открытый в GestaltX. Экспортируйте его, чтобы сохранить копию. Системный файл не изменяется."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu, açılan dosyayı GestaltX içinde düzenler. Kopya kaydetmek için dışa aktarın; sistem dosyası değişmez."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -13419,6 +14673,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Применить к устройству"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaza Uygula"
           }
         },
         "vi": {
@@ -13485,6 +14745,12 @@
             "value": "Сохранить локальные изменения"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerel Değişiklikleri Kaydet"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -13547,6 +14813,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отменить изменения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişikliklerden Vazgeç"
           }
         },
         "vi": {
@@ -13613,6 +14885,12 @@
             "value": "Применить эти изменения?"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu değişiklikler uygulansın mı?"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -13675,6 +14953,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Неверные системные значения могут повлиять на работу устройства. Проверенная резервная копия будет сохранена. Респринг автоматически не запускается."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hatalı sistem değerleri cihaz davranışını etkileyebilir. Doğrulanmış bir yedek saklanır. Respring otomatik tetiklenmez."
           }
         },
         "vi": {
@@ -13741,6 +15025,12 @@
             "value": "Перед сохранением изменений будет создана резервная копия текущего локального документа."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düzenlemeleriniz kaydedilmeden önce geçerli yerel belgenin yedeği alınır."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -13803,6 +15093,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "До"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önce"
           }
         },
         "vi": {
@@ -13869,6 +15165,12 @@
             "value": "После"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonra"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -13931,6 +15233,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отсутствует"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yok"
           }
         },
         "vi": {
@@ -13997,6 +15305,12 @@
             "value": "Создать резервную копию"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedek Oluştur"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -14059,6 +15373,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Резервные копии устройства связаны с этой установкой. Импортированные файлы хранятся отдельно."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz yedekleri bu kuruluma bağlı kalır. İçe aktarılan dosyalar ayrı tutulur."
           }
         },
         "vi": {
@@ -14125,6 +15445,12 @@
             "value": "Ваша страховка"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güvenlik Ağınız"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -14187,6 +15513,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Резервные копии появляются здесь перед каждой записью. Их также можно создавать вручную."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedekler her değişiklik uygulanmasından önce burada görünür. İstediğiniz zaman bir yedek de oluşturabilirsiniz."
           }
         },
         "vi": {
@@ -14253,6 +15585,12 @@
             "value": "Резервная копия устройства"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz Yedeği"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -14315,6 +15653,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Резервная копия локального файла"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerel Dosya Yedeği"
           }
         },
         "vi": {
@@ -14381,6 +15725,12 @@
             "value": "Открыть"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aç"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -14443,6 +15793,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Экспортировать"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dışa Aktar"
           }
         },
         "vi": {
@@ -14509,6 +15865,12 @@
             "value": "Восстановить"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri Yükle"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -14571,6 +15933,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Первоначальная резервная копия"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İlk yedek"
           }
         },
         "vi": {
@@ -14637,6 +16005,12 @@
             "value": "Снимок исходных значений"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün değerler anlık görüntüsü"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -14699,6 +16073,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вернуть"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri Al"
           }
         },
         "vi": {
@@ -14765,6 +16145,12 @@
             "value": "Исходные значения восстановлены."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün değerler geri yüklendi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -14827,6 +16213,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Восстановить эту резервную копию?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu yedek geri yüklensin mi?"
           }
         },
         "vi": {
@@ -14893,6 +16285,12 @@
             "value": "Сначала создаётся копия текущего документа. Восстановление на устройстве проверяется после записи."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önce geçerli belgenin yedeği alınır. Cihaz geri yüklemeleri yazmadan sonra doğrulanır."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -14955,6 +16353,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Удалить эту резервную копию?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu yedek silinsin mi?"
           }
         },
         "vi": {
@@ -15021,6 +16425,12 @@
             "value": "Локальная резервная копия будет удалена безвозвратно. Файл на устройстве не изменится."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu, yerel yedeği kalıcı olarak kaldırır. Cihaz dosyasını değiştirmez."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -15083,6 +16493,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Действий пока нет."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz etkinlik yok."
           }
         },
         "vi": {
@@ -15149,6 +16565,12 @@
             "value": "Очистить"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temizle"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -15211,6 +16633,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Выполнить респринг сейчас?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şimdi respring yapılsın mı?"
           }
         },
         "vi": {
@@ -15277,6 +16705,12 @@
             "value": "NeoSpring попытается перезапустить SpringBoard. Сначала сохраните работу. Метод может работать не во всех сборках ОС."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NeoSpring, SpringBoard'ı yeniden başlatmayı dener. Önce çalışmanızı kaydedin. Her işletim sistemi sürümünde çalışmayabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -15339,6 +16773,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dynamic Island, постоянно включённый экран и Liquid Glass"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island, AOD ve Liquid Glass"
           }
         },
         "vi": {
@@ -15405,6 +16845,12 @@
             "value": "Зарядка, кнопки и идентификация устройства"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şarj, düğmeler ve cihaz kimliği"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -15467,6 +16913,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stage Manager и совместимость приложений"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stage Manager ve uygulama uyumluluğu"
           }
         },
         "vi": {
@@ -15533,6 +16985,12 @@
             "value": "Регион и возможности генеративных моделей"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bölge ve üretken model yetenekleri"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -15597,6 +17055,12 @@
             "value": "Внутренние функции и исследовательские настройки"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dahili özellikler ve araştırma ayarları"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -15656,6 +17120,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Dynamic Island"
@@ -15725,6 +17195,12 @@
             "value": "Включить альтернативный флаг поддержки Dynamic Island."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternatif Dynamic Island yeteneğini etkinleştirin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -15787,6 +17263,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Постоянно включённый экран"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hep Açık Ekran"
           }
         },
         "vi": {
@@ -15853,6 +17335,12 @@
             "value": "Работа экрана зависит от панели. Возможны повышенное энергопотребление и выгорание."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran davranışı panele bağlıdır. Güç kullanımını ve yanma riskini artırabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -15915,6 +17403,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Цвета постоянно включённого экрана"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AOD Canlılığı"
           }
         },
         "vi": {
@@ -15981,6 +17475,12 @@
             "value": "Изменить параметры отрисовки постоянно включённого экрана."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hep Açık görüntü işleme yeteneklerini ayarlayın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -16043,6 +17543,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Упрощённая отрисовка Liquid Glass"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liquid Glass Düşük Güçlü İşleme"
           }
         },
         "vi": {
@@ -16109,6 +17615,12 @@
             "value": "Использовать флаг упрощённой отрисовки в iOS 26 и новее."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26 ve sonrasında düşük performanslı işleme yeteneğini kullanın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -16171,6 +17683,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Звук включения и выключения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz Açılış ve Kapanış Tonu"
           }
         },
         "vi": {
@@ -16237,6 +17755,12 @@
             "value": "Показать возможность звука при включении и выключении устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açılış ve kapanış sesi yeteneğini gösterir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -16299,6 +17823,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Лимит зарядки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şarj Sınırı"
           }
         },
         "vi": {
@@ -16365,6 +17895,12 @@
             "value": "Показать настройки лимита зарядки. Реальное управление зарядкой зависит от оборудования."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şarj sınırı ayarlarını gösterir. Fiili şarj denetimi donanıma bağlıdır."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -16427,6 +17963,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Выход из сна касанием"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dokunarak Uyandırma"
           }
         },
         "vi": {
@@ -16493,6 +18035,12 @@
             "value": "Показать пробуждение касанием на устройствах, где оно скрыто."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizli olduğu cihazlarda dokunarak uyandırmayı gösterir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -16555,6 +18103,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Управление камерой"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamera Denetimi"
           }
         },
         "vi": {
@@ -16621,6 +18175,12 @@
             "value": "Показать настройки управления камерой. Физическая кнопка не добавляется."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamera Denetimi ayarlarını gösterir. Fiziksel düğme eklemez."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -16683,6 +18243,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Кнопка действия"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eylem Düğmesi"
           }
         },
         "vi": {
@@ -16749,6 +18315,12 @@
             "value": "Показать страницу настройки кнопки действия."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eylem Düğmesi ayarları sayfasını gösterir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -16808,6 +18380,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Pencil"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Apple Pencil"
@@ -16877,6 +18455,12 @@
             "value": "Показать настройки Apple Pencil. Требуется аппаратная поддержка."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Pencil ayarlarını gösterir. Yine de donanım desteği gerekir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -16936,6 +18520,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stage Manager"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Stage Manager"
@@ -17005,6 +18595,12 @@
             "value": "Показать поддержку Stage Manager. Поведение макета зависит от устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stage Manager desteğini gösterir. Düzen davranışı cihaza göre değişir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -17067,6 +18663,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Совместимость с приложениями iPad"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPad Uygulama Uyumluluğu"
           }
         },
         "vi": {
@@ -17133,6 +18735,12 @@
             "value": "Разрешить типы совместимости приложений iPad на iPhone."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone'da iPad uygulama uyumluluk türlerine izin verir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -17195,6 +18803,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Возможности Apple Intelligence"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence Yeteneği"
           }
         },
         "vi": {
@@ -17261,6 +18875,12 @@
             "value": "Установить флаг генеративных моделей. Доступность также зависит от оборудования, региона и сервисов Apple."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Üretken modeller yeteneğini ayarlar. Kullanılabilirlik ayrıca donanıma, bölgeye ve Apple hizmetlerine bağlıdır."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -17323,6 +18943,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Внутренние функции Apple"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple İç Kullanım Özellikleri"
           }
         },
         "vi": {
@@ -17389,6 +19015,12 @@
             "value": "Показать внутренние меню. Некоторые системные службы могут работать иначе."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dahili menüleri gösterir. Bazı sistem hizmetleri farklı davranabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -17451,6 +19083,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Внутреннее хранилище"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dahili Depolama Görünümü"
           }
         },
         "vi": {
@@ -17517,6 +19155,12 @@
             "value": "Показать внутренние категории хранилища. Экспериментально на iPad."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dahili depolama kategorilerini gösterir. iPad'de deneyseldir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -17579,6 +19223,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Устройство для исследования безопасности"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güvenlik Araştırma Cihazı (SRD)"
           }
         },
         "vi": {
@@ -17645,6 +19295,12 @@
             "value": "Изменить флаг SRD. Это не превращает устройство в официальное Apple SRD."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SRD yetenek bayrağını değiştirir. Bu, cihazı bir Apple SRD'ye dönüştürmez."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -17707,6 +19363,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "США"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amerika Birleşik Devletleri"
           }
         },
         "vi": {
@@ -17773,6 +19435,12 @@
             "value": "Гонконг"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hong Kong"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -17835,6 +19503,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Япония"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Japonya"
           }
         },
         "vi": {
@@ -17901,6 +19575,12 @@
             "value": "Материковый Китай"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çin (Anakara)"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -17963,6 +19643,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Тайвань"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tayvan"
           }
         },
         "vi": {
@@ -18029,6 +19715,12 @@
             "value": "Великобритания"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Birleşik Krallık"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -18091,6 +19783,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Подключитесь к устройству или откройте plist."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihazınıza bağlanın veya bir plist açın."
           }
         },
         "vi": {
@@ -18157,6 +19855,12 @@
             "value": "Проверка доступа к устройству…"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz erişimi denetleniyor…"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -18219,6 +19923,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Устройство подключено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz bağlandı"
           }
         },
         "vi": {
@@ -18285,6 +19995,12 @@
             "value": "Нет доступа к устройству"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz erişimi kullanılamıyor"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -18347,6 +20063,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Локальный файл открыт"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerel dosya açıldı"
           }
         },
         "vi": {
@@ -18413,6 +20135,12 @@
             "value": "Изменения на устройстве проверены"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişiklikler cihazda doğrulandı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -18475,6 +20203,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Локальные изменения сохранены"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerel değişiklikler kaydedildi"
           }
         },
         "vi": {
@@ -18541,6 +20275,12 @@
             "value": "Изменения на устройстве проверены. Выполните респринг для обновления поддерживаемых функций."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişiklikler cihazda doğrulandı. Desteklenen özellikleri yenilemek için respring yapın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -18603,6 +20343,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Локальные изменения сохранены. Экспортируйте plist, чтобы сохранить копию."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yerel değişiklikler kaydedildi. Kopya saklamak için plist'i dışa aktarın."
           }
         },
         "vi": {
@@ -18669,6 +20415,12 @@
             "value": "Резервная копия сохранена"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedek kaydedildi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -18731,6 +20483,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Резервная копия восстановлена и проверена."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedek geri yüklendi ve doğrulandı."
           }
         },
         "vi": {
@@ -18797,6 +20555,12 @@
             "value": "Эта резервная копия уже соответствует устройству. Изменения не внесены."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu yedek zaten cihazla eşleşiyor. Hiçbir değişiklik yapılmadı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -18859,6 +20623,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Резервная копия открыта как локальный документ."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedek yerel belge olarak açıldı."
           }
         },
         "vi": {
@@ -18925,6 +20695,12 @@
             "value": "Ручное резервное копирование"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elle yedekleme"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -18987,6 +20763,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перед редактированием"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düzenlemeden önce"
           }
         },
         "vi": {
@@ -19053,6 +20835,12 @@
             "value": "Перед применением"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamadan önce"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -19115,6 +20903,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перед восстановлением"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri yüklemeden önce"
           }
         },
         "vi": {
@@ -19181,6 +20975,12 @@
             "value": "Введите допустимое целое число."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geçerli bir tam sayı girin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -19243,6 +21043,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Введите конечное десятичное число."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonlu bir ondalık sayı girin."
           }
         },
         "vi": {
@@ -19309,6 +21115,12 @@
             "value": "Для логического значения используйте true или false."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boole değeri için true veya false kullanın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -19371,6 +21183,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Введите корректные данные Base64."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geçerli Base64 verisi girin."
           }
         },
         "vi": {
@@ -19437,6 +21255,12 @@
             "value": "Введите фрагмент массива или словаря XML plist."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir XML plist dizi veya sözlük parçası girin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -19499,6 +21323,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Выберите MobileGestalt plist со словарём CacheExtra."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CacheExtra sözlüğü içeren bir MobileGestalt plist'i seçin."
           }
         },
         "vi": {
@@ -19565,6 +21395,12 @@
             "value": "Изменённый документ не является корректным списком свойств."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düzenlenen belge geçerli bir özellik listesi değil."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -19627,6 +21463,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Доступ к MobileGestalt запрещён. Проверьте версию ОС и подпись App Group."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt erişimi reddedildi. İşletim sistemi sürümünü ve App Group imzalamasını kontrol edin."
           }
         },
         "vi": {
@@ -19693,6 +21535,12 @@
             "value": "Не удалось проверить резервную копию. Запись в систему не начиналась."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yedek doğrulanamadı. Sistem yazması başlatılmadı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -19755,6 +21603,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Эта резервная копия принадлежит другому устройству. Откройте её как локальный файл."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu yedek bu cihaza ait değil. Yerine yerel dosya olarak açın."
           }
         },
         "vi": {
@@ -19821,6 +21675,12 @@
             "value": "MobileGestalt изменился после чтения. Обновите данные перед применением изменений."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt yüklendikten sonra değişti. Düzenlemelerinizi uygulamadan önce yenileyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -19883,6 +21743,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Записанные данные не совпадают с прочитанными."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazma, geri okuma ile eşleşmedi."
           }
         },
         "vi": {
@@ -19949,6 +21815,12 @@
             "value": "Не удалось восстановить исходный файл."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün dosya geri yüklenemedi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -20011,6 +21883,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Проверка записи и восстановление завершились ошибкой. Сохраните резервную копию и восстановите файл устройства перед новой попыткой."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazma doğrulaması ve kurtarma başarısız oldu. Yedeği saklayın ve tekrar denemeden önce cihaz dosyasını kurtarın."
           }
         },
         "vi": {
@@ -20077,6 +21955,12 @@
             "value": "Запись не удалась. Предыдущий файл восстановлен и проверен."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazma başarısız oldu. Önceki dosya geri yüklendi ve doğrulandı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -20139,6 +22023,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Доступ к устройству недоступен в Симуляторе. Откройте plist для знакомства с GestaltX."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simülatör'de cihaz erişimi yok. GestaltX'i keşfetmek için bir plist açın."
           }
         },
         "vi": {
@@ -20205,6 +22095,12 @@
             "value": "У подписанного приложения нет доступной App Group. Включите возможность App Group и подпишите приложение заново."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İmzalanan uygulamada kullanılabilir bir App Group yok. App Group yeteneğini etkinleştirin ve yeniden imzalayın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -20267,6 +22163,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Выберите plist размером менее 16 МБ."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "16 MB'tan küçük bir plist seçin."
           }
         },
         "vi": {
@@ -20333,6 +22235,12 @@
             "value": "Введите ключ поля."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir alan anahtarı girin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -20395,6 +22303,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сначала загрузите документ."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önce bir belge yükleyin."
           }
         },
         "vi": {
@@ -20461,6 +22375,12 @@
             "value": "Такой ключ уже существует. Измените существующее поле."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu anahtar zaten var. Bunun yerine mevcut alanı düzenleyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -20523,6 +22443,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перед применением введите название модели."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamadan önce bir model adı girin."
           }
         },
         "vi": {
@@ -20589,6 +22515,12 @@
             "value": "Чуть больше возможностей."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olasılıkları biraz daha genişlet."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -20651,6 +22583,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Другие проекты huamidev"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "huamidev'in Diğer Projeleri"
           }
         },
         "vi": {
@@ -20717,6 +22655,12 @@
             "value": "Поддерживаемые ОС"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desteklenen İşletim Sistemi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -20779,6 +22723,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Языки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diller"
           }
         },
         "vi": {
@@ -20845,6 +22795,12 @@
             "value": "Совместимость"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyumluluk"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -20907,6 +22863,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Благодарности"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teşekkürler"
           }
         },
         "vi": {
@@ -20973,6 +22935,12 @@
             "value": "Выход из песочницы worse_query"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "worse_query sandbox kaçışı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -21035,6 +23003,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Исходный метод респринга через WebKit"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün WebKit respring tekniği"
           }
         },
         "vi": {
@@ -21101,6 +23075,12 @@
             "value": "Реализация метода респринга на Swift"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respring tekniğinin Swift uygulaması"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -21163,6 +23143,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Проект NeoSpring и исследование респринга"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NeoSpring projesi ve respring araştırması"
           }
         },
         "vi": {
@@ -21229,6 +23215,12 @@
             "value": "Адаптация респринга под лицензией GPL"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPL lisanslı respring uyarlaması"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -21291,6 +23283,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Исследование ключей MobileGestalt"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt anahtar araştırması"
           }
         },
         "vi": {
@@ -21357,6 +23355,12 @@
             "value": "Исследование предустановок MobileGestalt"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt ön ayar araştırması"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -21419,6 +23423,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Пример рабочего процесса MobileGestalt"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt iş akışı referansı"
           }
         },
         "vi": {
@@ -21485,6 +23495,12 @@
             "value": "Открытый исходный код"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açık Kaynak"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -21547,6 +23563,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Уведомления о сторонних компонентах"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Üçüncü Taraf Bildirimleri"
           }
         },
         "vi": {
@@ -21613,6 +23635,12 @@
             "value": "GestaltX — независимое ПО, не связанное с Apple или указанными проектами."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX bağımsız bir yazılımdır. Apple'a veya teşekkür edilen projelere bağlı değildir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -21672,6 +23700,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "worse_query"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "worse_query"
@@ -21741,6 +23775,12 @@
             "value": "Доступные пути и предустановки MobileGestalt зависят от устройства и сборки ОС."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kullanılabilir yollar ve MobileGestalt ön ayarları cihaza ve işletim sistemi sürümüne göre değişir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -21803,6 +23843,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Совместимость исходного проекта"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upstream Uyumluluğunu Oku"
           }
         },
         "vi": {
@@ -21869,6 +23915,12 @@
             "value": "Доступ к MobileGestalt"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt Erişimi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -21931,6 +23983,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "iOS 27: доступ проверяется на устройстве."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 27: erişim cihazda denetlenir."
           }
         },
         "vi": {
@@ -21997,6 +24055,12 @@
             "value": "iOS 26: исходный проект не заявляет доступ к SystemGroup. Доступно редактирование локальных plist."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 26: upstream SystemGroup erişimi iddia etmiyor. Yerel plist düzenlemesi kullanılabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -22061,6 +24125,12 @@
             "value": "Требуется правильно подготовленная и подписанная App Group. Любой открытый документ можно экспортировать и сохранить в резервной копии."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doğru şekilde sağlanmış bir App Group gerekir. Dışa aktarma ve yedekleme, açabildiğiniz her belge için kullanılabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -22120,6 +24190,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NeoSpring"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "NeoSpring"
@@ -22189,6 +24265,12 @@
             "value": "NeoSpring пытается обновить SpringBoard через WebKit. Эффективность зависит от сборки ОС. Некоторые изменения MobileGestalt могут потребовать ручной перезагрузки устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NeoSpring, WebKit kullanarak SpringBoard tazeleme dener. Etkisi işletim sistemi sürümüne göre değişir. Bazı MobileGestalt değişiklikleri yine de elle cihaz yeniden başlatması gerektirebilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -22251,6 +24333,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не удалось загрузить текст лицензии."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lisans metni yüklenemedi."
           }
         },
         "vi": {
@@ -22317,6 +24405,12 @@
             "value": "Респринг не завершился."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respring tamamlanmadı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -22379,6 +24473,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Обновление SpringBoard…"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SpringBoard yenileniyor…"
           }
         },
         "vi": {
@@ -22445,6 +24545,12 @@
             "value": "Эта сборка ОС может не поддерживать данный метод. Можно закрыть этот экран и позже перезагрузить устройство вручную."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu işletim sistemi sürümü tekniği desteklemiyor olabilir. Bu ekranı kapatıp daha sonra elle yeniden başlatma deneyebilirsiniz."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -22507,6 +24613,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Устройство может ненадолго вернуться на экран блокировки."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihazınız kısa bir süre için Kilit Ekranı'na dönebilir."
           }
         },
         "vi": {
@@ -22573,6 +24685,12 @@
             "value": "Структура или значения кэша не соответствуют этой настройке."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önbellek düzeni veya değerleri bu ön ayarla eşleşmiyor."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -22635,6 +24753,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Исходное значение относится к другой структуре кэша. Для его восстановления нужна соответствующая резервная копия."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün değer farklı bir önbellek düzenine ait. Onu geri yüklemek için eşleşen bir yedek gerekir."
           }
         },
         "vi": {
@@ -22701,6 +24825,12 @@
             "value": "Эта настройка изменяет посторонние байты кэша."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ön ayar ilgisiz önbellek baytlarını değiştirir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -22763,6 +24893,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не удалось определить структуру кэша MobileGestalt этого устройства."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu cihazın MobileGestalt önbellek düzeni çözümlenemiyor."
           }
         },
         "vi": {
@@ -22829,6 +24965,12 @@
             "value": "Импорт plist…"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plist içe aktarılıyor…"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -22891,6 +25033,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Отправляйте по одному plist-файлу MobileGestalt."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir seferde tek MobileGestalt plist'i paylaşın."
           }
         },
         "vi": {
@@ -22957,6 +25105,12 @@
             "value": "Подпишите GestaltX и расширение общего доступа с одной и той же App Group и повторите попытку."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX'i ve paylaşılan uzantısını aynı App Group ile imzalayın, sonra tekrar deneyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -23019,6 +25173,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не удалось прочитать полученный plist. Отправьте его ещё раз."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paylaşılan plist okunamadı. Yeniden paylaşın."
           }
         },
         "vi": {
@@ -23085,6 +25245,12 @@
             "value": "Полученный plist ожидает импорта. Сначала сохраните или отмените текущие изменения."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paylaşılmış bir plist bekliyor. Geçerli değişikliklerinizi kaydedin veya geri alın, sonra onu içe aktarın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -23147,6 +25313,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сохраните или отмените текущие изменения, прежде чем открывать другой plist."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başka bir plist açmadan önce geçerli değişikliklerinizi kaydedin veya geri alın."
           }
         },
         "vi": {
@@ -23213,6 +25385,12 @@
             "value": "Импортировать"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçe Aktar"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -23275,6 +25453,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Откройте GestaltX, чтобы подтвердить импорт plist."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plist'in aktarımını onaylamak için GestaltX'i açın."
           }
         },
         "vi": {
@@ -23341,6 +25525,12 @@
             "value": "Не удалось проверить идентификаторы устройства. Считайте MobileGestalt на этом устройстве и отправьте файл повторно."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu cihazın kimliği doğrulanamadı. Bu cihazda MobileGestalt'ı okuyun ve paylaşmayı yeniden deneyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -23403,6 +25593,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Идентификаторы в plist не совпадают с этим устройством. Импорт невозможен."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu plist başka bir cihaza ait ve içe aktarılamaz."
           }
         },
         "vi": {
@@ -23469,6 +25665,12 @@
             "value": "В plist недостаточно идентификаторов для проверки принадлежности устройству."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu plist, sahipliği doğrulamak için yeterli cihaz tanımlayıcısı içermiyor."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -23531,6 +25733,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Дополнительные параметры"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ek Seçenekler"
           }
         },
         "vi": {
@@ -23597,6 +25805,12 @@
             "value": "Управление MG"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MG Control"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -23659,6 +25873,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Считайте MobileGestalt в разделе инструментов или отправьте plist этого устройства в GestaltX."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Araçlar'da MobileGestalt'ı okuyun veya bu cihazın plist'ini GestaltX'e paylaşın."
           }
         },
         "vi": {
@@ -23725,6 +25945,12 @@
             "value": "Этот plist проверен для данного устройства. Импортировать?"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu plist bu cihaz için doğrulandı. İçe aktarılsın mı?"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -23787,6 +26013,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не удалось проверить подтверждение принадлежности plist этому устройству."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu plist'in cihaz kanıtı bu cihazda doğrulanamadı."
           }
         },
         "vi": {
@@ -23853,6 +26085,12 @@
             "value": "Подтверждение устройства временно недоступно. Разблокируйте устройство и повторите попытку."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz kanıtı geçici olarak kullanılamıyor. Bu cihazın kilidini açın ve tekrar deneyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -23915,6 +26153,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Структура системного кэша plist отличается от текущей. Восстановление невозможно."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu plist farklı bir sistem önbellek düzeni kullanıyor ve geri yüklenemez."
           }
         },
         "vi": {
@@ -23981,6 +26225,12 @@
             "value": "Восстановить импортированный plist"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçe Aktarılan Plist'i Geri Yükle"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -24043,6 +26293,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Перед восстановлением будет создана резервная копия текущего файла устройства. Затем перезагрузите устройство."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri yüklemeden önce geçerli cihaz dosyasının yedeği alınır. Sonrasında cihazı yeniden başlatın."
           }
         },
         "vi": {
@@ -24109,6 +26365,12 @@
             "value": "Отправьте plist этого устройства в GestaltX для проверки, импорта, добавления, изменения и удаления ключей и восстановления копии. Сначала рекомендуется экспортировать копию из GestaltX с подтверждением для этого устройства."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu cihazın plist'ini, anahtarlarını ve değerlerini düzenlemek veya doğrulanmış bir yedeği geri yüklemek için GestaltX'e paylaşın. Cihaza bağlı bir kanıt saklamak için önce GestaltX'ten bir kopya dışa aktarın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -24171,6 +26433,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Канада"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kanada"
           }
         },
         "vi": {
@@ -24237,6 +26505,12 @@
             "value": "Номер модели"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model Numarası"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -24299,6 +26573,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "После изменения номера модели может потребоваться перезагрузка устройства."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model numarasını değiştirdikten sonra cihazı yeniden başlatmak gerekebilir."
           }
         },
         "vi": {
@@ -24365,6 +26645,12 @@
             "value": "Эти номера предназначены только для iPhone Air, iPhone 18 Pro и iPhone 18 Pro Max. Номер, не соответствующий оборудованию, может вызвать предупреждение в программах проверки."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listelenen değerler yalnızca iPhone Air, iPhone 18 Pro ve iPhone 18 Pro Max için geçerlidir. Donanımınızla eşleşmeyen bir model numarası seçmek, doğrulama araçlarının uyuşmazlık bildirmesine yol açabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -24427,6 +26713,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "A3260 — Air · США / Канада"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3260 — Air · ABD / Kanada"
           }
         },
         "vi": {
@@ -24493,6 +26785,12 @@
             "value": "A3516 — Air · Япония"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3516 — Air · Japonya"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -24555,6 +26853,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "A3517 — Air · Другие регионы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3517 — Air · Diğer bölgeler"
           }
         },
         "vi": {
@@ -24621,6 +26925,12 @@
             "value": "A3518 — Air · Материковый Китай"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3518 — Air · Çin anakarası"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -24683,6 +26993,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "A3472 — 18 Pro · США"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3472 — 18 Pro · ABD"
           }
         },
         "vi": {
@@ -24749,6 +27065,12 @@
             "value": "A3713 — 18 Pro · Канада / Япония"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3713 — 18 Pro · Kanada / Japonya"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -24811,6 +27133,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "A3714 — 18 Pro · Другие регионы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3714 — 18 Pro · Diğer bölgeler"
           }
         },
         "vi": {
@@ -24877,6 +27205,12 @@
             "value": "A3715 — 18 Pro · Материковый Китай"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3715 — 18 Pro · Çin anakarası"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -24939,6 +27273,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "A3473 — 18 Pro Max · США"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3473 — 18 Pro Max · ABD"
           }
         },
         "vi": {
@@ -25005,6 +27345,12 @@
             "value": "A3716 — 18 Pro Max · Канада / Япония"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3716 — 18 Pro Max · Kanada / Japonya"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -25067,6 +27413,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "A3717 — 18 Pro Max · Другие регионы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3717 — 18 Pro Max · Diğer bölgeler"
           }
         },
         "vi": {
@@ -25133,6 +27485,12 @@
             "value": "A3718 — 18 Pro Max · Материковый Китай"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A3718 — 18 Pro Max · Çin anakarası"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -25195,6 +27553,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Поле artwork не является словарём. Отредактируйте его в MG Control перед использованием этих пресетов."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görsel alanı bir sözlük değil. Bu ön ayarları kullanmadan önce MG Control'de düzenleyin."
           }
         },
         "vi": {
@@ -25261,6 +27625,12 @@
             "value": "Always-On Display повышенной яркости"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yüksek Parlaklıklı Hep Açık Ekran"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -25323,6 +27693,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Разрешает Always-On Display достигать более высокой яркости."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hep Açık Ekran'ın daha yüksek parlaklık düzeyine ulaşmasına izin verir."
           }
         },
         "vi": {
@@ -25389,6 +27765,12 @@
             "value": "Flipbook для Always-On Display"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always-On Display Flipbook'u"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -25451,6 +27833,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Включает виджеты flipbook AOD на экране блокировки."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilit Ekranı'nda AOD flipbook widget'larını etkinleştirir."
           }
         },
         "vi": {
@@ -25517,6 +27905,12 @@
             "value": "Количество flipbook AOD"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AOD Flipbook Sayısı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -25579,6 +27973,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Задаёт число записей flipbook AOD. Экспериментально; допустимый диапазон зависит от сборки."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaç AOD flipbook girişine izin verildiğini ayarlar. Deneyseldir; kabul edilen aralık sürüme göre değişir."
           }
         },
         "vi": {
@@ -25645,6 +28045,12 @@
             "value": "Отключить параллакс обоев"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duvar Kağıdı Paralaksını Devre Dışı Bırak"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -25707,6 +28113,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Останавливает движение обоев при движении устройства."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duvar kağıdının cihaz hareketiyle hareket etmesini durdurur."
           }
         },
         "vi": {
@@ -25773,6 +28185,12 @@
             "value": "Отображение HDR-фото"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HDR Fotoğraf Görüntüleme"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -25835,6 +28253,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Включает настоящий HDR-рендеринг фотографий."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fotoğraflar için gerçek HDR işlemeyi etkinleştirir."
           }
         },
         "vi": {
@@ -25901,6 +28325,12 @@
             "value": "Широтно-импульсная модуляция (PWM)"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Darbe Genişlik Modülasyonu"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -25963,6 +28393,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Объявляет поддержку PWM. Фактическое поведение затемнения зависит от панели."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PWM ekran desteğini bildirir. Fiili karartma davranışı panele bağlıdır."
           }
         },
         "vi": {
@@ -26029,6 +28465,12 @@
             "value": "Вывод DisplayPort"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DisplayPort Çıkışı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -26091,6 +28533,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Объявляет поддержку вывода DisplayPort. По-прежнему требуется совместимое оборудование."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DisplayPort çıkış desteğini bildirir. Yine de uyumlu donanım gerekir."
           }
         },
         "vi": {
@@ -26157,6 +28605,12 @@
             "value": "SOS при столкновении"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çarpışma SOS"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -26219,6 +28673,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Показывает обнаружение столкновений в настройках экстренного SOS. По-прежнему требуется аппаратная поддержка."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acil SOS ayarlarında çarpışma algılamayı gösterir. Yine de donanım desteği gerekir."
           }
         },
         "vi": {
@@ -26285,6 +28745,12 @@
             "value": "Аудиомикс"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ses Karışımı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -26347,6 +28813,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Включает функцию аудиомикса для поддерживаемых медиафайлов."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desteklenen medya için ses karışımı yeteneğini etkinleştirir."
           }
         },
         "vi": {
@@ -26413,6 +28885,12 @@
             "value": "Пространственное аудио FaceTime"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uzamsal FaceTime Sesi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -26475,6 +28953,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Включает пространственное воспроизведение звука для FaceTime."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FaceTime için uzamsal ses çalmayı etkinleştirir."
           }
         },
         "vi": {
@@ -26541,6 +29025,12 @@
             "value": "Пакет внутренних настроек"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dahili Ayarlar Paketi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -26603,6 +29093,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Открывает пакет внутренних настроек Apple. Некоторые системные службы могут работать иначе."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple'ın dahili ayarlar paketini gösterir. Bazı sistem hizmetleri farklı davranabilir."
           }
         },
         "vi": {
@@ -26669,6 +29165,12 @@
             "value": "Siri на устройстве"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz Üzerinde Siri"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -26731,6 +29233,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Siri использует тип возможностей, зависящий от устройства. Его изменение может повлиять на интерфейс Siri в Apple Intelligence. Сохраните текущее значение или восстановите записанное исходное."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri, cihaza özgü bir yetenek türü kullanır. Değiştirmek, Apple Intelligence Siri arayüzünü etkileyebilir. Geçerli değeri koruyun veya kaydedilen özgünü geri yükleyin."
           }
         },
         "vi": {
@@ -26797,6 +29305,12 @@
             "value": "Аудиоинтеллект"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio Intelligence"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -26859,6 +29373,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Объявляет возможность аудиоинтеллекта iOS 27."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 27 Audio Intelligence yeteneğini bildirir."
           }
         },
         "vi": {
@@ -26925,6 +29445,12 @@
             "value": "Личный переводчик"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kişisel Çevirmen"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -26987,6 +29513,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Объявляет возможность личного переводчика."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kişisel çevirmen yeteneğini bildirir."
           }
         },
         "vi": {
@@ -27053,6 +29585,12 @@
             "value": "Очистка фото (Clean Up)"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fotoğraflar Temizleme"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -27115,6 +29653,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Объявляет возможность восстановления фото (Clean Up)."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fotoğraflardaki dikkat dağıtıcı öğeleri silme (Clean Up) yeteneğini bildirir."
           }
         },
         "vi": {
@@ -27181,6 +29725,12 @@
             "value": "Синтез рукописного текста"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El Yazısı Sentezi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -27243,6 +29793,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Объявляет возможность модели синтеза рукописного текста."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El yazısı sentezi modeli yeteneğini bildirir."
           }
         },
         "vi": {
@@ -27309,6 +29865,12 @@
             "value": "Постоянно слушающая Hey Siri"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sürekli dinleyen Hey Siri"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -27371,6 +29933,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Объявляет поддержку постоянно слушающей Hey Siri."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sürekli dinleyen Hey Siri desteğini bildirir."
           }
         },
         "vi": {
@@ -27437,6 +30005,12 @@
             "value": "Внутренняя сборка"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dahili Derleme"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -27499,6 +30073,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Изменяет системный флаг InternalBuild, а не только сведения о хранилище. Поведение системных служб может измениться. Возврат восстанавливает записанное исходное значение."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yalnızca depolama bilgilerini değil, sistem genelinde InternalBuild bayrağını değiştirir. Sistem hizmetleri farklı davranabilir. Geri Al, kaydedilen özgün değeri geri yükler."
           }
         },
         "vi": {
@@ -27565,6 +30145,12 @@
             "value": "Включить внутреннюю сборку?"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dahili Derleme Etkinleştirilsin mi?"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -27627,6 +30213,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Изменение системного флага InternalBuild будет подготовлено. Оно может затронуть службы за пределами экрана хранилища. Перед применением можно проверить изменение."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu, sistem genelinde InternalBuild bayrağını aşamaya alır. Depolama ekranının ötesindeki sistem hizmetlerini etkileyebilir. Uygulamadan önce değişikliği inceleyebilirsiniz."
           }
         },
         "vi": {
@@ -27693,6 +30285,12 @@
             "value": "Текст на экране блокировки"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilit Ekranı Metni"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -27755,6 +30353,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Добавляет ваш текст внизу экрана блокировки."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilit Ekranı'nın altına kendi metninizi ekler."
           }
         },
         "vi": {
@@ -27821,6 +30425,12 @@
             "value": "По умолчанию"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem Varsayılanı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -27883,6 +30493,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Пусто"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boş"
           }
         },
         "vi": {
@@ -27949,6 +30565,12 @@
             "value": "Текущее значение"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geçerli Değer"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -28011,6 +30633,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Недоступно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kullanılamıyor"
           }
         },
         "vi": {
@@ -28077,6 +30705,12 @@
             "value": "Введите текст для экрана блокировки"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilit ekranı metniniz"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -28139,6 +30773,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Исходные значения сохраняются перед записью. При восстановлении ранее отсутствовавшие ключи удаляются."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yazmadan önce özgün değerler kaydedilir. Geri Al, baştan yok olan anahtarları kaldırır."
           }
         },
         "vi": {
@@ -28205,6 +30845,12 @@
             "value": "Перед записью будет создана резервная копия затронутых файлов настроек. Затем можно восстановить каждый параметр отдельно."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etkilenen ayar dosyaları yazmadan önce yedeklenir. Daha sonra her seçeneği geri yükleyebilirsiniz."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -28267,6 +30913,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Файл системных настроек не является корректным словарём. Операция остановлена."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem ayarları dosyası geçerli bir sözlük değil."
           }
         },
         "vi": {
@@ -28333,6 +30985,12 @@
             "value": "Системные настройки изменились. Прочитайте их заново перед применением."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem ayarları değişti. Uygulamadan önce yeniden okuyun."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -28395,6 +31053,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Введите одну строку длиной до 256 символов."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En fazla 256 karakterlik tek bir satır kullanın."
           }
         },
         "vi": {
@@ -28461,6 +31125,12 @@
             "value": "Не удалось проверить резервную копию настроек. Изменения не применены."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayar yedeği doğrulanamadı. Hiçbir değişiklik uygulanmadı."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -28523,6 +31193,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не удалось проверить системные настройки после записи."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem ayarları yazmadan sonra doğrulanamadı."
           }
         },
         "vi": {
@@ -28589,6 +31265,12 @@
             "value": "Некоторые настройки не удалось восстановить автоматически. Прочитайте их заново и нажмите «Восстановить»."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bazı ayarlar otomatik geri yüklenemedi. Yeniden okuyun ve Geri Al'ı kullanın."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -28651,6 +31333,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "На этом устройстве нет доступа к этим системным настройкам."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu sistem ayarlarına bu cihazda erişilemiyor."
           }
         },
         "vi": {
@@ -28717,6 +31405,12 @@
             "value": "Текст экрана блокировки обновлён."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilit ekranı metni güncellendi."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -28779,6 +31473,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Захват"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalama"
           }
         },
         "vi": {
@@ -28845,6 +31545,12 @@
             "value": "Сопряжение"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirme"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -28907,6 +31613,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Код сопряжения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirme Kodu"
           }
         },
         "vi": {
@@ -28973,6 +31685,12 @@
             "value": "Сопряжение не удалось."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirme başarısız oldu."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -29035,6 +31753,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Начать сопряжение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirmeyi Başlat"
           }
         },
         "vi": {
@@ -29101,6 +31825,12 @@
             "value": "Удалить сопряжение"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirmeyi Unut"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -29163,6 +31893,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Начать захват"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalamayı Başlat"
           }
         },
         "vi": {
@@ -29229,6 +31965,12 @@
             "value": "Остановить захват"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalamayı Durdur"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -29291,6 +32033,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Захват остановлен."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalama durduruldu."
           }
         },
         "vi": {
@@ -29357,6 +32105,12 @@
             "value": "Захват…"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalanıyor…"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -29419,6 +32173,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Захвачено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalandı"
           }
         },
         "vi": {
@@ -29485,6 +32245,12 @@
             "value": "Захваченные звуки уведомлений"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalanan Bildirim Sesleri"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -29547,6 +32313,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Файл"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosya"
           }
         },
         "vi": {
@@ -29613,6 +32385,12 @@
             "value": "Источник"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaynak"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -29675,6 +32453,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Системный по умолчанию (не заменяется)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem varsayılanı (değiştirilemez)"
           }
         },
         "vi": {
@@ -29741,6 +32525,12 @@
             "value": "Введите этот код на устройстве, чтобы подтвердить сопряжение."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirmeyi onaylamak için bu kodu cihazda girin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -29803,6 +32593,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сопряжение или захват уже выполняется."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başka bir eşleştirme veya yakalama zaten sürüyor."
           }
         },
         "vi": {
@@ -29869,6 +32665,12 @@
             "value": "Консоль устройства недоступна в этой сборке."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz konsolu bu derlemede kullanılamıyor."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -29931,6 +32733,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Соберите и включите библиотеку GXDeviceConsole, чтобы использовать сопряжение и захват."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirme ve yakalamayı kullanmak için GXDeviceConsole kitaplığını derleyin ve etkinleştirin."
           }
         },
         "vi": {
@@ -29997,6 +32805,12 @@
             "value": "Выполните сопряжение один раз в «Настройки › Конфиденциальность и безопасность › Режим разработчика › Сопряжение с вещающим хостом». Точный путь зависит от версии iOS."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu cihazı bir kez Ayarlar › Gizlilik ve Güvenlik › Geliştirici Modu › Yayın yapan cihazla eşleştir bölümünde eşleştirin. Tam yol iOS sürümüne göre değişebilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -30059,6 +32873,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Включите петлевой VPN (например, LocalDevVPN), затем начните захват и вызовите уведомление в нужном приложении."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir loopback VPN başlatın (örn. LocalDevVPN), sonra yakalamayı başlatın ve hedef uygulamada bir bildirim tetikleyin."
           }
         },
         "vi": {
@@ -30125,6 +32945,12 @@
             "value": "Эти имена файлов получены из уведомлений. Добавьте аудио с тем же именем, чтобы заменить их."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu dosya adları bildirimlerden yakalandı. Geçersiz kılmak için aynı ada sahip bir ses ekleyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -30187,6 +33013,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Аудио с тем же именем будет записано в Library/Sounds этого приложения, чтобы система использовала его вместо встроенного звука."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aynı ada sahip bir ses, bu uygulamanın Library/Sounds klasörüne yazılır; böylece sistem paketteki sesin yerine onu kullanır."
           }
         },
         "vi": {
@@ -30253,6 +33085,12 @@
             "value": "Восстановить исходное аудио"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özgün Sesi Geri Yükle"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -30317,6 +33155,12 @@
             "value": "Восстановить аудио"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesi Geri Yükle"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -30376,6 +33220,12 @@
           }
         },
         "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loopback VPN"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Loopback VPN"
@@ -30445,6 +33295,12 @@
             "value": "Открыть LocalDevVPN"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LocalDevVPN'i Aç"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -30507,6 +33363,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Не проверено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denetlenmedi"
           }
         },
         "vi": {
@@ -30573,6 +33435,12 @@
             "value": "Проверка…"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denetleniyor…"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -30635,6 +33503,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Недоступно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erişilemiyor"
           }
         },
         "vi": {
@@ -30701,6 +33575,12 @@
             "value": "Loopback VPN недоступен. Откройте LocalDevVPN, дождитесь подключения и повторите попытку."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loopback VPN'e erişilemiyor. LocalDevVPN'i açın, bağlanmasını bekleyin, sonra tekrar deneyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -30763,6 +33643,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сохранённый файл сопряжения отсутствует. Сопрягите этот iPhone заново перед захватом."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaydedilen eşleştirme dosyası eksik. Yakalamadan önce bu iPhone'u yeniden eşleştirin."
           }
         },
         "vi": {
@@ -30829,6 +33715,12 @@
             "value": "Сопряжение устройства"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz Eşleştirmesi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -30891,6 +33783,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сопряжение и подключение устройства"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirme ve Cihaz Bağlantısı"
           }
         },
         "vi": {
@@ -30957,6 +33855,12 @@
             "value": "Аудиотека приложений"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulama Ses Kitaplığı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -31019,6 +33923,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Приложения со звуками уведомлений или аудиофайлами"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaten bildirim sesi veya ses dosyası olan uygulamalar"
           }
         },
         "vi": {
@@ -31085,6 +33995,12 @@
             "value": "Захват звуков уведомлений"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildirim Seslerini Yakala"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -31147,6 +34063,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Идёт сопряжение. Завершите его в разделе «Инструменты → Сопряжение устройства»."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirme sürüyor. Araçlar → Cihaz Eşleştirmesi'nden tamamlayın."
           }
         },
         "vi": {
@@ -31213,6 +34135,12 @@
             "value": "Открыть сопряжение"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz Eşleştirmesini Aç"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -31275,6 +34203,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Имеющееся аудио"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mevcut Ses"
           }
         },
         "vi": {
@@ -31341,6 +34275,12 @@
             "value": "Захваченные приложения"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalanan Uygulamalar"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -31403,6 +34343,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Удалить запись захвата"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalamayı Sil"
           }
         },
         "vi": {
@@ -31469,6 +34415,12 @@
             "value": "Исходная копия этого звука не найдена. Возможно, приложение заменило файл после последнего изменения."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ses için kaydedilmiş özgün kayıt bulunamadı. Uygulama, son düzenlemeden sonra onu değiştirmiş olabilir."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -31531,6 +34483,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сопрягите устройство один раз перед захватом."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yakalamadan önce bir kez eşleştirin."
           }
         },
         "vi": {
@@ -31597,6 +34555,12 @@
             "value": "Сопряжение GestaltX"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX Eşleştirmesi"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -31659,6 +34623,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вещание как GestaltX"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX olarak yayın yapılıyor"
           }
         },
         "vi": {
@@ -31725,6 +34695,12 @@
             "value": "Конфиденциальность и безопасность → Режим разработчика"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizlilik ve Güvenlik → Geliştirici Modu"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -31787,6 +34763,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Открыть Настройки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlar'ı Aç"
           }
         },
         "vi": {
@@ -31853,6 +34835,12 @@
             "value": "Сопрягите этот iPhone один раз"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu iPhone'u bir kez eşleştirin"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -31915,6 +34903,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Нажмите «Сопрячь с GestaltX»"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX ile Eşleştir'e dokunun"
           }
         },
         "vi": {
@@ -31981,6 +34975,12 @@
             "value": "Введите 6-значный код, показанный ниже, в Dynamic Island или в уведомлении"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aşağıda, Dynamic Island'da veya bildirimde gösterilen 6 haneli kodu girin"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -32043,6 +35043,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Код сопряжения появится здесь, в Dynamic Island и в уведомлении."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirme kodu burada, Dynamic Island'da ve bir bildirim olarak görünür."
           }
         },
         "vi": {
@@ -32109,6 +35115,12 @@
             "value": "Введите этот код в Настройках, чтобы завершить сопряжение."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eşleştirmeyi tamamlamak için bu kodu Ayarlar'da girin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -32171,6 +35183,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Скопировать код"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kodu Kopyala"
           }
         },
         "vi": {
@@ -32237,6 +35255,12 @@
             "value": "Скопировано"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopyalandı"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -32299,6 +35323,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dynamic Island + уведомление"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamic Island + bildirim"
           }
         },
         "vi": {
@@ -32365,6 +35395,12 @@
             "value": "iOS не удалось запустить фоновую задачу сопряжения. Оставьте GestaltX открытым или повторите попытку позже."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS, arka plan eşleştirme görevini başlatamadı. GestaltX'i açık tutun veya kısa süre sonra tekrar deneyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -32427,6 +35463,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Режим ИИ Siri"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri AI Modu"
           }
         },
         "vi": {
@@ -32493,6 +35535,12 @@
             "value": "Устанавливает SiriMode в 2 без подмены оборудования. Экспериментальная функция; загрузка ресурсов и доступность не гарантируются."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SiriMode'u donanımı taklit etmeden 2'ye ayarlar. Deneyseldir; kaynak indirmeleri ve kullanılabilirlik garanti edilmez."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -32555,6 +35603,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Восстановить идентичность оборудования"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Donanım Kimliğini Geri Yükle"
           }
         },
         "vi": {
@@ -32621,6 +35675,12 @@
             "value": "Восстановить из этой резервной копии только исходные продукт, плату, CPU и номер модели. Настройки ИИ и региона сохраняются. После этого перезагрузите устройство и проверьте Face ID и диктовку."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu yedekten yalnızca özgün ürün, kart, CPU ve model numarasını geri yükler. AI ve bölge ayarları korunur. Sonrasında yeniden başlatın ve Face ID ile dikteyi test edin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -32683,6 +35743,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Требуется проверенная исходная резервная копия оборудования, соответствующая этому устройству и кэшу."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu cihazla ve önbellekle eşleşen, doğrulanmış özgün bir donanım yedeği gerekir."
           }
         },
         "vi": {
@@ -32749,6 +35815,12 @@
             "value": "Набор будет удалён только из GestaltX. Применённые обои сохранятся."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu, yalnızca içe aktarılan paketi GestaltX'ten siler. Uygulanmış duvar kağıtları korunur."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -32811,6 +35883,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Удалить импортированный набор обоев?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçe aktarılan duvar kağıdı paketi silinsin mi?"
           }
         },
         "vi": {
@@ -32877,6 +35955,12 @@
             "value": "Нравится GestaltX?"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX'ten memnun musunuz?"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -32939,6 +36023,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Если GestaltX полезен, звезда на GitHub очень поможет."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GestaltX size yararlıysa, GitHub'da bir yıldız bize çok yardımcı olur."
           }
         },
         "vi": {
@@ -33005,6 +36095,12 @@
             "value": "Поставить звезду на GitHub"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub'da Yıldız Ver"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -33067,6 +36163,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Позже"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belki Sonra"
           }
         },
         "vi": {
@@ -33133,6 +36235,12 @@
             "value": "Больше не спрашивать"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir Daha Sorma"
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -33197,6 +36305,12 @@
             "value": "Не удаётся подключиться к консоли устройства. Откройте LocalDevVPN, дождитесь подключения и повторите попытку."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihaz konsoluna ulaşılamıyor. LocalDevVPN'i açın, bağlanmasını bekleyin, sonra tekrar deneyin."
+          }
+        },
         "vi": {
           "stringUnit": {
             "state": "translated",
@@ -33259,6 +36373,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Если экран не меняется, откройте LocalDevVPN и дождитесь завершения подключения."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu görünüm burada kalırsa LocalDevVPN'i açın ve bağlanmasının bitmesini bekleyin."
           }
         },
         "vi": {

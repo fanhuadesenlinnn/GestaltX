@@ -371,7 +371,6 @@
   "A3518 — Air · China mainland": "A3518 — Air · 중국 본토",
   "A3516 — Air · Japan": "A3516 — Air · 일본",
   "Supported OS": "지원 OS",
-  "Disabling may show Wi-Fi and change some network options. Restart to apply.": "비활성화하면 Wi-Fi로 표시되고 일부 네트워크 옵션이 변경될 수 있습니다. 적용하려면 기기를 재시동하세요.",
   "Lock Screen Text": "잠금 화면 문구",
   "Add your own text at the bottom of the Lock Screen.": "잠금 화면 하단에 원하는 문구를 표시합니다.",
   "System Default": "시스템 기본값",
@@ -518,5 +517,6 @@
   "Maybe Later": "나중에",
   "Don't Ask Again": "다시 묻지 않기",
   "Cannot reach the device console. Open LocalDevVPN, wait for it to connect, then try again.": "기기 콘솔에 연결할 수 없습니다. LocalDevVPN을 열고 연결될 때까지 기다린 후 다시 시도하세요.",
-  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "여기서 멈춰 있으면 LocalDevVPN을 열고 연결이 완료될 때까지 기다리세요."
+  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "여기서 멈춰 있으면 LocalDevVPN을 열고 연결이 완료될 때까지 기다리세요.",
+  "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.": "비활성화하면 Wi-Fi로 표시되고 일부 네트워크 옵션이 변경될 수 있습니다. 적용하려면 기기를 재시동하세요."
 }

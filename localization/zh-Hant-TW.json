@@ -371,7 +371,6 @@
   "This stages the system-wide InternalBuild flag. It can affect system services beyond the storage screen. You can review the change before applying it.": "這會暫存系統全域的 InternalBuild 旗標變更。它可能影響儲存空間畫面以外的系統服務。你可以在套用前檢查這項變更。",
   "The device proof is temporarily unavailable. Unlock this device and try again.": "裝置憑證暫時無法使用。請解鎖此裝置後重試。",
   "Supported OS": "支援系統",
-  "Disabling may show Wi-Fi and change some network options. Restart to apply.": "關閉後可顯示為 Wi-Fi，部分連網選項可能隨之變更。重新啟動後生效。",
   "Lock Screen Text": "鎖定畫面底部文字",
   "Add your own text at the bottom of the Lock Screen.": "在鎖定畫面底部顯示自訂文字。",
   "System Default": "系統預設",
@@ -518,5 +517,6 @@
   "Maybe Later": "稍後再說",
   "Don't Ask Again": "不再提醒",
   "Cannot reach the device console. Open LocalDevVPN, wait for it to connect, then try again.": "無法連線至裝置主控台。請開啟 LocalDevVPN，等它連線成功後再試。",
-  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "如果一直停在這裡，請開啟 LocalDevVPN，等它連線完成。"
+  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "如果一直停在這裡，請開啟 LocalDevVPN，等它連線完成。",
+  "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.": "關閉後可顯示為 Wi-Fi，部分連網選項可能隨之變更。重新啟動後生效。"
 }

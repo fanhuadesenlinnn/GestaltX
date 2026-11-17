@@ -371,7 +371,6 @@
   "This stages the system-wide InternalBuild flag. It can affect system services beyond the storage screen. You can review the change before applying it.": "Thao tác này đưa thay đổi cờ InternalBuild toàn hệ thống vào danh sách chờ. Nó có thể ảnh hưởng đến các dịch vụ ngoài màn hình bộ nhớ. Bạn có thể xem lại thay đổi trước khi áp dụng.",
   "The device proof is temporarily unavailable. Unlock this device and try again.": "Bằng chứng thiết bị tạm thời không khả dụng. Hãy mở khóa thiết bị này rồi thử lại.",
   "Supported OS": "Hệ điều hành được hỗ trợ",
-  "Disabling may show Wi-Fi and change some network options. Restart to apply.": "Tắt có thể đổi tên hiển thị thành Wi-Fi và thay đổi một số tùy chọn mạng. Khởi động lại để áp dụng.",
   "Lock Screen Text": "Văn bản màn hình khóa",
   "Add your own text at the bottom of the Lock Screen.": "Hiển thị văn bản tùy chỉnh ở cuối màn hình khóa.",
   "System Default": "Mặc định hệ thống",
@@ -518,5 +517,6 @@
   "Maybe Later": "Để sau",
   "Don't Ask Again": "Không hỏi lại",
   "Cannot reach the device console. Open LocalDevVPN, wait for it to connect, then try again.": "Không thể kết nối với bảng điều khiển thiết bị. Hãy mở LocalDevVPN, đợi kết nối rồi thử lại.",
-  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "Nếu màn hình đứng ở đây, hãy mở LocalDevVPN và đợi kết nối hoàn tất."
+  "If this stays here, open LocalDevVPN and wait for it to finish connecting.": "Nếu màn hình đứng ở đây, hãy mở LocalDevVPN và đợi kết nối hoàn tất.",
+  "Disabling may show a Wi-Fi entry instead of WLAN. Restart to apply.": "Tắt có thể đổi tên hiển thị thành Wi-Fi và thay đổi một số tùy chọn mạng. Khởi động lại để áp dụng."
 }
